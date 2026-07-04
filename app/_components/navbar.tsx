@@ -1,19 +1,20 @@
 import Logo from "@/components/logo";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Navbar() {
 	const links = [
 		{
 			label: "how",
-			href: "#how",
+			href: "/#how",
 		},
 		{
 			label: "prizes",
-			href: "#prizes",
+			href: "/#prizes",
 		},
 		{
 			label: "faq",
-			href: "#faq",
+			href: "/#faq",
 		},
 	];
 
@@ -33,7 +34,11 @@ export default function Navbar() {
 					))}
 				</div>
 			</div>
-			<div>Sign In</div>
+			<div>
+				<Button variant="outline" size="lg">
+					Sign In
+				</Button>
+			</div>
 		</nav>
 	);
 }
