@@ -4,6 +4,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import Section from "./section";
 
 export default function FAQ() {
 	const items = [
@@ -25,13 +26,19 @@ export default function FAQ() {
 	];
 
 	return (
-		<Accordion defaultValue={["legitimacy"]}>
-			{items.map((item) => (
-				<AccordionItem key={item.id} value={item.id}>
-					<AccordionTrigger>{item.q}</AccordionTrigger>
-					<AccordionContent>{item.a}</AccordionContent>
-				</AccordionItem>
-			))}
-		</Accordion>
+		<Section
+			id="faq"
+			title="frequently asked questions"
+			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
+		>
+			<Accordion defaultValue={["legitimacy"]}>
+				{items.map((item) => (
+					<AccordionItem key={item.id} value={item.id}>
+						<AccordionTrigger>{item.q}</AccordionTrigger>
+						<AccordionContent>{item.a}</AccordionContent>
+					</AccordionItem>
+				))}
+			</Accordion>
+		</Section>
 	);
 }
