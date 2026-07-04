@@ -6,9 +6,10 @@ type LogoProps = {
 export default function Logo({ height, width }: LogoProps) {
 	return (
 		<svg
-			fill="none"
+			aria-label="Hack Club"
 			height={height}
 			width={width}
+			fill="none"
 			viewBox="0 0 526 184"
 			xmlns="http://www.w3.org/2000/svg"
 		>
