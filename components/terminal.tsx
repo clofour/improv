@@ -17,9 +17,9 @@ export default function Terminal({
 			<div className="flex justify-between items-center px-2 p-1 bg-muted/60 border-b border-border">
 				<span className="text-muted-foreground uppercase">{title}</span>
 				<div className="flex items-center gap-2">
-					<div className="h-2 w-2 rounded-full bg-destructive/80" />
-					<div className="h-2 w-2 rounded-full bg-secondary/80" />
-					<div className="h-2 w-2 rounded-full bg-primary/80" />
+					<div className="h-2.5 w-2.5 rounded-full bg-destructive/80" />
+					<div className="h-2.5 w-2.5 rounded-full bg-secondary/80" />
+					<div className="h-2.5 w-2.5 rounded-full bg-primary/80" />
 				</div>
 			</div>
 			<div className="p-2">{children}</div>
