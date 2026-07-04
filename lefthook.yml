@@ -2,5 +2,5 @@ pre-commit:
   jobs:
     - name: format frontend
       glob: "*.{ts,tsx,json,css}"
-      run: npm run format -- {staged_files}
+      run: npm run check -- {staged_files}
       stage_fixed: true
