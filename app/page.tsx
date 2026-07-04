@@ -6,16 +6,16 @@ import Navbar from "./_components/navbar";
 import Prizes from "./_components/prizes";
 
 export default function Home() {
-  return (
-    <div>
-      <Navbar />
-      <div className="flex flex-col flex-1 p-5 items-center justify-center">
-        <Hero />
-        <Flow />
-        <Prizes />
-        <FAQ />
-        <Footer />
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<Navbar />
+			<div className="flex flex-col flex-1 p-5 items-center justify-center">
+				<Hero />
+				<Flow />
+				<Prizes />
+				<FAQ />
+				<Footer />
+			</div>
+		</div>
+	);
 }
