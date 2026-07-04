@@ -33,7 +33,7 @@ export default function FAQ() {
 		>
 			<Accordion defaultValue={["legitimacy"]}>
 				{items.map((item) => (
-					<AccordionItem key={item.id} value={item.id}>
+					<AccordionItem key={item.id} value={item.id} className="panel px-3">
 						<AccordionTrigger>{item.q}</AccordionTrigger>
 						<AccordionContent>{item.a}</AccordionContent>
 					</AccordionItem>
