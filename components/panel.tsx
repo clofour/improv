@@ -8,7 +8,7 @@ interface PanelProps {
 
 export default function Panel({ className, children, ...props }: PanelProps) {
     return (
-        <div className={cn("utility", className)} {...props}>
+        <div className={cn("panel", className)} {...props}>
             {children}
         </div>
     )
