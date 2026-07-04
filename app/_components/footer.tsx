@@ -23,11 +23,11 @@ export default function Footer() {
 	];
 
 	return (
-		<div className="grid grid-cols-12 gap-8">
-			<div className="col-span-6 sm:col-span-4">
+		<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 bg-background/80 border-t border-border gap-16">
+			<div className="basis-1/2 sm:basis-1/3 shrink-0">
 				<div className="flex flex-col gap-3">
 					<Logo height={30} />
-					<div>
+					<div className="text-base text-muted-foreground">
 						Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
 						high schoolers. We believe you learn best by building, so we're
 						creating community and providing grants so you can make awesome
@@ -38,12 +38,16 @@ export default function Footer() {
 				</div>
 			</div>
 			{sections.map((section) => (
-				<div key={section.name} className="col-span-6 sm:col-auto">
-					<div className="flex flex-col gap-3">
-						<p>{section.name}</p>
-						<div className="flex flex-col gap-2">
+				<div key={section.name} className="basis-1/2 sm:basis-0 sm:grow">
+					<div className="flex flex-col gap-2">
+						<p className="text-lg font-heading font-bold">{section.name}</p>
+						<div className="flex flex-col gap-1">
 							{section.links.map((link) => (
-								<ExternalLink key={link.label} href={link.to}>
+								<ExternalLink
+									key={link.label}
+									href={link.to}
+									className="text-base text-muted-foreground hover:text-foreground"
+								>
 									{link.label}
 								</ExternalLink>
 							))}
