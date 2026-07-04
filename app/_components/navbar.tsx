@@ -18,7 +18,7 @@ export default function Navbar() {
 	];
 
 	return (
-		<nav className="flex flex-row justify-between items-center px-6 py-3 bg-background/80">
+		<nav className="sticky top-0 flex flex-row justify-between items-center px-6 py-3 bg-background/80">
 			<div className="flex flex-row gap-10">
 				<Logo height={30} />
 				<div className="flex flex-row gap-5">
