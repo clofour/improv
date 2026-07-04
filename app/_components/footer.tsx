@@ -1,4 +1,5 @@
 import ExternalLink from "@/components/external-link";
+import Logo from "@/components/logo";
 
 export default function Footer() {
 	const sections = [
@@ -25,7 +26,7 @@ export default function Footer() {
 		<div className="grid grid-cols-12 gap-8">
 			<div className="col-span-6 sm:col-span-4">
 				<div className="flex flex-col gap-3">
-					<div className="text-5xl">Logo</div>
+					<Logo height={30} />
 					<div>
 						Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
 						high schoolers. We believe you learn best by building, so we're
