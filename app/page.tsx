@@ -6,7 +6,7 @@ import Prizes from "./_components/prizes";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col flex-1 p-5 items-center justify-center">
       <Hero />
       <Flow />
       <Prizes />
