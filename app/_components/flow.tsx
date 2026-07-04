@@ -22,9 +22,9 @@ export default function Flow() {
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
 			<Terminal title="architecture" className="w-full h-full">
-				<div className="w-full h-full relative px-5 py-10">
+				<div className="w-full h-full relative px-5 py-10 overflow-x-auto">
 					<svg className="w-full h-full absolute inset-0 pointer-events-none"></svg>
-					<div className="w-full h-full flex flex-row gap-30">
+					<div className="w-max h-full flex flex-row gap-30">
 						{columns.map((column) => (
 							<div className="w-full h-full flex flex-col justify-between gap-10">
 								{column.map((step) => (
