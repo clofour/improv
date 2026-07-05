@@ -10,7 +10,7 @@ export default function Hero() {
 					<br />
 					your own
 					<br />
-					<span className="text-primary glow-primary">infrastructure</span>
+					<span className="text-primary glow-primary">provisioning</span>
 				</h1>
 				<p className="text-muted-foreground text-base font-mono">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
