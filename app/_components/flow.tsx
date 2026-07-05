@@ -123,9 +123,13 @@ export default function Flow() {
 
 						<div className="w-max h-full flex flex-row gap-20">
 							{columns.map((column, columnIndex) => (
-								<div className="w-full h-full flex flex-col justify-between gap-10">
+								<div
+									key={columnIndex}
+									className="w-full h-full flex flex-col justify-between gap-10"
+								>
 									{column.map((step, rowIndex) => (
 										<Panel
+											key={`${columnIndex}-${rowIndex}`}
 											ref={(element) => {
 												nodeRefs.current[`${columnIndex}-${rowIndex}`] =
 													element;
