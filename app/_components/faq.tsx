@@ -41,11 +41,13 @@ export default function FAQ() {
 			title="frequently asked questions"
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
-			<Accordion defaultValue={["legitimacy"]}>
+			<Accordion defaultValue={["ysws"]}>
 				{items.map((item) => (
 					<AccordionItem key={item.id} value={item.id} className="panel px-3">
 						<AccordionTrigger>{item.q}</AccordionTrigger>
-						<AccordionContent>{item.a}</AccordionContent>
+						<AccordionContent className="text-muted-foreground">
+							{item.a}
+						</AccordionContent>
 					</AccordionItem>
 				))}
 			</Accordion>
