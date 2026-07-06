@@ -22,7 +22,7 @@ export default function Navbar() {
 
 	return (
 		<nav className="sticky top-0 flex flex-row justify-between items-center px-6 py-3 bg-background/80">
-			<div className="flex flex-row gap-10">
+			<div className="flex flex-row items-center gap-10">
 				<Logo
 					iconType={IconType.HackClub}
 					textType={TextType.Improv}
