@@ -14,8 +14,8 @@ export default function Home() {
 				<Flow />
 				<Prizes />
 				<FAQ />
-				<Footer />
 			</main>
+			<Footer />
 		</div>
 	);
 }
