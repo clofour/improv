@@ -21,7 +21,7 @@ const hc = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Improv",
+	title: "Improv — Improvise your own provisioning tooling",
 	description: "Hack Club YSWS, centering on infrastructure",
 };
 
