@@ -12,15 +12,20 @@ export default function Hero() {
 					<br />
 					<span className="text-primary glow-primary">provisioning</span>
 				</h1>
-				<p className="text-muted-foreground text-base font-mono">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+				<div className="space-y-4 text-muted-foreground text-base font-mono">
+					<p>
+						Do you know what happens under the hood when you deploy on services
+						like Vercel or Railway, or spin up a VM on a cloud provider? Do you{" "}
+						<span className="italic">really</span>?
+					</p>
+
+					<p>
+						Infrastructure is all around us, and yet most of us barely
+						understand it. <span className="text-foreground">Improv</span> aims
+						to change that, by helping YOU build your provisioning tooling,
+						which you'll actually use for years to come.
+					</p>
+				</div>
 				<div className="flex flex-row gap-3">
 					<Button size="lg">Get Started</Button>
 					<Button size="lg" variant="outline">
