@@ -27,7 +27,8 @@ const columns = [
 		{
 			id: "need",
 			title: "Identify a real need",
-			description: "IDK",
+			description:
+				"Look around you. What annoys you on a daily basis? Expensive hosting? Unreliable services? Missing features?",
 			links: ["existing", "new"],
 		},
 	],
@@ -35,13 +36,15 @@ const columns = [
 		{
 			id: "existing",
 			title: "Use existing provisioning tools",
-			description: "IDK",
+			description:
+				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
 			links: ["ship"],
 		},
 		{
 			id: "new",
 			title: "Create your own provisioning tools",
-			description: "IDK",
+			description:
+				"Scripts, CLIs, configuration managers, orchestrators, provisioners, CI/CD pipelines... the sky's the limit!",
 			links: ["ship"],
 		},
 	],
@@ -49,23 +52,24 @@ const columns = [
 		{
 			id: "ship",
 			title: "Ship a working project",
-			description: "IDK",
+			description:
+				"Create a demo, add a README and polish your project before submitting it",
 			links: ["uptime"],
 		},
 	],
 	[
 		{
 			id: "uptime",
-			title: "Receive Uptime",
-			description: "IDK",
+			title: "Receive Uptime and discounts",
+			description: "Complexity, hours spent and theme factor in here",
 			links: ["shop"],
 		},
 	],
 	[
 		{
 			id: "shop",
-			title: "Redeem prizes from the shop",
-			description: "IDK",
+			title: "Redeem prizes",
+			description: "Spend your Uptime in the Shop",
 			links: [],
 		},
 	],
