@@ -36,7 +36,7 @@ function ShopItem({
 	discountExamples,
 }: ShopItemProps) {
 	return (
-		<Terminal title={name}>
+		<Terminal title="Shop Item">
 			<div className="flex items-center justify-center aspect-[2/1]">
 				<Image
 					src={image}
@@ -66,7 +66,7 @@ function ShopItem({
 				</div>
 				<div className="flex flex-row flex-wrap items-center gap-2">
 					<span className="text-xs text-muted-foreground uppercase whitespace-nowrap">
-						Example Relevant Projects:
+						Example Projects:
 					</span>
 					{discountExamples.map((example) => (
 						<span
@@ -85,27 +85,32 @@ function ShopItem({
 export default function Prizes() {
 	const items = [
 		{
-			name: "Hosting Credits",
-			description:
-				"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
-			image: "/placeholder.webp",
-			price: 20,
-			discountPrice: 16,
-			discountExamples: ["PaaS"],
-		},
-		{
 			name: "Minecraft",
-			description:
-				"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
+			description: "the kids yearn for the mines",
 			image: "/placeholder.webp",
 			price: 70,
 			discountPrice: 60,
 			discountExamples: ["Minecraft server installer"],
 		},
 		{
-			name: "GPU Grant",
-			description:
-				"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
+			name: "ePaper Display",
+			description: "monitoring, readily available on your desk",
+			image: "/placeholder.webp",
+			price: 100,
+			discountPrice: 80,
+			discountExamples: ["GPU scheduler"],
+		},
+		{
+			name: "Hosting Credits",
+			description: "you'll need these, until you don't",
+			image: "/placeholder.webp",
+			price: 20,
+			discountPrice: 16,
+			discountExamples: ["PaaS"],
+		},
+		{
+			name: "'Works on my machine' cup",
+			description: "coffee first, dev never",
 			image: "/placeholder.webp",
 			price: 100,
 			discountPrice: 80,
@@ -119,7 +124,7 @@ export default function Prizes() {
 			title="what you get"
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 				{items.map((item) => (
 					<ShopItem key={item.name} {...item} />
 				))}
