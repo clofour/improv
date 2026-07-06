@@ -163,26 +163,36 @@ export default function Flow() {
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
 				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
-					{flatColumns.map((step, index, steps) => (
-						<div key={step.id} className="flex flex-row gap-4">
-							<div className="flex flex-col items-center">
-								<div className="size-8 flex items-center justify-center border border-primary bg-primary/10 text-sm text-primary">
-									{index + 1}
+					{columns.map((column, columnIndex, columns) =>
+						column.map((step, stepIndex, steps) => (
+							<div key={step.id} className="flex flex-row gap-4">
+								<div className="flex flex-col items-center">
+									<div className="size-8 flex items-center justify-center border border-primary bg-primary/10 text-sm text-primary lowercase">
+										{steps.length == 1
+											? columnIndex + 1
+											: `${columnIndex + 1}${String.fromCharCode(65 + stepIndex)}`}
+									</div>
+									{stepIndex < steps.length - 1 ? (
+										<div className="w-px h-full min-h-8 relative bg-gradient-to-b from-border to-transparent/25">
+											<span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-muted-foreground font-mono">
+												OR
+											</span>
+										</div>
+									) : columnIndex < columns.length - 1 ? (
+										<div className="w-px h-full min-h-8 bg-gradient-to-b from-border to-transparent/25" />
+									) : null}
 								</div>
-								{index < steps.length - 1 ? (
-									<div className="w-px h-full min-h-8 bg-gradient-to-b from-border to-transparent/25" />
-								) : null}
+								<div>
+									<p className="text-base font-heading font-bold leading-none">
+										{step.title}
+									</p>
+									<p className="text-sm text-muted-foreground">
+										{step.description}
+									</p>
+								</div>
 							</div>
-							<div>
-								<p className="text-base font-heading font-bold leading-none">
-									{step.title}
-								</p>
-								<p className="text-sm text-muted-foreground">
-									{step.description}
-								</p>
-							</div>
-						</div>
-					))}
+						)),
+					)}
 				</div>
 
 				<div className="hidden sm:block">
