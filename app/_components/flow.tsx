@@ -4,6 +4,7 @@ import Terminal from "@/components/terminal";
 import Section from "./section";
 import Panel from "@/components/panel";
 import { useEffect, useRef, useState } from "react";
+import NameSection from "./name-section";
 
 interface Step {
 	id: string;
@@ -156,7 +157,7 @@ export default function Flow() {
 	}, []);
 
 	return (
-		<Section
+		<NameSection
 			id="how"
 			title="how it works"
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
@@ -258,6 +259,6 @@ export default function Flow() {
 					</div>
 				</div>
 			</Terminal>
-		</Section>
+		</NameSection>
 	);
 }

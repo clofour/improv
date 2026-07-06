@@ -1,7 +1,9 @@
-import ExternalLink from "@/components/link";
+import ExternalLink, { LinkType } from "@/components/link";
 import Logo from "@/components/logo";
 import { IconType } from "@/components/logo-icon";
 import { TextType } from "@/components/logo-text";
+import Section from "./section";
+import Link from "@/components/link";
 
 export default function Footer() {
 	const sections = [
@@ -25,42 +27,47 @@ export default function Footer() {
 	];
 
 	return (
-		<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 bg-background/80 border-t border-border gap-16">
-			<div className="basis-full sm:basis-1/3 shrink-0">
-				<div className="flex flex-col gap-3">
-					<Logo
-						iconType={IconType.HackClub}
-						textType={TextType.Improv}
-						size="md"
-					/>
-					<div className="text-sm text-muted-foreground">
-						Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
-						high schoolers. We believe you learn best by building, so we're
-						creating community and providing grants so you can make awesome
-						projects. In the past few years, we've partnered with GitHub to run
-						Summer of Making, hosted the world's longest hackathon on land, and
-						ran Canada's largest high school hackathon.
-					</div>
-				</div>
-			</div>
-			{sections.map((section) => (
-				<div key={section.name} className="basis-2/5 sm:basis-0 sm:grow">
-					<div className="flex flex-col gap-2">
-						<p className="text-lg font-heading font-bold">{section.name}</p>
-						<div className="flex flex-col gap-1">
-							{section.links.map((link) => (
-								<ExternalLink
-									key={link.label}
-									href={link.to}
-									className="text-sm text-muted-foreground hover:text-foreground"
-								>
-									{link.label}
-								</ExternalLink>
-							))}
+		<footer className="flex flex-col justify-center items-center bg-background/80 border-t border-border">
+			<Section>
+				<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 gap-16">
+					<div className="basis-full sm:basis-1/3 shrink-0">
+						<div className="flex flex-col gap-3">
+							<Logo
+								iconType={IconType.HackClub}
+								textType={TextType.Improv}
+								size="md"
+							/>
+							<div className="text-sm text-muted-foreground">
+								Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
+								high schoolers. We believe you learn best by building, so we're
+								creating community and providing grants so you can make awesome
+								projects. In the past few years, we've partnered with GitHub to
+								run Summer of Making, hosted the world's longest hackathon on
+								land, and ran Canada's largest high school hackathon.
+							</div>
 						</div>
 					</div>
+					{sections.map((section) => (
+						<div key={section.name} className="basis-2/5 sm:basis-0 sm:grow">
+							<div className="flex flex-col gap-2">
+								<p className="text-lg font-heading font-bold">{section.name}</p>
+								<div className="flex flex-col gap-1">
+									{section.links.map((link) => (
+										<Link
+											type={LinkType.External}
+											key={link.label}
+											href={link.to}
+											className="text-sm text-muted-foreground hover:text-foreground"
+										>
+											{link.label}
+										</Link>
+									))}
+								</div>
+							</div>
+						</div>
+					))}
 				</div>
-			))}
-		</div>
+			</Section>
+		</footer>
 	);
 }

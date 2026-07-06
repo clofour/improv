@@ -5,6 +5,7 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion";
 import Section from "./section";
+import NameSection from "./name-section";
 
 export default function FAQ() {
 	const items = [
@@ -36,7 +37,7 @@ export default function FAQ() {
 	];
 
 	return (
-		<Section
+		<NameSection
 			id="faq"
 			title="frequently asked questions"
 			description="need i say more?"
@@ -51,6 +52,6 @@ export default function FAQ() {
 					</AccordionItem>
 				))}
 			</Accordion>
-		</Section>
+		</NameSection>
 	);
 }

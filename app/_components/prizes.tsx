@@ -2,6 +2,7 @@ import Terminal from "@/components/terminal";
 import Section from "./section";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import NameSection from "./name-section";
 
 interface ShopItemPriceProps {
 	className: string;
@@ -124,7 +125,7 @@ function ShopItem({
 
 export default function Prizes() {
 	return (
-		<Section
+		<NameSection
 			id="prizes"
 			title="what you get"
 			description={
@@ -147,6 +148,6 @@ export default function Prizes() {
 				</div>
 				<p className="text-sm text-muted-foreground">...and more</p>
 			</div>
-		</Section>
+		</NameSection>
 	);
 }
