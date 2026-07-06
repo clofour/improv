@@ -3,10 +3,11 @@ import ExternalLink, { LinkType } from "./link";
 import { buttonVariants } from "./ui/button";
 import { VariantProps } from "class-variance-authority";
 import Link from "./link";
+import { cn } from "@/lib/utils";
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-interface LinkButtonProps {
+export interface LinkButtonProps {
 	type: LinkType;
 	variant?: ButtonVariants["variant"];
 	size: ButtonVariants["size"];
@@ -24,7 +25,7 @@ export default function LinkButton({
 	return (
 		<Link
 			type={type}
-			className={buttonVariants({ variant: variant, size: size })}
+			className={cn(buttonVariants({ variant: variant, size: size }))}
 			href={href}
 		>
 			{children}

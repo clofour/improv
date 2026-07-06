@@ -1,26 +1,17 @@
 import ExternalLink, { LinkType } from "@/components/link";
-import LinkButton from "@/components/link-button";
+import LinkButton, { LinkButtonProps } from "@/components/link-button";
 import { buttonVariants } from "@/components/ui/button";
 
 interface RSVPButtonProps {
-	size:
-		| "lg"
-		| "default"
-		| "xs"
-		| "sm"
-		| "icon"
-		| "icon-xs"
-		| "icon-sm"
-		| "icon-lg"
-		| null
-		| undefined;
+	variant?: LinkButtonProps["variant"];
+	size?: LinkButtonProps["size"];
 }
 
-export default function RSVPButton({ size }: RSVPButtonProps) {
+export default function RSVPButton({ size, variant }: RSVPButtonProps) {
 	return (
 		<LinkButton
 			type={LinkType.External}
-			variant="default"
+			variant={variant}
 			size={size}
 			href="https://rsvp.hackclub.community/improv"
 		>

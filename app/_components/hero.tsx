@@ -1,6 +1,8 @@
 import Terminal from "@/components/terminal";
 import { Button } from "@/components/ui/button";
 import RSVPButton from "./rsvp-button";
+import LinkButton from "@/components/link-button";
+import { LinkType } from "@/components/link";
 
 export default function Hero() {
 	return (
@@ -28,10 +30,15 @@ export default function Hero() {
 					</p>
 				</div>
 				<div className="flex flex-row gap-3">
-					<RSVPButton size="lg" />
-					<Button size="lg" variant="outline">
+					<RSVPButton variant="cta" size="cta" />
+					<LinkButton
+						type={LinkType.Internal}
+						href="/#how"
+						size="cta"
+						variant="outline"
+					>
 						Read More
-					</Button>
+					</LinkButton>
 				</div>
 			</div>
 			<div className="w-full h-full">
