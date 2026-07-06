@@ -9,6 +9,11 @@ import Section from "./section";
 export default function FAQ() {
 	const items = [
 		{
+			id: "ysws",
+			q: "What is a YSWS?",
+			a: "YSWS stands for 'you ship, we ship'. You create and ship a project, then Hack Club ships you prizes.",
+		},
+		{
 			id: "legitimacy",
 			q: "Is this legit?",
 			a: "Yup! We're Hack Club, a nonprofit organization that has been running similar programs for years.",
@@ -16,12 +21,17 @@ export default function FAQ() {
 		{
 			id: "eligibility",
 			q: "Am I eligible?",
-			a: "You can participate if you are between the ages of 13 to 18.",
+			a: "You are eligible participate if you are between the ages of 13 to 18 inclusive.",
 		},
 		{
 			id: "capability",
 			q: "What if I don't know how to code?",
-			a: "That's completely fine! Improv accomodates beginners...",
+			a: "That's completely fine! Hack Club is all about learning how to code. If you ever get stuck, you can ask for help.",
+		},
+		{
+			id: "definition",
+			q: "What counts as a project?",
+			a: "Anything that provisions, configures, deploys, updates or secures infrastructure counts, as long as it works.",
 		},
 	];
 
