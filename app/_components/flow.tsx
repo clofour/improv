@@ -70,6 +70,7 @@ const columns = [
 		},
 	],
 ];
+const flatColumns = columns.flat();
 
 const getEdgePosition = (
 	element: HTMLElement,
@@ -157,63 +158,88 @@ export default function Flow() {
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
-				<div className="w-full h-full px-5 py-10 overflow-x-auto">
-					<div ref={containerRef} className="w-max h-full relative">
-						<svg
-							ref={svgRef}
-							className="w-full h-full absolute inset-0 pointer-events-none"
-						>
-							<defs>
-								<marker
-									id="arrow"
-									viewBox="0 0 10 10"
-									refX="9"
-									refY="5"
-									markerWidth="6"
-									markerHeight="6"
-									orient="auto-start-reverse"
-								>
-									<path d="M0,0 L10,5 L0,10 z" fill="var(--color-wire)" />
-								</marker>
-							</defs>
-
-							{paths.map((path, index) => (
-								<path
-									key={index}
-									d={path.d}
-									className="wire-flow"
-									stroke="var(--color-wire)"
-									strokeWidth="2"
-									fill="none"
-									markerEnd="url(#arrow)"
-								/>
-							))}
-						</svg>
-
-						<div className="w-max h-full flex flex-row gap-14">
-							{columns.map((column, columnIndex) => (
-								<div
-									key={columnIndex}
-									className="w-full h-full flex flex-col justify-between gap-10"
-								>
-									{column.map((step) => (
-										<Panel
-											key={step.id}
-											ref={(element) => {
-												nodeRefs.current[step.id] = element;
-											}}
-											className="px-3 py-2 mx-auto"
-										>
-											<p className="text-sm font-heading font-bold">
-												{step.title}
-											</p>
-											<p className="text-xs text-muted-foreground">
-												{step.description}
-											</p>
-										</Panel>
-									))}
+				<div className="sm:hidden flex flex-col px-4 py-2">
+					{flatColumns.map((step, index, steps) => (
+						<div key={step.id} className="flex flex-row gap-4">
+							<div className="flex flex-col items-center">
+								<div className="size-8 flex items-center justify-center border border-primary bg-primary/10 text-sm text-primary">
+									{index + 1}
 								</div>
-							))}
+								{index < steps.length - 1 ? (
+									<div className="w-px h-full min-h-8 bg-gradient-to-b from-border to-transparent/25" />
+								) : null}
+							</div>
+							<div>
+								<p className="text-base font-heading font-bold leading-none">
+									{step.title}
+								</p>
+								<p className="text-sm text-muted-foreground">
+									{step.description}
+								</p>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div className="hidden sm:block">
+					<div className="w-full h-full px-5 py-10 overflow-x-auto">
+						<div ref={containerRef} className="w-max h-full relative">
+							<svg
+								ref={svgRef}
+								className="w-full h-full absolute inset-0 pointer-events-none"
+							>
+								<defs>
+									<marker
+										id="arrow"
+										viewBox="0 0 10 10"
+										refX="9"
+										refY="5"
+										markerWidth="6"
+										markerHeight="6"
+										orient="auto-start-reverse"
+									>
+										<path d="M0,0 L10,5 L0,10 z" fill="var(--color-wire)" />
+									</marker>
+								</defs>
+
+								{paths.map((path) => (
+									<path
+										key={path.id}
+										d={path.d}
+										className="wire-flow"
+										stroke="var(--color-wire)"
+										strokeWidth="2"
+										fill="none"
+										markerEnd="url(#arrow)"
+									/>
+								))}
+							</svg>
+
+							<div className="w-max h-full flex flex-row gap-14">
+								{columns.map((column, columnIndex) => (
+									<div
+										key={columnIndex}
+										className="w-full h-full flex flex-col justify-between gap-10"
+									>
+										{column.map((step) => (
+											<Panel
+												key={step.id}
+												ref={(element) => {
+													nodeRefs.current[step.id] = element;
+												}}
+												className="px-3 py-2 mx-auto"
+											>
+												<p className="text-sm font-heading font-bold">
+													{step.title}
+												</p>
+												<p className="text-xs text-muted-foreground">
+													{step.description}
+												</p>
+											</Panel>
+										))}
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
