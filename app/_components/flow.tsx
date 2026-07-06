@@ -5,7 +5,15 @@ import Section from "./section";
 import Panel from "@/components/panel";
 import { useEffect, useRef, useState } from "react";
 
+interface Step {
+	id: string;
+	title: string;
+	description: string;
+	links: string[];
+}
+
 interface Path {
+	id: string;
 	d: string;
 }
 
@@ -14,71 +22,132 @@ interface Point {
 	y: number;
 }
 
+const columns = [
+	[
+		{
+			id: "need",
+			title: "Identify a real need",
+			description: "IDK",
+			links: ["existing", "new"],
+		},
+	],
+	[
+		{
+			id: "existing",
+			title: "Use existing provisioning tools",
+			description: "IDK",
+			links: ["ship"],
+		},
+		{
+			id: "new",
+			title: "Create your own provisioning tools",
+			description: "IDK",
+			links: ["ship"],
+		},
+	],
+	[
+		{
+			id: "ship",
+			title: "Ship a working project",
+			description: "IDK",
+			links: ["uptime"],
+		},
+	],
+	[
+		{
+			id: "uptime",
+			title: "Receive Uptime",
+			description: "IDK",
+			links: ["shop"],
+		},
+	],
+	[
+		{
+			id: "shop",
+			title: "Redeem prizes from the shop",
+			description: "IDK",
+			links: [],
+		},
+	],
+];
+
+const getEdgePosition = (
+	element: HTMLElement,
+	reference: SVGSVGElement,
+	side: "left" | "right",
+): Point => {
+	const elementBounds = element.getBoundingClientRect();
+	const referenceBounds = reference.getBoundingClientRect();
+
+	return {
+		x: elementBounds[side] - referenceBounds.left,
+		y: elementBounds.top + elementBounds.height / 2 - referenceBounds.top,
+	};
+};
+
+function generateCurve(x1: number, y1: number, x2: number, y2: number) {
+	const offset = (x2 - x1) * 0.5;
+	return `M ${x1} ${y1} C ${x1 + offset} ${y1}, ${x2 - offset} ${y2}, ${x2} ${y2}`;
+}
+
 export default function Flow() {
-	const columns = [
-		["Come up with an awesome idea!!"],
-		["Use existing provisioning tools", "Create your own provisioning tools"],
-		["Ship your project"],
-		["Receive Uptime"],
-		["Buy prizes from the shop"],
-	];
+	const containerRef = useRef<HTMLDivElement | null>(null);
 	const svgRef = useRef<SVGSVGElement | null>(null);
 	const nodeRefs = useRef<Record<string, HTMLDivElement | null>>({});
 	const [paths, setPaths] = useState<Path[]>([]);
 
-	const getEdgePosition = (
-		element: HTMLElement,
-		reference: SVGSVGElement,
-		side: "left" | "right",
-	): Point => {
-		const elementBounds = element.getBoundingClientRect();
-		const referenceBounds = reference.getBoundingClientRect();
-
-		return {
-			x: elementBounds[side] - referenceBounds.left,
-			y: elementBounds.top + elementBounds.height / 2 - referenceBounds.top,
-		};
-	};
-
-	function generateCurve(x1: number, y1: number, x2: number, y2: number) {
-		const offset = (x2 - x1) * 0.5;
-		return `M ${x1} ${y1} C ${x1 + offset} ${y1}, ${x2 - offset} ${y2}, ${x2} ${y2}`;
-	}
-
 	useEffect(() => {
-		console.log(nodeRefs.current);
-		console.log(svgRef.current?.getBoundingClientRect());
+		let animationFrame = 0;
 
-		const updatedPaths = [];
-
+		const container = containerRef.current;
 		const svg = svgRef.current;
-		if (!svg) return;
+		if (!container || !svg) return;
 
-		for (let col = 0; col < columns.length - 1; col++) {
-			for (let row = 0; row < columns[col].length; row++) {
-				const fromNode = nodeRefs.current[`${col}-${row}`];
-				if (!fromNode) continue;
-				const fromNodePos = getEdgePosition(fromNode, svg, "right");
+		const updatePaths = () => {
+			const updatedPaths = [];
 
-				for (let nextRow = 0; nextRow < columns[col + 1].length; nextRow++) {
-					const toNode = nodeRefs.current[`${col + 1}-${nextRow}`];
-					if (!toNode) continue;
-					const toNodePos = getEdgePosition(toNode, svg, "left");
+			for (const column of columns) {
+				for (const step of column) {
+					const fromNode = nodeRefs.current[step.id];
+					if (!fromNode) continue;
+					const fromNodePos = getEdgePosition(fromNode, svg, "right");
 
-					updatedPaths.push({
-						d: generateCurve(
-							fromNodePos.x,
-							fromNodePos.y,
-							toNodePos.x,
-							toNodePos.y,
-						),
-					});
+					for (const nextStepId of step.links) {
+						const toNode = nodeRefs.current[nextStepId];
+						if (!toNode) continue;
+						const toNodePos = getEdgePosition(toNode, svg, "left");
+
+						updatedPaths.push({
+							id: `${step.id}-${nextStepId}`,
+							d: generateCurve(
+								fromNodePos.x,
+								fromNodePos.y,
+								toNodePos.x,
+								toNodePos.y,
+							),
+						});
+					}
 				}
 			}
-		}
 
-		console.log(updatedPaths);
-		setPaths(updatedPaths);
+			setPaths(updatedPaths);
+			console.log(updatedPaths);
+		};
+
+		const scheduleUpdate = () => {
+			cancelAnimationFrame(animationFrame);
+			animationFrame = requestAnimationFrame(updatePaths);
+		};
+
+		const observer = new ResizeObserver(scheduleUpdate);
+		observer.observe(container);
+
+		scheduleUpdate();
+
+		return () => {
+			cancelAnimationFrame(animationFrame);
+			observer.disconnect();
+		};
 	}, []);
 
 	return (
@@ -87,9 +156,9 @@ export default function Flow() {
 			title="how it works"
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
-			<Terminal title="architecture" className="w-full h-full">
+			<Terminal title="architecture diagram" className="w-full h-full">
 				<div className="w-full h-full px-5 py-10 overflow-x-auto">
-					<div className="w-max h-full relative">
+					<div ref={containerRef} className="w-max h-full relative">
 						<svg
 							ref={svgRef}
 							className="w-full h-full absolute inset-0 pointer-events-none"
@@ -121,22 +190,26 @@ export default function Flow() {
 							))}
 						</svg>
 
-						<div className="w-max h-full flex flex-row gap-20">
+						<div className="w-max h-full flex flex-row gap-14">
 							{columns.map((column, columnIndex) => (
 								<div
 									key={columnIndex}
 									className="w-full h-full flex flex-col justify-between gap-10"
 								>
-									{column.map((step, rowIndex) => (
+									{column.map((step) => (
 										<Panel
-											key={`${columnIndex}-${rowIndex}`}
+											key={step.id}
 											ref={(element) => {
-												nodeRefs.current[`${columnIndex}-${rowIndex}`] =
-													element;
+												nodeRefs.current[step.id] = element;
 											}}
 											className="px-3 py-2 mx-auto"
 										>
-											{step}
+											<p className="text-sm font-heading font-bold">
+												{step.title}
+											</p>
+											<p className="text-xs text-muted-foreground">
+												{step.description}
+											</p>
 										</Panel>
 									))}
 								</div>
