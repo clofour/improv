@@ -162,7 +162,7 @@ export default function Flow() {
 			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
-				<div className="sm:hidden flex flex-col px-4 py-2">
+				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
 					{flatColumns.map((step, index, steps) => (
 						<div key={step.id} className="flex flex-row gap-4">
 							<div className="flex flex-col items-center">
