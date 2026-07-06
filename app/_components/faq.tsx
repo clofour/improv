@@ -39,7 +39,7 @@ export default function FAQ() {
 		<Section
 			id="faq"
 			title="frequently asked questions"
-			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
+			description="need i say more?"
 		>
 			<Accordion defaultValue={["ysws"]}>
 				{items.map((item) => (
