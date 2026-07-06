@@ -37,7 +37,7 @@ function ShopItem({
 }: ShopItemProps) {
 	return (
 		<Terminal title="Shop Item">
-			<div className="flex items-center justify-center aspect-[2/1]">
+			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
 				<Image
 					src={image}
 					alt={name}
