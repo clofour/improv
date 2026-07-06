@@ -1,10 +1,10 @@
-import Link from "next/link";
 import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { TextType } from "@/components/logo-text";
 import { IconType } from "@/components/logo-icon";
-import ExternalLink from "@/components/external-link";
+import ExternalLink, { LinkType } from "@/components/link";
 import RSVPButton from "./rsvp-button";
+import Link from "@/components/link";
 
 export default function Navbar() {
 	const links = [
@@ -33,6 +33,7 @@ export default function Navbar() {
 				<div className="flex flex-row gap-5 hidden sm:flex">
 					{links.map((link) => (
 						<Link
+							type={LinkType.Internal}
 							key={link.label}
 							href={link.href}
 							className="text-muted-foreground hover:text-foreground"

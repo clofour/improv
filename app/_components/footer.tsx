@@ -1,4 +1,4 @@
-import ExternalLink from "@/components/external-link";
+import ExternalLink from "@/components/link";
 import Logo from "@/components/logo";
 import { IconType } from "@/components/logo-icon";
 import { TextType } from "@/components/logo-text";

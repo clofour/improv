@@ -1,4 +1,5 @@
-import ExternalLink from "@/components/external-link";
+import ExternalLink, { LinkType } from "@/components/link";
+import LinkButton from "@/components/link-button";
 import { buttonVariants } from "@/components/ui/button";
 
 interface RSVPButtonProps {
@@ -17,11 +18,13 @@ interface RSVPButtonProps {
 
 export default function RSVPButton({ size }: RSVPButtonProps) {
 	return (
-		<ExternalLink
-			className={buttonVariants({ variant: "default", size: size })}
+		<LinkButton
+			type={LinkType.External}
+			variant="default"
+			size={size}
 			href="https://rsvp.hackclub.community/improv"
 		>
 			RSVP
-		</ExternalLink>
+		</LinkButton>
 	);
 }

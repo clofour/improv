@@ -30,7 +30,7 @@ export default function Hero() {
 				<div className="flex flex-row gap-3">
 					<RSVPButton size="lg" />
 					<Button size="lg" variant="outline">
-						Read Docs
+						Read More
 					</Button>
 				</div>
 			</div>
