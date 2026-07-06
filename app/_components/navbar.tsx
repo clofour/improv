@@ -21,7 +21,7 @@ export default function Navbar() {
 	];
 
 	return (
-		<nav className="sticky top-0 flex flex-row justify-between items-center px-6 py-3 bg-background/80 border-b border-border">
+		<nav className="z-50 sticky top-0 flex flex-row justify-between items-center px-6 py-3 bg-background/80 border-b border-border">
 			<div className="flex flex-row items-center gap-10">
 				<Logo
 					iconType={IconType.HackClub}
