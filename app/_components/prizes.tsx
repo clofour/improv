@@ -18,6 +18,44 @@ interface ShopItemProps {
 	discountExamples: string[];
 }
 
+const items = [
+	{
+		name: "Minecraft",
+		description: "the kids yearn for the mines",
+		image: "/shop/minecraft.png",
+		price: 70,
+		discountPrice: 60,
+		discountExamples: ["Minecraft Server Installer", "Managed Minecraft"],
+	},
+	{
+		name: "ePaper Display",
+		description: "monitoring, readily available on your desk",
+		image: "/shop/epaper-display.png",
+		price: 100,
+		discountPrice: 80,
+		discountExamples: [
+			"Monitoring Dashboard",
+			"Automatic Deployment Rollbacks",
+		],
+	},
+	{
+		name: "Cloud Credits",
+		description: "you'll need these, until you don't",
+		image: "/shop/cloud-credits.png",
+		price: 20,
+		discountPrice: 16,
+		discountExamples: ["Platform as a Service", "CI/CD Pipeline"],
+	},
+	{
+		name: "'Works on my machine' cup",
+		description: "coffee first, dev never",
+		image: "/shop/mug.png",
+		price: 100,
+		discountPrice: 80,
+		discountExamples: ["Image Builder", "IaC Templates"],
+	},
+];
+
 function ShopItemPrice({ className, type, price }: ShopItemPriceProps) {
 	return (
 		<div className={cn("p-3", className)}>
@@ -85,44 +123,6 @@ function ShopItem({
 }
 
 export default function Prizes() {
-	const items = [
-		{
-			name: "Minecraft",
-			description: "the kids yearn for the mines",
-			image: "/shop/minecraft.png",
-			price: 70,
-			discountPrice: 60,
-			discountExamples: ["Minecraft Server Installer", "Managed Minecraft"],
-		},
-		{
-			name: "ePaper Display",
-			description: "monitoring, readily available on your desk",
-			image: "/shop/epaper-display.png",
-			price: 100,
-			discountPrice: 80,
-			discountExamples: [
-				"Monitoring Dashboard",
-				"Automatic Deployment Rollbacks",
-			],
-		},
-		{
-			name: "Cloud Credits",
-			description: "you'll need these, until you don't",
-			image: "/shop/cloud-credits.png",
-			price: 20,
-			discountPrice: 16,
-			discountExamples: ["Platform as a Service", "CI/CD Pipeline"],
-		},
-		{
-			name: "'Works on my machine' cup",
-			description: "coffee first, dev never",
-			image: "/shop/mug.png",
-			price: 100,
-			discountPrice: 80,
-			discountExamples: ["Image Builder", "IaC Templates"],
-		},
-	];
-
 	return (
 		<Section
 			id="prizes"
