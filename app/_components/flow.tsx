@@ -159,7 +159,7 @@ export default function Flow() {
 		<NameSection
 			id="how"
 			title="how it works"
-			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
+			description="find something that interests or deeply annoys you, whether that's overpriced PaaS, missing features or something else. build a tool to fix it, ship your project and get Uptime + discounts. profit!"
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
 				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
