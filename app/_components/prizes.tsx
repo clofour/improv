@@ -130,11 +130,12 @@ export default function Prizes() {
 			description={
 				<span>
 					once your ship is reviewed, you'll receive uptime depending on the
-					complexity and hours spent on your project, buuuuuuut that's not it.
-					there's a catch:{" "}
+					complexity and hours spent on your project. you can spend uptime in
+					the shop (small taste below). there's just one catch:{" "}
 					<span className="text-foreground">
-						items relevant to your projects are discounted.
+						items relevant to your projects are discounted
 					</span>
+					.
 				</span>
 			}
 		>
