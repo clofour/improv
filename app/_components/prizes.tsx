@@ -87,23 +87,23 @@ export default function Prizes() {
 		{
 			name: "Minecraft",
 			description: "the kids yearn for the mines",
-			image: "/placeholder.webp",
+			image: "/shop/minecraft.png",
 			price: 70,
 			discountPrice: 60,
-			discountExamples: ["Minecraft server installer"],
+			discountExamples: ["Minecraft Server Installer"],
 		},
 		{
 			name: "ePaper Display",
 			description: "monitoring, readily available on your desk",
-			image: "/placeholder.webp",
+			image: "/shop/epaper-display.png",
 			price: 100,
 			discountPrice: 80,
-			discountExamples: ["GPU scheduler"],
+			discountExamples: ["Monitoring Dashboard"],
 		},
 		{
-			name: "Hosting Credits",
+			name: "Cloud Credits",
 			description: "you'll need these, until you don't",
-			image: "/placeholder.webp",
+			image: "/shop/cloud-credits.png",
 			price: 20,
 			discountPrice: 16,
 			discountExamples: ["PaaS"],
@@ -111,10 +111,10 @@ export default function Prizes() {
 		{
 			name: "'Works on my machine' cup",
 			description: "coffee first, dev never",
-			image: "/placeholder.webp",
+			image: "/shop/mug.png",
 			price: 100,
 			discountPrice: 80,
-			discountExamples: ["GPU scheduler"],
+			discountExamples: ["GPU Scheduler"],
 		},
 	];
 
