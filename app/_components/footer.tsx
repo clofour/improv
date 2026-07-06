@@ -26,7 +26,7 @@ export default function Footer() {
 
 	return (
 		<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 bg-background/80 border-t border-border gap-16">
-			<div className="basis-1/2 sm:basis-1/3 shrink-0">
+			<div className="basis-full sm:basis-1/3 shrink-0">
 				<div className="flex flex-col gap-3">
 					<Logo
 						iconType={IconType.HackClub}
@@ -44,7 +44,7 @@ export default function Footer() {
 				</div>
 			</div>
 			{sections.map((section) => (
-				<div key={section.name} className="basis-1/2 sm:basis-0 sm:grow">
+				<div key={section.name} className="basis-2/5 sm:basis-0 sm:grow">
 					<div className="flex flex-col gap-2">
 						<p className="text-lg font-heading font-bold">{section.name}</p>
 						<div className="flex flex-col gap-1">
