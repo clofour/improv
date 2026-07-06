@@ -241,7 +241,7 @@ export default function Flow() {
 												ref={(element) => {
 													nodeRefs.current[step.id] = element;
 												}}
-												className="px-3 py-2 mx-auto"
+												className="w-48 min-h-32 px-3 py-2 mx-auto"
 											>
 												<p className="text-sm font-heading font-bold">
 													{step.title}
