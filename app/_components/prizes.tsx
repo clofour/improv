@@ -36,7 +36,7 @@ function ShopItem({
 	discountExamples,
 }: ShopItemProps) {
 	return (
-		<Terminal title="Shop Item">
+		<Terminal className="flex flex-col" title="Shop Item">
 			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
 				<Image
 					src={image}
@@ -47,35 +47,37 @@ function ShopItem({
 				/>
 			</div>
 
-			<div className="flex flex-col gap-5 p-5">
+			<div className="flex flex-col flex-1 gap-5 p-5">
 				<div className="flex flex-col gap-2">
 					<p className="text-xl font-heading font-bold">{name}</p>
 					<p className="text-sm text-muted-foreground">{description}</p>
 				</div>
-				<div className="grid grid-cols-2 border border-border">
-					<ShopItemPrice
-						className="border-r border-border"
-						type="base"
-						price={price}
-					/>
-					<ShopItemPrice
-						className="bg-primary/10"
-						type="relevant"
-						price={discountPrice}
-					/>
-				</div>
-				<div className="flex flex-row flex-wrap items-center gap-2">
-					<span className="text-xs text-muted-foreground uppercase whitespace-nowrap">
-						Example Projects:
-					</span>
-					{discountExamples.map((example) => (
-						<span
-							key={example}
-							className="px-2 py-1 bg-muted/50 border border-border text-xs text-muted-foreground"
-						>
-							{example}
+				<div className="flex flex-col gap-5 mt-auto">
+					<div className="grid grid-cols-2 border border-border">
+						<ShopItemPrice
+							className="border-r border-border"
+							type="base"
+							price={price}
+						/>
+						<ShopItemPrice
+							className="bg-primary/10"
+							type="relevant"
+							price={discountPrice}
+						/>
+					</div>
+					<div className="flex flex-row flex-wrap items-center gap-2">
+						<span className="text-xs text-muted-foreground uppercase whitespace-nowrap">
+							Example Projects:
 						</span>
-					))}
+						{discountExamples.map((example) => (
+							<span
+								key={example}
+								className="px-2 py-1 bg-muted/50 border border-border text-xs text-muted-foreground"
+							>
+								{example}
+							</span>
+						))}
+					</div>
 				</div>
 			</div>
 		</Terminal>
@@ -109,7 +111,7 @@ export default function Prizes() {
 			image: "/shop/cloud-credits.png",
 			price: 20,
 			discountPrice: 16,
-			discountExamples: ["PaaS", "CI/CD Pipeline"],
+			discountExamples: ["Platform as a Service", "CI/CD Pipeline"],
 		},
 		{
 			name: "'Works on my machine' cup",

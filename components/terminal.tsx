@@ -22,7 +22,7 @@ export default function Terminal({
 					<div className="h-2.5 w-2.5 rounded-full bg-primary/80" />
 				</div>
 			</div>
-			<div className="p-2">{children}</div>
+			<div className="h-full w-full flex flex-col p-2">{children}</div>
 		</Panel>
 	);
 }
