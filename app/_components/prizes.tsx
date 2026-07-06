@@ -90,7 +90,7 @@ export default function Prizes() {
 			image: "/shop/minecraft.png",
 			price: 70,
 			discountPrice: 60,
-			discountExamples: ["Minecraft Server Installer"],
+			discountExamples: ["Minecraft Server Installer", "Managed Minecraft"],
 		},
 		{
 			name: "ePaper Display",
@@ -98,7 +98,10 @@ export default function Prizes() {
 			image: "/shop/epaper-display.png",
 			price: 100,
 			discountPrice: 80,
-			discountExamples: ["Monitoring Dashboard"],
+			discountExamples: [
+				"Monitoring Dashboard",
+				"Automatic Deployment Rollbacks",
+			],
 		},
 		{
 			name: "Cloud Credits",
@@ -106,7 +109,7 @@ export default function Prizes() {
 			image: "/shop/cloud-credits.png",
 			price: 20,
 			discountPrice: 16,
-			discountExamples: ["PaaS"],
+			discountExamples: ["PaaS", "CI/CD Pipeline"],
 		},
 		{
 			name: "'Works on my machine' cup",
@@ -114,7 +117,7 @@ export default function Prizes() {
 			image: "/shop/mug.png",
 			price: 100,
 			discountPrice: 80,
-			discountExamples: ["GPU Scheduler"],
+			discountExamples: ["Image Builder", "IaC Templates"],
 		},
 	];
 
@@ -122,7 +125,16 @@ export default function Prizes() {
 		<Section
 			id="prizes"
 			title="what you get"
-			description="Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id."
+			description={
+				<span>
+					once your ship is reviewed, you'll receive uptime depending on the
+					complexity and hours spent on your project, buuuuuuut that's not it.
+					there's a catch:{" "}
+					<span className="text-foreground">
+						items relevant to your projects are discounted.
+					</span>
+				</span>
+			}
 		>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 				{items.map((item) => (
