@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const heading = Space_Grotesk({
 	subsets: ["latin"],
-	variable: "--font-heading",
+	variable: "--heading",
 });
-const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const body = Space_Grotesk({ subsets: ["latin"], variable: "--body" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--mono" });
+const hc = localFont({
+	src: [
+		{ path: "./fonts/phantom-sans/regular.woff2" },
+		{ path: "./fonts/phantom-sans/italic.woff2" },
+		{ path: "./fonts/phantom-sans/bold.woff2" },
+	],
+	display: "swap",
+	variable: "--hc",
+});
 
 export const metadata: Metadata = {
 	title: "Improv",
@@ -29,6 +39,7 @@ export default function RootLayout({
 				heading.variable,
 				body.variable,
 				mono.variable,
+				hc.variable,
 			)}
 		>
 			<body className="min-h-full flex flex-col">{children}</body>

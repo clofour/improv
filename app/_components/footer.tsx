@@ -1,5 +1,7 @@
 import ExternalLink from "@/components/external-link";
 import Logo from "@/components/logo";
+import { IconType } from "@/components/logo-icon";
+import { TextType } from "@/components/logo-text";
 
 export default function Footer() {
 	const sections = [
@@ -26,8 +28,12 @@ export default function Footer() {
 		<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 bg-background/80 border-t border-border gap-16">
 			<div className="basis-1/2 sm:basis-1/3 shrink-0">
 				<div className="flex flex-col gap-3">
-					<Logo height={30} />
-					<div className="text-base text-muted-foreground">
+					<Logo
+						iconType={IconType.HackClub}
+						textType={TextType.Improv}
+						size="md"
+					/>
+					<div className="text-sm text-muted-foreground">
 						Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
 						high schoolers. We believe you learn best by building, so we're
 						creating community and providing grants so you can make awesome
@@ -46,7 +52,7 @@ export default function Footer() {
 								<ExternalLink
 									key={link.label}
 									href={link.to}
-									className="text-base text-muted-foreground hover:text-foreground"
+									className="text-sm text-muted-foreground hover:text-foreground"
 								>
 									{link.label}
 								</ExternalLink>
