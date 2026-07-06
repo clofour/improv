@@ -131,7 +131,7 @@ export default function Prizes() {
 				<span>
 					once your ship is reviewed, you'll receive uptime depending on the
 					complexity and hours spent on your project. you can spend uptime in
-					the shop (small taste below). there's just one catch:{" "}
+					the shop. there's just one catch:{" "}
 					<span className="text-foreground">
 						items relevant to your projects are discounted
 					</span>
@@ -139,10 +139,13 @@ export default function Prizes() {
 				</span>
 			}
 		>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-				{items.map((item) => (
-					<ShopItem key={item.name} {...item} />
-				))}
+			<div className="flex flex-col gap-3">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+					{items.map((item) => (
+						<ShopItem key={item.name} {...item} />
+					))}
+				</div>
+				<p className="text-sm text-muted-foreground">...and more</p>
 			</div>
 		</Section>
 	);
