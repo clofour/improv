@@ -101,7 +101,7 @@ html {
 
 @keyframes flow {
 	to {
-		stroke-dashoffset: -200;
+		stroke-dashoffset: -196;
 	}
 }
 
