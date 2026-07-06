@@ -233,7 +233,7 @@ export default function Flow() {
 								{columns.map((column, columnIndex) => (
 									<div
 										key={columnIndex}
-										className="w-full h-full flex flex-col justify-between gap-10"
+										className="flex flex-col justify-center gap-10"
 									>
 										{column.map((step) => (
 											<Panel
