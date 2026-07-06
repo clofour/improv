@@ -75,7 +75,6 @@ const columns = [
 		},
 	],
 ];
-const flatColumns = columns.flat();
 
 const getEdgePosition = (
 	element: HTMLElement,
