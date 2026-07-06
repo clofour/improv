@@ -3,6 +3,8 @@ import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { TextType } from "@/components/logo-text";
 import { IconType } from "@/components/logo-icon";
+import ExternalLink from "@/components/external-link";
+import RSVPButton from "./rsvp-button";
 
 export default function Navbar() {
 	const links = [
@@ -41,9 +43,7 @@ export default function Navbar() {
 				</div>
 			</div>
 			<div>
-				<Button variant="outline" size="lg">
-					Sign In
-				</Button>
+				<RSVPButton size="lg" />
 			</div>
 		</nav>
 	);

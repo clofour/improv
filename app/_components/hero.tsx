@@ -1,5 +1,6 @@
 import Terminal from "@/components/terminal";
 import { Button } from "@/components/ui/button";
+import RSVPButton from "./rsvp-button";
 
 export default function Hero() {
 	return (
@@ -27,7 +28,7 @@ export default function Hero() {
 					</p>
 				</div>
 				<div className="flex flex-row gap-3">
-					<Button size="lg">Get Started</Button>
+					<RSVPButton size="lg" />
 					<Button size="lg" variant="outline">
 						Read Docs
 					</Button>
