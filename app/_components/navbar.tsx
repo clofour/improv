@@ -28,7 +28,7 @@ export default function Navbar() {
 					textType={TextType.Improv}
 					size="md"
 				/>
-				<div className="flex flex-row gap-5">
+				<div className="flex flex-row gap-5 hidden sm:flex">
 					{links.map((link) => (
 						<Link
 							key={link.label}
