@@ -50,11 +50,10 @@ export default function Showcase() {
 						await sleep(CHAR_PAUSE);
 					}
 
-					setPhase(Phase.Output);
-
 					await sleep(
 						"delay" in commandData ? commandData.delay : EXECUTE_PAUSE,
 					);
+					setPhase(Phase.Output);
 
 					await sleep(READ_PAUSE);
 				}
