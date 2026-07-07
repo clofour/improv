@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 import data from "./showcase.json";
+import { sleep } from "@/lib/sleep";
 
-const PROMPT_PAUSE = 500;
+const SHORT_PUNCTUATION = ",:;";
+const LONG_PUNCTUATION = ".!?";
+const PROMPT_PAUSE = 2000;
 const CHAR_PAUSE = 100;
+const TYPO_RATE = 0.05;
+const TYPO_REGEX = /[a-zA-Z]/;
 const EXECUTE_PAUSE = 1000;
 const READ_PAUSE = 3000;
 
@@ -13,14 +18,53 @@ enum Phase {
 	Output,
 }
 
-function sleep(ms: number) {
-	return new Promise((resolve) => setTimeout(resolve, ms));
+async function typewriter(
+	finalText: string,
+	setCurrentText: (fn: (ct: string) => string) => void,
+) {
+	let cancelled = false;
+
+	function calculateDelay(character: string) {
+		let delay = CHAR_PAUSE * (Math.random() + 0.5);
+
+		if (SHORT_PUNCTUATION.includes(character)) {
+			delay += 200;
+		}
+		if (LONG_PUNCTUATION.includes(character)) {
+			delay += 420;
+		}
+
+		return delay;
+	}
+
+	async function run() {
+		for (const character of finalText) {
+			if (cancelled) return;
+
+			if (TYPO_REGEX.test(character) && Math.random() < TYPO_RATE) {
+				const typoCharacter = String.fromCharCode(
+					97 + Math.floor(Math.random() * 26),
+				);
+				setCurrentText((ct) => ct + typoCharacter);
+
+				await sleep(calculateDelay(typoCharacter));
+				setCurrentText((prev) => prev.slice(0, -1));
+
+				await sleep(90 + Math.random() * 90);
+			}
+
+			setCurrentText((ct) => ct + character);
+			await sleep(calculateDelay(character));
+		}
+	}
+
+	await run();
 }
 
 export default function Showcase() {
 	const [showcaseIndex, setShowcaseIndex] = useState(0);
 	const [commandIndex, setCommandIndex] = useState(0);
-	const [typingProgress, setTypingProgress] = useState(0);
+	const [typedCommand, setTypedCommand] = useState("");
 	const [phase, setPhase] = useState(Phase.Command);
 
 	useEffect(() => {
@@ -43,13 +87,10 @@ export default function Showcase() {
 					const commandData = showcase.commands[commandId];
 
 					setCommandIndex(commandId);
-					setTypingProgress(0);
+					setTypedCommand("");
 					setPhase(Phase.Command);
 
-					for (let i = 1; i <= commandData.command.length; i++) {
-						setTypingProgress(i);
-						await sleep(CHAR_PAUSE);
-					}
+					await typewriter(commandData.command, setTypedCommand);
 
 					await sleep(
 						"delay" in commandData ? commandData.delay : EXECUTE_PAUSE,
@@ -62,14 +103,15 @@ export default function Showcase() {
 				showcaseCounter++;
 			}
 
-			return () => (cancelled = true);
+			return () => {
+				cancelled = true;
+			};
 		}
 
 		run();
 	}, []);
 
 	const activeShowcase = data[showcaseIndex];
-	const activeCommandData = activeShowcase.commands[commandIndex];
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -81,9 +123,7 @@ export default function Showcase() {
 						<div className="flex flex-row flex-wrap text-base gap-2">
 							<div className="text-primary">{block.prompt}</div>
 							<div>
-								{isActive
-									? activeCommandData.command.slice(0, typingProgress)
-									: block.command}
+								{isActive ? typedCommand : block.command}
 								{isActive && phase == Phase.Command && (
 									<span className="w-2 h-[1em] inline-block bg-primary blink" />
 								)}
