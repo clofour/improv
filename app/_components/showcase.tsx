@@ -76,19 +76,16 @@ export default function Showcase() {
 
 				return (
 					<div key={i} className="flex flex-col">
-						<div className="flex flex-row flex-wrap text-base">
-							<div className="text-green">
-								{block.prompt}
-								{" $ "}
-							</div>
+						<div className="flex flex-row flex-wrap text-base gap-2">
+							<div className="text-primary">{block.prompt}</div>
 							<div>
 								{isActive
 									? activeCommandData.command.slice(0, typingProgress)
 									: block.command}
+								{isActive && phase == Phase.Command && (
+									<div className="w-2 h-[1em] align-text-bottom bg-primary blink" />
+								)}
 							</div>
-							{isActive && phase == Phase.Command && (
-								<div className="w-2 h-[1em] bg-primary blink" />
-							)}
 						</div>
 
 						{(!isActive || phase == Phase.Output) &&
