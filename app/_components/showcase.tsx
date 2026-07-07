@@ -115,7 +115,7 @@ export default function Showcase() {
 	const activeShowcase = data[showcaseIndex];
 
 	return (
-		<div className="flex flex-col-reverse gap-4 overflow-y-auto">
+		<div className="min-h-0 flex flex-1 flex-col-reverse gap-4 overflow-y-auto">
 			{activeShowcase.commands
 				.slice(0, commandIndex + 1)
 				.reverse()
