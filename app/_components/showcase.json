@@ -1,0 +1,124 @@
+[
+	{
+		"name": "Ansible",
+		"author": "me",
+		"commands": [
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			}
+		]
+	},
+	{
+		"name": "Ansible",
+		"author": "me",
+		"commands": [
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			},
+			{
+				"prompt": "root@server",
+				"command": "hello",
+				"delay": 2,
+				"output": [
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO",
+					"HELLO HELLO HELO"
+				]
+			}
+		]
+	}
+]

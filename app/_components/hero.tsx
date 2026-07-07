@@ -4,6 +4,7 @@ import RSVPButton from "./rsvp-button";
 import LinkButton from "@/components/link-button";
 import { LinkType } from "@/components/link";
 import Section from "./section";
+import Showcase from "./showcase";
 
 export default function Hero() {
 	return (
@@ -44,8 +45,8 @@ export default function Hero() {
 					</div>
 				</div>
 				<div className="w-full h-full">
-					<Terminal className="w-full h-full" title="HELLO">
-						<p>IDK?</p>
+					<Terminal className="w-full h-full" title="SHOWCASES">
+						<Showcase />
 					</Terminal>
 				</div>
 			</div>

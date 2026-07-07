@@ -99,6 +99,7 @@ html {
 	text-shadow: 0 0 12px color-mix(in oklab, --value(--color-*) 60%, transparent);
 }
 
+/* Revisit location of CSS animations */
 @keyframes flow {
 	to {
 		stroke-dashoffset: -196;
@@ -108,6 +109,20 @@ html {
 @utility wire-flow {
 	stroke-dasharray: 6 8;
 	animation: 4s linear infinite flow;
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+@utility blink {
+	animation: blink 1s step-end infinite;
 }
 
 @layer base {
