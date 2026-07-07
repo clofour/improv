@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import data from "./showcase.json";
 
 const PROMPT_PAUSE = 500;
-const CHAR_PAUSE = 50;
+const CHAR_PAUSE = 100;
 const EXECUTE_PAUSE = 1000;
 const READ_PAUSE = 3000;
 
@@ -25,9 +25,10 @@ export default function Showcase() {
 
 	useEffect(() => {
 		async function run() {
+			let cancelled = false;
 			let showcaseCounter = 0;
 
-			while (true) {
+			while (!cancelled) {
 				const showcaseId = showcaseCounter % data.length;
 				const showcase = data[showcaseId];
 				setShowcaseIndex(showcaseId);
@@ -37,7 +38,7 @@ export default function Showcase() {
 					commandId < showcase.commands.length;
 					commandId++
 				) {
-					sleep(PROMPT_PAUSE);
+					await sleep(PROMPT_PAUSE);
 
 					const commandData = showcase.commands[commandId];
 
@@ -60,6 +61,8 @@ export default function Showcase() {
 
 				showcaseCounter++;
 			}
+
+			return () => (cancelled = true);
 		}
 
 		run();
@@ -82,7 +85,7 @@ export default function Showcase() {
 									? activeCommandData.command.slice(0, typingProgress)
 									: block.command}
 								{isActive && phase == Phase.Command && (
-									<div className="w-2 h-[1em] align-text-bottom bg-primary blink" />
+									<span className="w-2 h-[1em] inline-block bg-primary blink" />
 								)}
 							</div>
 						</div>
