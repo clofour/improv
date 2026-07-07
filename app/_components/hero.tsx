@@ -44,8 +44,11 @@ export default function Hero() {
 						</LinkButton>
 					</div>
 				</div>
-				<div className="w-full h-full">
-					<Terminal className="w-full h-full" title="SHOWCASES">
+				<div className="relative w-full h-full">
+					<Terminal
+						className="w-full h-full sm:absolute sm:inset-0"
+						title="SHOWCASES"
+					>
 						<Showcase />
 					</Terminal>
 				</div>
