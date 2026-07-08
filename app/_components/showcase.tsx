@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import data from "./showcase.json";
 import { sleep } from "@/lib/sleep";
-import { BlockList } from "net";
 
 const SHORT_PUNCTUATION = ",:;";
 const LONG_PUNCTUATION = ".!?";
@@ -68,6 +67,8 @@ export default function Showcase() {
 	const [typedCommand, setTypedCommand] = useState("");
 	const [phase, setPhase] = useState(Phase.Command);
 
+	const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
 	useEffect(() => {
 		async function run() {
 			let cancelled = false;
@@ -112,38 +113,44 @@ export default function Showcase() {
 		run();
 	}, []);
 
+	useEffect(() => {
+		const scrollContainer = scrollContainerRef.current;
+		if (!scrollContainer) return;
+
+		scrollContainer.scrollTop = scrollContainer.scrollHeight;
+	});
+
 	const activeShowcase = data[showcaseIndex];
 
 	return (
-		<div className="min-h-0 flex flex-1 flex-col-reverse gap-4 overflow-y-auto">
-			{activeShowcase.commands
-				.slice(0, commandIndex + 1)
-				.reverse()
-				.map((block, i) => {
-					const originalIndex = commandIndex - i;
-					const isActive = originalIndex == commandIndex;
+		<div
+			ref={scrollContainerRef}
+			className="min-h-0 flex flex-1 flex-col gap-4 overflow-y-auto"
+		>
+			{activeShowcase.commands.slice(0, commandIndex + 1).map((block, i) => {
+				const isActive = i == commandIndex;
 
-					return (
-						<div key={i} className="flex flex-col">
-							<div className="flex flex-row flex-wrap text-base gap-2">
-								<div className="text-primary">{block.prompt}</div>
-								<div>
-									{isActive ? typedCommand : block.command}
-									{isActive && phase == Phase.Command && (
-										<span className="w-2 h-[1em] inline-block bg-primary blink" />
-									)}
-								</div>
+				return (
+					<div key={i} className="flex flex-col">
+						<div className="flex flex-row flex-wrap text-base gap-2">
+							<div className="text-primary">{block.prompt}</div>
+							<div>
+								{isActive ? typedCommand : block.command}
+								{isActive && phase == Phase.Command && (
+									<span className="w-2 h-[1em] inline-block bg-primary blink" />
+								)}
 							</div>
-
-							{(!isActive || phase == Phase.Output) &&
-								block.output.map((line, j) => (
-									<div key={j} className="text-sm text-muted-foreground">
-										{line}
-									</div>
-								))}
 						</div>
-					);
-				})}
+
+						{(!isActive || phase == Phase.Output) &&
+							block.output.map((line, j) => (
+								<div key={j} className="text-sm text-muted-foreground">
+									{line}
+								</div>
+							))}
+					</div>
+				);
+			})}
 		</div>
 	);
 }
