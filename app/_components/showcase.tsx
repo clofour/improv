@@ -147,7 +147,7 @@ export default function Showcase() {
 	return (
 		<div
 			ref={scrollContainerRef}
-			className="min-h-0 flex flex-1 flex-col gap-4 overflow-y-auto"
+			className="min-h-0 flex flex-1 flex-col gap-4 overflow-x-clip overflow-y-auto"
 		>
 			{activeShowcase.commands.slice(0, commandIndex + 1).map((block, i) => {
 				const isActive = i == commandIndex;
@@ -165,7 +165,10 @@ export default function Showcase() {
 
 						{(!isActive || phase == Phase.Output) &&
 							block.output.map((line, j) => (
-								<div key={j} className="text-sm text-muted-foreground">
+								<div
+									key={j}
+									className="text-sm text-muted-foreground whitespace-pre-wrap"
+								>
 									{line}
 								</div>
 							))}
