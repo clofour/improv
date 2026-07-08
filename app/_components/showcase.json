@@ -2,20 +2,19 @@
 	{
 		"name": "Packer",
 		"author": "clofour",
+		"prompt": "root@server",
 		"commands": [
 			{
-				"prompt": "root@server",
 				"command": "packer init",
-				"delay": 2,
+				"delay": 500,
 				"output": [
 					"Installed plugin github.com/digitalocean/digitalocean v1.4.1 in \"/home/runner/.config/packer/plugins/github.com/digitalocean/digitalocean/packer-plugin-digitalocean_v1.4.1_x5.0_linux_amd64\"",
 					"Installed plugin github.com/hashicorp/ansible v1.1.5 in \"/home/runner/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.5_x5.0_linux_amd64\""
 				]
 			},
 			{
-				"prompt": "root@server",
 				"command": "packer build .",
-				"delay": 2,
+				"delay": 2000,
 				"output": [
 					"==> digitalocean.database: Creating temporary RSA SSH key for instance...",
 					"==> digitalocean.database_proxy: Creating temporary RSA SSH key for instance...",
@@ -44,11 +43,11 @@
 	{
 		"name": "Terraform",
 		"author": "clofour",
+		"prompt": "root@server",
 		"commands": [
 			{
-				"prompt": "root@server",
 				"command": "terraform init",
-				"delay": 2,
+				"delay": 500,
 				"output": [
 					"Initializing the backend...",
 					"Initializing provider plugins...",
@@ -66,9 +65,8 @@
 				]
 			},
 			{
-				"prompt": "root@server",
-				"command": "hello",
-				"delay": 2,
+				"command": "terraform plan",
+				"delay": 1000,
 				"output": [
 					"HELLO HELLO HELO",
 					"HELLO HELLO HELO",
@@ -77,9 +75,8 @@
 				]
 			},
 			{
-				"prompt": "root@server",
 				"command": "terraform apply tfplan",
-				"delay": 2,
+				"delay": 2000,
 				"output": [
 					"digitalocean_app.main: Creating...",
 					"digitalocean_app.main: Still creating... [01m00s elapsed]",
@@ -96,11 +93,11 @@
 	{
 		"name": "Ansible",
 		"author": "clofour",
+		"prompt": "root@server",
 		"commands": [
 			{
-				"prompt": "root@server",
 				"command": "ansible-galaxy install -r requirements.yaml",
-				"delay": 2,
+				"delay": 1000,
 				"output": [
 					"Starting galaxy collection install process",
 					"Process install dependency map",
@@ -123,9 +120,8 @@
 				]
 			},
 			{
-				"prompt": "root@server",
 				"command": "ansible-playbook -i ./inventory/digitalocean.yml runtime-site.yaml",
-				"delay": 2,
+				"delay": 2000,
 				"output": [
 					"PLAY [Deploy to database at runtime] *******************************************",
 					"TASK [Gathering Facts] *********************************************************",

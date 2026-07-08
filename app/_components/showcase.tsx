@@ -3,19 +3,34 @@
 import { useEffect, useRef, useState } from "react";
 import data from "./showcase.json";
 import { sleep } from "@/lib/sleep";
+import { cn } from "@/lib/utils";
 
 const SHORT_PUNCTUATION = ",:;";
 const LONG_PUNCTUATION = ".!?";
-const PROMPT_PAUSE = 2000;
+const PROMPT_PAUSE = 50;
 const CHAR_PAUSE = 100;
 const TYPO_RATE = 0.05;
 const TYPO_REGEX = /[a-zA-Z]/;
 const EXECUTE_PAUSE = 1000;
+const THINK_PAUSE = 1500;
 const READ_PAUSE = 3000;
 
 enum Phase {
 	Command,
+	Wait,
 	Output,
+}
+
+interface CursorProps {
+	className?: string;
+}
+
+export function Cursor({ className }: CursorProps) {
+	return (
+		<span
+			className={cn("w-2 h-[1em] inline-block bg-primary blink", className)}
+		/>
+	);
 }
 
 async function typewriter(
@@ -77,7 +92,11 @@ export default function Showcase() {
 			while (!cancelled) {
 				const showcaseId = showcaseCounter % data.length;
 				const showcase = data[showcaseId];
+
 				setShowcaseIndex(showcaseId);
+				setCommandIndex(0);
+				setTypedCommand("");
+				setPhase(Phase.Command);
 
 				for (
 					let commandId = 0;
@@ -94,13 +113,16 @@ export default function Showcase() {
 
 					await typewriter(commandData.command, setTypedCommand);
 
+					setPhase(Phase.Wait);
 					await sleep(
 						"delay" in commandData ? commandData.delay : EXECUTE_PAUSE,
 					);
 					setPhase(Phase.Output);
 
-					await sleep(READ_PAUSE);
+					await sleep(THINK_PAUSE);
 				}
+
+				await sleep(READ_PAUSE);
 
 				showcaseCounter++;
 			}
@@ -132,15 +154,14 @@ export default function Showcase() {
 
 				return (
 					<div key={i} className="flex flex-col">
-						<div className="flex flex-row flex-wrap text-base gap-2">
-							<div className="text-primary">{block.prompt}</div>
+						<div className="flex flex-row flex-wrap items-center text-base gap-2">
+							<div className="text-primary">{activeShowcase.prompt}</div>
 							<div>
 								{isActive ? typedCommand : block.command}
-								{isActive && phase == Phase.Command && (
-									<span className="w-2 h-[1em] inline-block bg-primary blink" />
-								)}
+								{isActive && phase == Phase.Command && <Cursor />}
 							</div>
 						</div>
+						{isActive && phase == Phase.Wait && <Cursor />}
 
 						{(!isActive || phase == Phase.Output) &&
 							block.output.map((line, j) => (
@@ -151,6 +172,14 @@ export default function Showcase() {
 					</div>
 				);
 			})}
+			{phase == Phase.Output && (
+				<div className="flex flex-row items-center gap-2">
+					<span className="inline-block text-primary">
+						{activeShowcase.prompt}
+					</span>
+					<Cursor />
+				</div>
+			)}
 		</div>
 	);
 }
