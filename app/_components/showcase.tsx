@@ -154,12 +154,12 @@ export default function Showcase() {
 
 				return (
 					<div key={i} className="flex flex-col">
-						<div className="flex flex-row flex-wrap items-center text-base gap-2">
-							<div className="text-primary">{activeShowcase.prompt}</div>
-							<div>
+						<div className="text-base break-words gap-2">
+							<span className="text-primary mr-2">{activeShowcase.prompt}</span>
+							<span>
 								{isActive ? typedCommand : block.command}
 								{isActive && phase == Phase.Command && <Cursor />}
-							</div>
+							</span>
 						</div>
 						{isActive && phase == Phase.Wait && <Cursor />}
 
