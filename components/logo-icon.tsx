@@ -1,4 +1,4 @@
-import { LogoSize } from "./logo";
+import type { LogoSize } from "./logo";
 
 export enum IconType {
 	None,

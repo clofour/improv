@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import data from "./showcase.json";
 import { sleep } from "@/lib/sleep";
 import { cn } from "@/lib/utils";
+import data from "./showcase.json";
 
 const SHORT_PUNCTUATION = ",:;";
 const LONG_PUNCTUATION = ".!?";
@@ -37,7 +37,7 @@ async function typewriter(
 	finalText: string,
 	setCurrentText: (fn: (ct: string) => string) => void,
 ) {
-	let cancelled = false;
+	const cancelled = false;
 
 	function calculateDelay(character: string) {
 		let delay = CHAR_PAUSE * (Math.random() + 0.5);

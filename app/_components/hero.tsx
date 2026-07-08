@@ -1,8 +1,8 @@
+import { LinkType } from "@/components/link";
+import LinkButton from "@/components/link-button";
 import Terminal from "@/components/terminal";
 import { Button } from "@/components/ui/button";
 import RSVPButton from "./rsvp-button";
-import LinkButton from "@/components/link-button";
-import { LinkType } from "@/components/link";
 import Section from "./section";
 import Showcase from "./showcase";
 

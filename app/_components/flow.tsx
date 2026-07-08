@@ -1,10 +1,10 @@
 "use client";
 
-import Terminal from "@/components/terminal";
-import Section from "./section";
-import Panel from "@/components/panel";
 import { useEffect, useRef, useState } from "react";
+import Panel from "@/components/panel";
+import Terminal from "@/components/terminal";
 import NameSection from "./name-section";
+import Section from "./section";
 
 interface Step {
 	id: string;

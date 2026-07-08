@@ -1,5 +1,5 @@
 import ExternalLink, { LinkType } from "@/components/link";
-import LinkButton, { LinkButtonProps } from "@/components/link-button";
+import LinkButton, { type LinkButtonProps } from "@/components/link-button";
 import { buttonVariants } from "@/components/ui/button";
 
 interface RSVPButtonProps {

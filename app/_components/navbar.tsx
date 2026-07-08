@@ -1,10 +1,10 @@
-import Logo from "@/components/logo";
-import { Button } from "@/components/ui/button";
-import { TextType } from "@/components/logo-text";
-import { IconType } from "@/components/logo-icon";
-import ExternalLink, { LinkType } from "@/components/link";
-import RSVPButton from "./rsvp-button";
 import Link from "@/components/link";
+import ExternalLink, { LinkType } from "@/components/link";
+import Logo from "@/components/logo";
+import { IconType } from "@/components/logo-icon";
+import { TextType } from "@/components/logo-text";
+import { Button } from "@/components/ui/button";
+import RSVPButton from "./rsvp-button";
 import Section from "./section";
 
 export default function Navbar() {

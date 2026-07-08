@@ -1,5 +1,5 @@
-import LogoIcon, { IconType } from "./logo-icon";
-import LogoText, { TextType } from "./logo-text";
+import LogoIcon, { type IconType } from "./logo-icon";
+import LogoText, { type TextType } from "./logo-text";
 
 export type LogoSize = "sm" | "md" | "lg";
 

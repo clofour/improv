@@ -1,9 +1,9 @@
+import Link from "@/components/link";
 import ExternalLink, { LinkType } from "@/components/link";
 import Logo from "@/components/logo";
 import { IconType } from "@/components/logo-icon";
 import { TextType } from "@/components/logo-text";
 import Section from "./section";
-import Link from "@/components/link";
 
 export default function Footer() {
 	const sections = [

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Panel from "./panel";
 import { cn } from "@/lib/utils";
+import Panel from "./panel";
 
 interface TerminalProps {
 	className?: string;
