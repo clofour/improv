@@ -1,8 +1,7 @@
 import type { VariantProps } from "class-variance-authority";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import Link from "./link";
-import ExternalLink, { type LinkType } from "./link";
+import Link, { type LinkType } from "./link";
 import { buttonVariants } from "./ui/button";
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;

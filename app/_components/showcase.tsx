@@ -150,7 +150,7 @@ export default function Showcase() {
 			className="min-h-0 flex flex-1 flex-col gap-4 overflow-x-clip overflow-y-auto"
 		>
 			{activeShowcase.commands.slice(0, commandIndex + 1).map((block, i) => {
-				const isActive = i == commandIndex;
+				const isActive = i === commandIndex;
 
 				return (
 					<div key={i} className="flex flex-col">
@@ -158,12 +158,12 @@ export default function Showcase() {
 							<span className="text-primary mr-2">{activeShowcase.prompt}</span>
 							<span>
 								{isActive ? typedCommand : block.command}
-								{isActive && phase == Phase.Command && <Cursor />}
+								{isActive && phase === Phase.Command && <Cursor />}
 							</span>
 						</div>
-						{isActive && phase == Phase.Wait && <Cursor />}
+						{isActive && phase === Phase.Wait && <Cursor />}
 
-						{(!isActive || phase == Phase.Output) &&
+						{(!isActive || phase === Phase.Output) &&
 							block.output.map((line, j) => (
 								<div
 									key={j}
@@ -175,7 +175,7 @@ export default function Showcase() {
 					</div>
 				);
 			})}
-			{phase == Phase.Output && (
+			{phase === Phase.Output && (
 				<div className="flex flex-row items-center gap-2">
 					<span className="inline-block text-primary">
 						{activeShowcase.prompt}

@@ -5,7 +5,6 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion";
 import NameSection from "./name-section";
-import Section from "./section";
 
 export default function FAQ() {
 	const items = [

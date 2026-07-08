@@ -4,14 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Panel from "@/components/panel";
 import Terminal from "@/components/terminal";
 import NameSection from "./name-section";
-import Section from "./section";
-
-interface Step {
-	id: string;
-	title: string;
-	description: string;
-	links: string[];
-}
 
 interface Path {
 	id: string;
@@ -168,7 +160,7 @@ export default function Flow() {
 							<div key={step.id} className="flex flex-row gap-4">
 								<div className="flex flex-col items-center">
 									<div className="size-8 flex items-center justify-center border border-primary bg-primary/10 text-sm text-primary lowercase">
-										{steps.length == 1
+										{steps.length === 1
 											? columnIndex + 1
 											: `${columnIndex + 1}${String.fromCharCode(65 + stepIndex)}`}
 									</div>
@@ -201,6 +193,7 @@ export default function Flow() {
 							<svg
 								ref={svgRef}
 								className="w-full h-full absolute inset-0 pointer-events-none"
+								aria-label="Connections"
 							>
 								<defs>
 									<marker
