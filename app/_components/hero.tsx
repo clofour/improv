@@ -45,7 +45,7 @@ export default function Hero() {
 				</div>
 				<div className="relative w-full h-full">
 					<Terminal
-						className="w-full h-full sm:absolute sm:inset-0"
+						className="w-full h-100 sm:h-full sm:absolute sm:inset-0"
 						title="SHOWCASES"
 					>
 						<Showcase />
