@@ -37,11 +37,10 @@ export default function Footer() {
 								size="md"
 							/>
 							<div className="text-sm text-muted-foreground">
-								Hack Club is a 501(c)(3)
-								nonhttps://www.youtube.com/watch?v=QvCoISXfcE8profit and network
-								of 60k+ technical high schoolers. We believe you learn best by
-								building, so we're creating community and providing grants so
-								you can make awesome projects. In the past few years, we've{" "}
+								Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
+								high schoolers. We believe you learn best by building, so we're
+								creating community and providing grants so you can make awesome
+								projects. In the past few years, we've{" "}
 								<Link
 									type={LinkType.External}
 									href="https://summer.hackclub.com/"
