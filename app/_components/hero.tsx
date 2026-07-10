@@ -39,7 +39,7 @@ export default function Hero() {
 							size="cta"
 							variant="outline"
 						>
-							Read More
+							See How It Works
 						</LinkButton>
 					</div>
 				</div>
