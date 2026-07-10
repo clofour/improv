@@ -44,13 +44,15 @@ export default function Footer() {
 								<Link
 									type={LinkType.External}
 									href="https://summer.hackclub.com/"
+									className="underline"
 								>
 									partnered with GitHub to run Summer of Making
-								</Link>{" "}
+								</Link>
 								,{" "}
 								<Link
 									type={LinkType.External}
 									href="https://github.com/hackclub/the-hacker-zephyr"
+									className="underline"
 								>
 									hosted the world's longest hackathon on land
 								</Link>
@@ -58,6 +60,7 @@ export default function Footer() {
 								<Link
 									type={LinkType.External}
 									href="https://www.youtube.com/watch?v=QvCoISXfcE8"
+									className="underline"
 								>
 									ran Canada's largest high school hackathon
 								</Link>
