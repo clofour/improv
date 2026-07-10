@@ -1,16 +1,11 @@
-"use client";
-
 import { LinkType } from "@/components/link";
 import LinkButton from "@/components/link-button";
 import Terminal from "@/components/terminal";
 import RSVPButton from "./rsvp-button";
 import Section from "./section";
 import Showcase from "./showcase";
-import { usePanelRef } from "./wires";
 
 export default function Hero() {
-	const panelRef = usePanelRef("showcases");
-
 	return (
 		<Section id="hero">
 			<div className="grid grid-cols-1 sm:grid-cols-2 w-full h-full px-6 py-16 gap-10">
@@ -50,7 +45,6 @@ export default function Hero() {
 				</div>
 				<div className="relative w-full h-full">
 					<Terminal
-						ref={panelRef}
 						className="w-full h-full sm:absolute sm:inset-0"
 						title="SHOWCASES"
 					>

@@ -23,6 +23,11 @@ html {
 	--color-sidebar-primary: var(--sidebar-primary);
 	--color-sidebar-foreground: var(--sidebar-foreground);
 	--color-sidebar: var(--sidebar);
+	--color-chart-5: var(--chart-5);
+	--color-chart-4: var(--chart-4);
+	--color-chart-3: var(--chart-3);
+	--color-chart-2: var(--chart-2);
+	--color-chart-1: var(--chart-1);
 	--color-ring: var(--ring);
 	--color-wire: var(--wire);
 	--color-input: var(--input);
@@ -40,10 +45,6 @@ html {
 	--color-popover: var(--popover);
 	--color-panel-foreground: var(--panel-foreground);
 	--color-panel: var(--panel);
-	--color-green: var(--green);
-	--color-amber: var(--amber);
-	--color-cyan: var(--cyan);
-	--color-red: var(--red);
 	--radius-sm: calc(var(--radius) * 0.6);
 	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);
@@ -74,10 +75,6 @@ html {
 	--input: oklch(0.25 0.025 250);
 	--ring: oklch(0.8 0.2 145);
 	--wire: oklch(0.7 0.2 220);
-	--green: oklch(0.75 0.18 150); /* same as primary? */
-	--amber: oklch(0.8 0.16 80); /* same as secondary? */
-	--cyan: oklch(0.7 0.2 220); /* same as wire? */
-	--red: oklch(0.65 0.2 25); /* same as destructive? */
 	--sidebar: oklch(0.985 0 0);
 	--sidebar-foreground: oklch(0.141 0.005 285.823);
 	--sidebar-primary: oklch(0.21 0.006 285.885);
