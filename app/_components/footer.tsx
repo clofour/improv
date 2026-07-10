@@ -37,12 +37,32 @@ export default function Footer() {
 								size="md"
 							/>
 							<div className="text-sm text-muted-foreground">
-								Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
-								high schoolers. We believe you learn best by building, so we're
-								creating community and providing grants so you can make awesome
-								projects. In the past few years, we've partnered with GitHub to
-								run Summer of Making, hosted the world's longest hackathon on
-								land, and ran Canada's largest high school hackathon.
+								Hack Club is a 501(c)(3)
+								nonhttps://www.youtube.com/watch?v=QvCoISXfcE8profit and network
+								of 60k+ technical high schoolers. We believe you learn best by
+								building, so we're creating community and providing grants so
+								you can make awesome projects. In the past few years, we've{" "}
+								<Link
+									type={LinkType.External}
+									href="https://summer.hackclub.com/"
+								>
+									partnered with GitHub to run Summer of Making
+								</Link>{" "}
+								,{" "}
+								<Link
+									type={LinkType.External}
+									href="https://github.com/hackclub/the-hacker-zephyr"
+								>
+									hosted the world's longest hackathon on land
+								</Link>
+								, and{" "}
+								<Link
+									type={LinkType.External}
+									href="https://www.youtube.com/watch?v=QvCoISXfcE8"
+								>
+									ran Canada's largest high school hackathon
+								</Link>
+								.
 							</div>
 						</div>
 					</div>
