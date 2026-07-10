@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Panel from "@/components/panel";
 import Terminal from "@/components/terminal";
 import NameSection from "./name-section";
+import { usePanelRef } from "./wires";
 
 interface Path {
 	id: string;
@@ -88,6 +89,8 @@ function generateCurve(x1: number, y1: number, x2: number, y2: number) {
 }
 
 export default function Flow() {
+	const panelRef = usePanelRef("architecture-diagram");
+
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const svgRef = useRef<SVGSVGElement | null>(null);
 	const nodeRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -153,7 +156,11 @@ export default function Flow() {
 			title="how it works"
 			description="find something that interests or deeply annoys you, whether that's overpriced PaaS, missing features or something else. build a tool to fix it, ship your project and get Uptime + discounts. profit!"
 		>
-			<Terminal title="architecture diagram" className="w-full h-full">
+			<Terminal
+				ref={panelRef}
+				title="architecture diagram"
+				className="w-full h-full"
+			>
 				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
 					{columns.map((column, columnIndex, columns) =>
 						column.map((step, stepIndex, steps) => (
