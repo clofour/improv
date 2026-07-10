@@ -61,9 +61,9 @@ export default function LogoIcon({ type, size }: LogoIconProps) {
 				>
 					<polyline
 						points="210,10 10,10 10,210"
-						stroke-width="4"
-						stroke-linecap="butt"
-						stroke-dasharray="14 10"
+						strokeWidth="4"
+						strokeLinecap="butt"
+						strokeDasharray="14 10"
 						fill="none"
 					/>
 					<polygon points="210,10 210,210, 10,210" fill="var(--primary)" />
