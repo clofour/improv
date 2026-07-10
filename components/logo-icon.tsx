@@ -51,6 +51,23 @@ export default function LogoIcon({ type, size }: LogoIconProps) {
 				</svg>
 			);
 		case IconType.Improv:
-			return "TBI";
+			return (
+				<svg
+					aria-label="Improv"
+					height={iconSizes[size]}
+					stroke="var(--primary)"
+					viewBox="0 0 220 220"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<polyline
+						points="210,10 10,10 10,210"
+						stroke-width="4"
+						stroke-linecap="butt"
+						stroke-dasharray="14 10"
+						fill="none"
+					/>
+					<polygon points="210,10 210,210, 10,210" fill="var(--primary)" />
+				</svg>
+			);
 	}
 }

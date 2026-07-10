@@ -31,11 +31,18 @@ export default function Footer() {
 				<div className="flex flex-wrap sm:flex-nowrap px-6 py-6 gap-16">
 					<div className="basis-full sm:basis-1/3 shrink-0">
 						<div className="flex flex-col gap-3">
-							<Logo
-								iconType={IconType.HackClub}
-								textType={TextType.Improv}
-								size="md"
-							/>
+							<div className="flex flex-row gap-2">
+								<Logo
+									iconType={IconType.HackClub}
+									textType={TextType.None}
+									size="md"
+								/>
+								<Logo
+									iconType={IconType.Improv}
+									textType={TextType.None}
+									size="md"
+								/>
+							</div>
 							<div className="text-sm text-muted-foreground">
 								Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
 								high schoolers. We believe you learn best by building, so we're
