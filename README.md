@@ -1,6 +1,6 @@
 # improv
 
-Improv is a Hack Club YSWS centered around shipping provisioning toolings to receive infrastructure-related prizes and discounts. This repository contains the website for Improv. Currently, only the landing page is implemented, with more to come soon.
+Improv is a Hack Club YSWS centered around shipping provisioning toolings to receive infrastructure-related prizes and discounts. This repository contains the website for Improv, built on NextJS. Currently, only the landing page is implemented, with more to come soon.
 
 ## Quick Start
 
@@ -25,8 +25,8 @@ Improv aims to change that by teaching participants about the very infrastructur
 #### Landing Page
 
 The Landing Page is split into six sections:
-* **Hero:** explains what the YSWS is about and showcases some of the tools participants will be using
-* **Flow:** explains how it works
-* **Prizes:** shows the various prizes participants can get
-* **FAQ:** answers some frequently asked questions
-* **Footer:** contains common links
+* **Hero:** explains what the YSWS is about and showcases some of the tools participants will be using, with a terminal
+* **Flow:** explains how it works using an architecture diagram with animated cables
+* **Prizes:** shows the various prizes participants can get with various cards, and explains the discount mechanic
+* **FAQ:** answers some frequently asked questions using accordions
+* **Footer:** contains common links to Hack Club resources
