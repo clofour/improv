@@ -42,7 +42,7 @@ export default function RootLayout({
 				hc.variable,
 			)}
 		>
-			<body className="min-h-full flex flex-col">{children}</body>
+			<body className="w-screen h-screen flex flex-col">{children}</body>
 		</html>
 	);
 }
