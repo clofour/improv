@@ -14,7 +14,7 @@ const data: FileData[] = [
 		name: "Hello",
 		logo: "/placeholder.webp",
 		app: <Example />,
-		pos: [1, 2],
+		pos: [4, 4],
 		draggable: true,
 	},
 ];
