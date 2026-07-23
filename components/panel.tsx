@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface PanelProps {
 	ref?: React.Ref<HTMLDivElement>;
 	className?: string;
+	style?: {};
 	children: ReactNode;
 }
 
