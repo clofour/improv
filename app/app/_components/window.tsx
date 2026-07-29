@@ -18,9 +18,18 @@ function clamp(value: number, min: number, max: number) {
 	return Math.min(max, Math.max(min, value));
 }
 
+function isWindowVisible(status: WindowStatus) {
+	if (status == WindowStatus.Open || status == WindowStatus.Fullscreen) {
+		return true;
+	}
+
+	return false;
+}
+
 export default function Window({ id, name, children }: WindowProps) {
 	const window = useDesktop((state) => state.windows[id]);
 	const close = useDesktop((state) => state.close);
+	const expand = useDesktop((state) => state.expand);
 	const minimize = useDesktop((state) => state.minimize);
 	const focus = useDesktop((state) => state.focus);
 	const move = useDesktop((state) => state.move);
@@ -96,12 +105,14 @@ export default function Window({ id, name, children }: WindowProps) {
 		<Panel
 			className="absolute min-w-40 flex flex-col overflow-hidden"
 			style={{
-				display: window.status == WindowStatus.Open ? "flex" : "none",
+				display: isWindowVisible(window.status) ? "flex" : "none",
 				zIndex: window.zIndex,
 				left: window.position.x,
 				top: window.position.y,
-				width: window.size.x,
-				height: window.size.y,
+				width:
+					window.status == WindowStatus.Fullscreen ? "100%" : window.size.x,
+				height:
+					window.status == WindowStatus.Fullscreen ? "100%" : window.size.y,
 			}}
 		>
 			<div
@@ -112,7 +123,12 @@ export default function Window({ id, name, children }: WindowProps) {
 			>
 				<span className="text-muted-foreground uppercase">{name}</span>
 				<div className="flex items-center gap-2">
-					<div className="h-2.5 w-2.5 rounded-full bg-primary/80" />
+					<div
+						className="h-2.5 w-2.5 rounded-full bg-primary/80"
+						onClick={() => {
+							expand(id);
+						}}
+					/>
 					<div
 						className="h-2.5 w-2.5 rounded-full bg-secondary/80"
 						onClick={() => minimize(id)}

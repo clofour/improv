@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export enum WindowStatus {
 	Open,
+	Fullscreen,
 	Closed,
 	Minimized,
 }
@@ -21,6 +22,7 @@ interface DesktopState {
 	register: (id: string) => void;
 	open: (id: string) => void;
 	close: (id: string) => void;
+	expand: (id: string) => void;
 	minimize: (id: string) => void;
 	focus: (id: string) => void;
 	move: (id: string, position: Vector2D) => void;
@@ -79,6 +81,25 @@ export const useDesktop = create<DesktopState>((set) => ({
 			const newWindow = {
 				...currentWindow,
 				status: WindowStatus.Closed,
+			};
+
+			return {
+				windows: {
+					...state.windows,
+					[id]: newWindow,
+				},
+			};
+		});
+	},
+
+	expand: (id) => {
+		set((state) => {
+			const currentWindow = state.windows[id];
+			if (!currentWindow) return state;
+
+			const newWindow = {
+				...currentWindow,
+				status: WindowStatus.Fullscreen,
 			};
 
 			return {
