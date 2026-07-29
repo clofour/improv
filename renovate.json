@@ -1,10 +1,12 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["config:recommended"],
-	"prTitle": "Update {{{commitMessageTopic}}} {{{commitMessageExtra}}}",
-	"branchPrefix": "deps/",
+	"minimumReleaseAge": "7 days",
 	"semanticCommits": "disabled",
 	"commitMessagePrefix": "deps:",
 	"commitMessageAction": "update",
-	"commitMessageTopic": "{{depName}}"
+	"commitMessageTopic": "{{depName}}",
+	"branchPrefix": "deps/",
+	"prTitle": "Update {{{commitMessageTopic}}} {{{commitMessageExtra}}}",
+	"baseBranchPatterns": ["app"]
 }
