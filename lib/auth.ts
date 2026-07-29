@@ -15,6 +15,21 @@ export const auth = betterAuth({
 					discoveryUrl:
 						"https://auth.hackclub.com/.well-known/openid-configuration",
 				},
+				{
+					providerId: "hackatime",
+					clientId: process.env.HACKATIME_CLIENT_ID!,
+					clientSecret: process.env.HACKATIME_CLIENT_SECRET!,
+					authorizationUrl: "https://hackatime.hackclub.com/oauth/authorize",
+					tokenUrl: "https://hackatime.hackclub.com/oauth/token",
+					userInfoUrl: "https://hackatime.hackclub.com/api/v1/authenticated/me",
+					scopes: ["profile", "read"],
+					mapProfileToUser: function (profile) {
+						return {
+							name: profile.slack_id,
+							email: profile.emails[0],
+						};
+					},
+				},
 			],
 		}),
 	],
