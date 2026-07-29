@@ -6,11 +6,12 @@ export enum WindowStatus {
 	Minimized,
 }
 
-export type Position = { x: number; y: number };
+export type Vector2D = { x: number; y: number };
 
 interface WindowState {
 	status: WindowStatus;
-	position: Position;
+	position: Vector2D;
+	size: Vector2D;
 	zIndex: number;
 }
 
@@ -22,7 +23,8 @@ interface DesktopState {
 	close: (id: string) => void;
 	minimize: (id: string) => void;
 	focus: (id: string) => void;
-	move: (id: string, position: Position) => void;
+	move: (id: string, position: Vector2D) => void;
+	resize: (id: string, size: Vector2D) => void;
 }
 
 export const useDesktop = create<DesktopState>((set) => ({
@@ -34,6 +36,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 			const window = {
 				status: WindowStatus.Closed,
 				position: { x: 1, y: 1 },
+				size: { x: 100, y: 100 },
 				zIndex: 0,
 			};
 
@@ -135,6 +138,25 @@ export const useDesktop = create<DesktopState>((set) => ({
 			const newWindow = {
 				...currentWindow,
 				position: position,
+			};
+
+			return {
+				windows: {
+					...state.windows,
+					[id]: newWindow,
+				},
+			};
+		});
+	},
+
+	resize: (id, size) => {
+		set((state) => {
+			const currentWindow = state.windows[id];
+			if (!currentWindow) return state;
+
+			const newWindow = {
+				...currentWindow,
+				size: size,
 			};
 
 			return {
