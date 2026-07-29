@@ -2,145 +2,274 @@ import { create } from "zustand";
 
 export enum WindowStatus {
 	Open,
+	Fullscreen,
 	Closed,
 	Minimized,
 }
 
-export type Position = { x: number; y: number };
+export type Vector2D = { x: number; y: number };
+
+interface FileState {
+	position: Vector2D;
+	draggable: boolean;
+}
 
 interface WindowState {
 	status: WindowStatus;
-	position: Position;
+	position: Vector2D;
+	size: Vector2D;
 	zIndex: number;
 }
 
+interface DesktopItemState {
+	name: string;
+	logo: string;
+
+	file: FileState;
+	window: WindowState;
+}
+
 interface DesktopState {
-	windows: Record<string, WindowState>;
+	items: Record<string, DesktopItemState>;
 	topZIndex: number;
-	register: (id: string) => void;
-	open: (id: string) => void;
-	close: (id: string) => void;
-	minimize: (id: string) => void;
-	focus: (id: string) => void;
-	move: (id: string, position: Position) => void;
+	register: (
+		id: string,
+		name: string,
+		logo: string,
+		filePosition: Vector2D,
+	) => void;
+	openWindow: (id: string) => void;
+	closeWindow: (id: string) => void;
+	expandWindow: (id: string) => void;
+	minimizeWindow: (id: string) => void;
+	focusWindow: (id: string) => void;
+	moveWindow: (id: string, position: Vector2D) => void;
+	resizeWindow: (id: string, size: Vector2D) => void;
+	moveFile: (id: string, position: Vector2D) => void;
 }
 
 export const useDesktop = create<DesktopState>((set) => ({
-	windows: {},
+	items: {},
 	topZIndex: 0,
 
-	register: (id) => {
+	register: (id, name, logo, filePosition) => {
 		set((state) => {
-			const window = {
-				status: WindowStatus.Closed,
-				position: { x: 1, y: 1 },
-				zIndex: 0,
+			const item = {
+				name: name,
+				logo: logo,
+				window: {
+					status: WindowStatus.Closed,
+					position: { x: 1, y: 1 },
+					size: { x: 100, y: 100 },
+					zIndex: 0,
+				},
+				file: {
+					position: filePosition,
+					draggable: true,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: window,
+				items: {
+					...state.items,
+					[id]: item,
 				},
 			};
 		});
 	},
 
-	open: (id) => {
+	openWindow: (id) => {
 		set((state) => {
-			const currentWindow = state.windows[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
+
+			const window = item.window;
 
 			const nextZIndex = state.topZIndex + 1;
-			const newWindow = {
-				...currentWindow,
-				status: WindowStatus.Open,
-				zIndex: nextZIndex,
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					status: WindowStatus.Open,
+					zIndex: nextZIndex,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: newWindow,
+				items: {
+					...state.items,
+					[id]: newItem,
 				},
 				topZIndex: nextZIndex,
 			};
 		});
 	},
 
-	close: (id) => {
+	closeWindow: (id) => {
 		set((state) => {
-			const currentWindow = state.windows[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
 
-			const newWindow = {
-				...currentWindow,
-				status: WindowStatus.Closed,
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					status: WindowStatus.Closed,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: newWindow,
+				items: {
+					...state.items,
+					[id]: newItem,
 				},
 			};
 		});
 	},
 
-	minimize: (id) => {
+	expandWindow: (id) => {
 		set((state) => {
-			const currentWindow = state.windows[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
 
-			const newWindow = {
-				...currentWindow,
-				status: WindowStatus.Minimized,
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					status: WindowStatus.Fullscreen,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: newWindow,
+				items: {
+					...state.items,
+					[id]: newItem,
 				},
 			};
 		});
 	},
 
-	focus: (id) => {
+	minimizeWindow: (id) => {
 		set((state) => {
-			const currentWindow = state.windows[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
+
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					status: WindowStatus.Minimized,
+				},
+			};
+
+			return {
+				items: {
+					...state.items,
+					[id]: newItem,
+				},
+			};
+		});
+	},
+
+	focusWindow: (id) => {
+		set((state) => {
+			const item = state.items[id];
+			if (!item) return state;
+
+			const window = item.window;
 
 			const nextZIndex = state.topZIndex + 1;
-			const newWindow = {
-				...currentWindow,
-				zIndex: nextZIndex,
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					zIndex: nextZIndex,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: newWindow,
+				items: {
+					...state.items,
+					[id]: newItem,
 				},
 				topZIndex: nextZIndex,
 			};
 		});
 	},
 
-	move: (id, position) => {
+	moveWindow: (id, position) => {
 		set((state) => {
-			const currentWindow = state.windows[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
 
-			const newWindow = {
-				...currentWindow,
-				position: position,
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					position: position,
+				},
 			};
 
 			return {
-				windows: {
-					...state.windows,
-					[id]: newWindow,
+				items: {
+					...state.items,
+					[id]: newItem,
+				},
+			};
+		});
+	},
+
+	resizeWindow: (id, size) => {
+		set((state) => {
+			const item = state.items[id];
+			if (!item) return state;
+
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					size: size,
+				},
+			};
+
+			return {
+				items: {
+					...state.items,
+					[id]: newItem,
+				},
+			};
+		});
+	},
+
+	moveFile: (id, position) => {
+		set((state) => {
+			const item = state.items[id];
+			if (!item) return state;
+
+			const file = item.file;
+
+			const newItem = {
+				...item,
+				file: {
+					...file,
+					position: position,
+				},
+			};
+
+			return {
+				items: {
+					...state.items,
+					[id]: newItem,
 				},
 			};
 		});
