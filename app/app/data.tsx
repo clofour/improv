@@ -1,20 +1,23 @@
 import { ReactNode } from "react";
 import Example from "./_components/example";
+import { Vector2D } from "./_components/desktop";
 
-export interface FileData {
+export interface DesktopItemData {
+	id: string;
 	name: string;
 	logo: string;
 	app: ReactNode;
-	pos: [number, number];
+	pos: Vector2D;
 	draggable: boolean;
 }
 
-const data: FileData[] = [
+const data: DesktopItemData[] = [
 	{
+		id: "hello",
 		name: "Hello",
 		logo: "/placeholder.webp",
 		app: <Example />,
-		pos: [4, 4],
+		pos: { x: 4, y: 4 },
 		draggable: true,
 	},
 ];

@@ -27,18 +27,19 @@ function isWindowVisible(status: WindowStatus) {
 }
 
 export default function Window({ id, name, children }: WindowProps) {
-	const window = useDesktop((state) => state.windows[id]);
-	const close = useDesktop((state) => state.close);
-	const expand = useDesktop((state) => state.expand);
-	const minimize = useDesktop((state) => state.minimize);
-	const focus = useDesktop((state) => state.focus);
-	const move = useDesktop((state) => state.move);
-	const resize = useDesktop((state) => state.resize);
+	const item = useDesktop((state) => state.items[id]);
+	const close = useDesktop((state) => state.closeWindow);
+	const expand = useDesktop((state) => state.expandWindow);
+	const minimize = useDesktop((state) => state.minimizeWindow);
+	const focus = useDesktop((state) => state.focusWindow);
+	const move = useDesktop((state) => state.moveWindow);
+	const resize = useDesktop((state) => state.resizeWindow);
 
 	const moveOffset = useRef<Vector2D | null>(null);
 	const resizeOffset = useRef<WindowResize | null>(null);
 
-	if (!window) return;
+	if (!item) return;
+	const window = item.window;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
 		if (e.target != e.currentTarget) return;

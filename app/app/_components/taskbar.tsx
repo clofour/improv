@@ -4,15 +4,15 @@ import { useDesktop, WindowStatus } from "./desktop";
 import Task from "./task";
 
 export default function Taskbar() {
-	const windows = useDesktop((state) => state.windows);
-	const windowsArray = Object.entries(windows);
-	const filteredWindowsArray = windowsArray.filter(
-		([_, window]) => window.status != WindowStatus.Closed,
+	const items = useDesktop((state) => state.items);
+	const itemsArray = Object.entries(items);
+	const filteredItemsArray = itemsArray.filter(
+		([_, item]) => item.window.status != WindowStatus.Closed,
 	);
 
 	return (
 		<div className="fixed bottom-0 w-full h-10 bg-muted">
-			{filteredWindowsArray.map(([id, window]) => (
+			{filteredItemsArray.map(([id, _]) => (
 				<Task key={id} id={id} />
 			))}
 		</div>

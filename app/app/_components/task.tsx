@@ -5,9 +5,10 @@ interface TaskProps {
 }
 
 export default function Task({ id }: TaskProps) {
-	const window = useDesktop((state) => state.windows[id]);
-	const open = useDesktop((state) => state.open);
-	const minimize = useDesktop((state) => state.minimize);
+	const item = useDesktop((state) => state.items[id]);
+	const window = item.window;
+	const open = useDesktop((state) => state.openWindow);
+	const minimize = useDesktop((state) => state.minimizeWindow);
 
 	function onClick() {
 		if (window.status == WindowStatus.Minimized) {
