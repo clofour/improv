@@ -2,6 +2,7 @@ import Terminal from "@/components/terminal";
 import { ReactNode, useRef } from "react";
 import { Vector2D, useDesktop, WindowStatus } from "./desktop";
 import Panel from "@/components/panel";
+import { clamp } from "@/lib/utils";
 
 interface WindowProps {
 	id: string;
@@ -12,10 +13,6 @@ interface WindowProps {
 interface WindowResize {
 	size: Vector2D;
 	position: Vector2D;
-}
-
-function clamp(value: number, min: number, max: number) {
-	return Math.min(max, Math.max(min, value));
 }
 
 function isWindowVisible(status: WindowStatus) {
@@ -39,15 +36,15 @@ export default function Window({ id, name, children }: WindowProps) {
 	const resizeOffset = useRef<WindowResize | null>(null);
 
 	if (!item) return;
-	const window = item.window;
+	const itemWindow = item.window;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
 		if (e.target != e.currentTarget) return;
 
 		focus(id);
 		moveOffset.current = {
-			x: e.clientX - window.position.x,
-			y: e.clientY - window.position.y,
+			x: e.clientX - itemWindow.position.x,
+			y: e.clientY - itemWindow.position.y,
 		};
 
 		if (e.currentTarget instanceof HTMLElement) {
@@ -57,9 +54,12 @@ export default function Window({ id, name, children }: WindowProps) {
 	const onMovePointerMove = (e: React.PointerEvent) => {
 		if (!moveOffset.current) return;
 
+		const clampX = clamp(e.clientX, 0, window.innerWidth);
+		const clampY = clamp(e.clientY, 0, window.innerHeight);
+
 		move(id, {
-			x: e.clientX - moveOffset.current.x,
-			y: e.clientY - moveOffset.current.y,
+			x: clampX - moveOffset.current.x,
+			y: clampY - moveOffset.current.y,
 		});
 	};
 	const onMovePointerUp = (e: React.PointerEvent) => {
@@ -72,8 +72,8 @@ export default function Window({ id, name, children }: WindowProps) {
 		focus(id);
 		resizeOffset.current = {
 			size: {
-				x: window.size.x,
-				y: window.size.y,
+				x: itemWindow.size.x,
+				y: itemWindow.size.y,
 			},
 			position: {
 				x: e.clientX,
@@ -106,14 +106,18 @@ export default function Window({ id, name, children }: WindowProps) {
 		<Panel
 			className="absolute min-w-40 flex flex-col overflow-hidden"
 			style={{
-				display: isWindowVisible(window.status) ? "flex" : "none",
-				zIndex: window.zIndex,
-				left: window.position.x,
-				top: window.position.y,
+				display: isWindowVisible(itemWindow.status) ? "flex" : "none",
+				zIndex: itemWindow.zIndex,
+				left: itemWindow.position.x,
+				top: itemWindow.position.y,
 				width:
-					window.status == WindowStatus.Fullscreen ? "100%" : window.size.x,
+					itemWindow.status == WindowStatus.Fullscreen
+						? "100%"
+						: itemWindow.size.x,
 				height:
-					window.status == WindowStatus.Fullscreen ? "100%" : window.size.y,
+					itemWindow.status == WindowStatus.Fullscreen
+						? "100%"
+						: itemWindow.size.y,
 			}}
 		>
 			<div

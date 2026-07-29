@@ -31,7 +31,9 @@ interface DesktopItemState {
 
 interface DesktopState {
 	items: Record<string, DesktopItemState>;
+	selectedFiles: string[];
 	topZIndex: number;
+
 	register: (
 		id: string,
 		name: string,
@@ -45,11 +47,14 @@ interface DesktopState {
 	focusWindow: (id: string) => void;
 	moveWindow: (id: string, position: Vector2D) => void;
 	resizeWindow: (id: string, size: Vector2D) => void;
+
 	moveFile: (id: string, position: Vector2D) => void;
+	selectFiles: (fileIDs: string[]) => void;
 }
 
 export const useDesktop = create<DesktopState>((set) => ({
 	items: {},
+	selectedFiles: [],
 	topZIndex: 0,
 
 	register: (id, name, logo, filePosition) => {
@@ -60,7 +65,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 				window: {
 					status: WindowStatus.Closed,
 					position: { x: 1, y: 1 },
-					size: { x: 100, y: 100 },
+					size: { x: 650, y: 400 },
 					zIndex: 0,
 				},
 				file: {
@@ -77,7 +82,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	openWindow: (id) => {
 		set((state) => {
 			const item = state.items[id];
@@ -104,7 +108,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	closeWindow: (id) => {
 		set((state) => {
 			const item = state.items[id];
@@ -128,7 +131,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	expandWindow: (id) => {
 		set((state) => {
 			const item = state.items[id];
@@ -152,7 +154,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	minimizeWindow: (id) => {
 		set((state) => {
 			const item = state.items[id];
@@ -176,7 +177,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	focusWindow: (id) => {
 		set((state) => {
 			const item = state.items[id];
@@ -202,7 +202,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	moveWindow: (id, position) => {
 		set((state) => {
 			const item = state.items[id];
@@ -226,7 +225,6 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-
 	resizeWindow: (id, size) => {
 		set((state) => {
 			const item = state.items[id];
@@ -271,6 +269,13 @@ export const useDesktop = create<DesktopState>((set) => ({
 					...state.items,
 					[id]: newItem,
 				},
+			};
+		});
+	},
+	selectFiles: (fileIDs) => {
+		set((state) => {
+			return {
+				selectedFiles: fileIDs,
 			};
 		});
 	},

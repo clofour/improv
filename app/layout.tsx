@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/class";
 
 const heading = Space_Grotesk({
 	subsets: ["latin"],
