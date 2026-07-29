@@ -1,0 +1,10 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended"],
+	"prTitle": "Update {{{commitMessageTopic}}} {{{commitMessageExtra}}}",
+	"branchPrefix": "deps/",
+	"semanticCommits": "disabled",
+	"commitMessagePrefix": "deps:",
+	"commitMessageAction": "update",
+	"commitMessageTopic": "{{depName}}"
+}
