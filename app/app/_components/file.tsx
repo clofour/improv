@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useDesktop, Vector2D } from "./desktop";
 import Image from "next/image";
+import { clamp } from "@/lib/utils";
 
 const GRID_SIZE = 50;
 
@@ -14,6 +15,12 @@ export default function File({ id }: FileProps) {
 	const item = useDesktop((state) => state.items[id]);
 	const openWindow = useDesktop((state) => state.openWindow);
 	const moveFile = useDesktop((state) => state.moveFile);
+	const selectFiles = useDesktop((state) => state.selectFiles);
+
+	const selectedFileIDs = useDesktop((state) => state.selectedFiles);
+	const isSelected = selectedFileIDs.includes(id);
+
+	console.log(selectedFileIDs, isSelected, id);
 
 	const moveOffset = useRef<Vector2D | null>(null);
 
@@ -33,9 +40,12 @@ export default function File({ id }: FileProps) {
 	const onMovePointerMove = (e: React.PointerEvent) => {
 		if (!moveOffset.current) return;
 
+		const clampX = clamp(e.clientX, 0, window.innerWidth);
+		const clampY = clamp(e.clientY, 0, window.innerHeight);
+
 		moveFile(id, {
-			x: e.clientX - moveOffset.current.x,
-			y: e.clientY - moveOffset.current.y,
+			x: clampX - moveOffset.current.x,
+			y: clampY - moveOffset.current.y,
 		});
 	};
 	const onMovePointerUp = (e: React.PointerEvent) => {
@@ -54,8 +64,9 @@ export default function File({ id }: FileProps) {
 	return (
 		<>
 			<button
-				className="absolute flex flex-col p-2 gap-2"
-				onClick={() => openWindow(id)}
+				className={`absolute flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
+				onClick={() => selectFiles([id])}
+				onDoubleClick={() => openWindow(id)}
 				onPointerDown={onMovePointerDown}
 				onPointerMove={onMovePointerMove}
 				onPointerUp={onMovePointerUp}

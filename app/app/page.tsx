@@ -6,6 +6,7 @@ import Taskbar from "./_components/taskbar";
 import data from "./data";
 import { useDesktop } from "./_components/desktop";
 import Window from "./_components/window";
+import Background from "./_components/background";
 
 export default function App() {
 	const register = useDesktop((state) => state.register);
@@ -18,6 +19,7 @@ export default function App() {
 
 	return (
 		<div className="relative min-w-screen min-h-screen overflow-hidden">
+			<Background />
 			<div className="p-4">
 				{data.map((file) => (
 					<File key={file.id} id={file.id} />
