@@ -15,7 +15,7 @@ export default function AuthButton({ variant, size }: AuthButtonProps) {
 	async function onClick() {
 		const { data, error } = await authClient.signIn.oauth2({
 			providerId: "hackclub",
-			callbackURL: "/app",
+			callbackURL: "/app/onboarding",
 			scopes: ["openid", "email", "profile", "verification_status", "slack_id"],
 		});
 	}
