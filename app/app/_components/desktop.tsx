@@ -253,18 +253,23 @@ export const useDesktop = create<DesktopState>((set) => ({
 
 	moveFile: (id, position) => {
 		set((state) => {
-			const currentWindow = state.items[id];
-			if (!currentWindow) return state;
+			const item = state.items[id];
+			if (!item) return state;
 
-			const newWindow = {
-				...currentWindow,
-				position: position,
+			const file = item.file;
+
+			const newItem = {
+				...item,
+				file: {
+					...file,
+					position: position,
+				},
 			};
 
 			return {
 				items: {
 					...state.items,
-					[id]: newWindow,
+					[id]: newItem,
 				},
 			};
 		});
