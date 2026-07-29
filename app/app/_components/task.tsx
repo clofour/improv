@@ -1,4 +1,5 @@
 import { useDesktop, WindowStatus } from "./desktop";
+import Image from "next/image";
 
 interface TaskProps {
 	id: string;
@@ -6,9 +7,11 @@ interface TaskProps {
 
 export default function Task({ id }: TaskProps) {
 	const item = useDesktop((state) => state.items[id]);
-	const window = item.window;
 	const open = useDesktop((state) => state.openWindow);
 	const minimize = useDesktop((state) => state.minimizeWindow);
+
+	if (!item) return;
+	const window = item.window;
 
 	function onClick() {
 		if (window.status == WindowStatus.Minimized) {
@@ -28,10 +31,17 @@ export default function Task({ id }: TaskProps) {
 
 	return (
 		<button
-			className="w-10 h-full flex justify-center align-center px-1 py-0.25"
+			className="w-10 h-full flex justify-center items-center px-1 py-0.25"
 			onClick={onClick}
 		>
-			hell
+			<Image
+				src={item.logo}
+				alt={item.name}
+				width={30}
+				height={30}
+				objectFit="contain"
+				draggable={false}
+			/>
 		</button>
 	);
 }

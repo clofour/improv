@@ -122,7 +122,9 @@ export default function Window({ id, name, children }: WindowProps) {
 				onPointerMove={onMovePointerMove}
 				onPointerUp={onMovePointerUp}
 			>
-				<span className="text-muted-foreground uppercase">{name}</span>
+				<span className="text-muted-foreground uppercase select-none pointer-events-none">
+					{name}
+				</span>
 				<div className="flex items-center gap-2">
 					<div
 						className="h-2.5 w-2.5 rounded-full bg-primary/80"

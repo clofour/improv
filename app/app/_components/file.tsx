@@ -55,7 +55,7 @@ export default function File({ id }: FileProps) {
 		<>
 			<button
 				className="absolute flex flex-col p-2 gap-2"
-				// onClick={() => openWindow(id)}
+				onClick={() => openWindow(id)}
 				onPointerDown={onMovePointerDown}
 				onPointerMove={onMovePointerMove}
 				onPointerUp={onMovePointerUp}
