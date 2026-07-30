@@ -7,7 +7,7 @@ export interface DesktopItemData {
 	name: string;
 	logo: string;
 	app: ReactNode;
-	pos: Vector2D;
+	position: Vector2D;
 	draggable: boolean;
 }
 
@@ -17,7 +17,7 @@ const data: DesktopItemData[] = [
 		name: "Hello",
 		logo: "/placeholder.webp",
 		app: <Example />,
-		pos: { x: 4, y: 4 },
+		position: { x: 0, y: 0 },
 		draggable: true,
 	},
 ];
