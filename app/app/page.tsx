@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import File from "./_components/file";
+import File, {
+	clampFilePosition,
+	locationToPosition,
+} from "./_components/file";
 import Taskbar from "./_components/taskbar";
 import data from "./data";
 import { useDesktop } from "./_components/desktop";
@@ -13,7 +16,12 @@ export default function App() {
 
 	useEffect(() => {
 		for (const item of data) {
-			register(item.id, item.name, item.logo, item.pos);
+			register(
+				item.id,
+				item.name,
+				item.logo,
+				clampFilePosition(locationToPosition(item.position)),
+			);
 		}
 	}, []);
 

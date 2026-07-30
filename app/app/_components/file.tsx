@@ -6,9 +6,32 @@ import Image from "next/image";
 import { clamp } from "@/lib/utils";
 
 const GRID_SIZE = 50;
+const MARGIN_SIZE = 10;
 
 interface FileProps {
 	id: string;
+}
+
+export function locationToPosition(location: Vector2D) {
+	return {
+		x: location.x * GRID_SIZE,
+		y: location.y * GRID_SIZE,
+	};
+}
+
+export function clampFilePosition(position: Vector2D) {
+	return {
+		x: clamp(
+			Math.round(position.x / GRID_SIZE) * GRID_SIZE,
+			MARGIN_SIZE,
+			window.innerWidth - MARGIN_SIZE,
+		),
+		y: clamp(
+			Math.round(position.y / GRID_SIZE) * GRID_SIZE,
+			MARGIN_SIZE,
+			window.innerHeight - MARGIN_SIZE,
+		),
+	};
 }
 
 export default function File({ id }: FileProps) {
@@ -53,10 +76,7 @@ export default function File({ id }: FileProps) {
 
 		const x = e.clientX - moveOffset.current.x;
 		const y = e.clientY - moveOffset.current.y;
-		moveFile(id, {
-			x: Math.round(x / GRID_SIZE) * GRID_SIZE,
-			y: Math.round(y / GRID_SIZE) * GRID_SIZE,
-		});
+		moveFile(id, clampFilePosition({ x: x, y: y }));
 
 		moveOffset.current = null;
 	};

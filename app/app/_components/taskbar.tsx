@@ -11,7 +11,7 @@ export default function Taskbar() {
 	);
 
 	return (
-		<div className="fixed bottom-0 w-full h-10 px-1 py-0.5 bg-muted">
+		<div className="z-10 fixed bottom-0 w-full h-10 px-1 py-0.5 bg-muted">
 			{filteredItemsArray.map(([id, _]) => (
 				<Task key={id} id={id} />
 			))}
