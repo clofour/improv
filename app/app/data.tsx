@@ -18,7 +18,7 @@ const data: DesktopItemData[] = [
 		name: "Shop",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		pos: { x: 0, y: 0 },
+		position: { x: 0, y: 0 },
 		draggable: true,
 	},
 ];
