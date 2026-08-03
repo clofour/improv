@@ -1,14 +1,13 @@
 import { ReactNode } from "react";
-import Example from "./_components/example";
-import { Vector2D } from "./_components/desktop";
 import Shop from "./shop/page";
+import { Vector2D } from "@/lib/2d";
 
 export interface DesktopItemData {
 	id: string;
 	name: string;
 	logo: string;
 	app: ReactNode;
-	position: Vector2D;
+	location: Vector2D;
 	draggable: boolean;
 }
 
@@ -18,7 +17,7 @@ const data: DesktopItemData[] = [
 		name: "Shop",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		position: { x: 0, y: 0 },
+		location: { x: 0, y: 0 },
 		draggable: true,
 	},
 ];

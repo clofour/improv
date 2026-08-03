@@ -1,8 +1,9 @@
 import Terminal from "@/components/terminal";
 import { ReactNode, useRef } from "react";
-import { Vector2D, useDesktop, WindowStatus } from "./desktop";
+import { useDesktop, WindowStatus } from "./desktop";
 import Panel from "@/components/panel";
 import { clamp } from "@/lib/utils";
+import { Vector2D } from "@/lib/2d";
 
 interface WindowProps {
 	id: string;
