@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/class";
 
 interface PanelProps {
 	ref?: React.Ref<HTMLDivElement>;
 	className?: string;
+	style?: {};
 	children: ReactNode;
 }
 

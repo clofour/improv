@@ -2,8 +2,9 @@ import Link, { LinkType } from "@/components/link";
 import Logo from "@/components/logo";
 import { IconType } from "@/components/logo-icon";
 import { TextType } from "@/components/logo-text";
-import RSVPButton from "./rsvp-button";
 import Section from "./section";
+import AuthButton from "./auth-button";
+import RSVPButton from "./rsvp-button";
 
 export default function Navbar() {
 	const links = [
@@ -42,7 +43,8 @@ export default function Navbar() {
 							</Link>
 						))}
 					</div>
-					<div className="flex justify-end">
+					<div className="flex justify-end gap-3">
+						<AuthButton variant="outline" size="lg" />
 						<RSVPButton size="lg" />
 					</div>
 				</div>

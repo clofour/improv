@@ -1,9 +1,9 @@
 import { LinkType } from "@/components/link";
 import LinkButton from "@/components/link-button";
 import Terminal from "@/components/terminal";
-import RSVPButton from "./rsvp-button";
 import Section from "./section";
 import Showcase from "./showcase";
+import RSVPButton from "./rsvp-button";
 
 export default function Hero() {
 	return (
