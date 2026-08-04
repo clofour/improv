@@ -52,6 +52,9 @@ html {
 	--radius-2xl: calc(var(--radius) * 1.8);
 	--radius-3xl: calc(var(--radius) * 2.2);
 	--radius-4xl: calc(var(--radius) * 2.6);
+
+	--animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
+	--animate-crt-noise: crt-noise 6s linear infinite;
 }
 
 :root {
@@ -123,6 +126,40 @@ html {
 
 @utility blink {
 	animation: blink 1s step-end infinite;
+}
+
+@keyframes crt-flicker {
+	0%,
+	100% {
+		opacity: 0.98;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes crt-noise {
+	0%,
+	100% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+	10% {
+		transform: translateY(0);
+		opacity: 0.08;
+	}
+	40% {
+		transform: translateY(40%);
+		opacity: 0.1;
+	}
+	70% {
+		transform: translateY(80%);
+		opacity: 0.06;
+	}
+	80% {
+		transform: translateY(80%);
+		opacity: 0;
+	}
 }
 
 @layer base {

@@ -1,4 +1,4 @@
-export default function ScreenOverlay() {
+export default function ColdOverlay() {
 	return (
 		<div className="opacity-25">
 			<div className="absolute inset-0 pointer-events-none bg-[url('/fx/ice.jpg')] opacity-12.5 mix-blend-screen" />
