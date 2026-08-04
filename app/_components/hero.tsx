@@ -3,7 +3,7 @@ import LinkButton from "@/components/link-button";
 import Terminal from "@/components/terminal";
 import Section from "./section";
 import Showcase from "./showcase";
-import AuthButton from "./auth-button";
+import RSVPButton from "./rsvp-button";
 
 export default function Hero() {
 	return (
@@ -32,7 +32,7 @@ export default function Hero() {
 						</p>
 					</div>
 					<div className="flex flex-row gap-3">
-						<AuthButton variant="cta" size="cta" />
+						<RSVPButton variant="cta" size="cta" />
 						<LinkButton
 							type={LinkType.Internal}
 							href="/#how"

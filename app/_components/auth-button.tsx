@@ -22,7 +22,7 @@ export default function AuthButton({ variant, size }: AuthButtonProps) {
 
 	return (
 		<Button variant={variant} size={size} onClick={onClick}>
-			Sign In
+			WIP
 		</Button>
 	);
 }

@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"format": "biome format --write",
-		"check": "biome check --write"
+		"check": "biome check --write",
+		"migrate": "drizzle-kit migrate"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.6.0",
