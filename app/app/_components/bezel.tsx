@@ -16,13 +16,6 @@ export default function Bezel({ children }: BezelProps) {
 					<div className="relative w-full h-full rounded-sm overflow-hidden">
 						{children}
 					</div>
-
-					<Image
-						src="/fx/snow.png"
-						alt="Snow"
-						fill
-						className="absolute bottom-0 w-full object-contain pointer-events-none"
-					/>
 				</div>
 			</div>
 		</div>
