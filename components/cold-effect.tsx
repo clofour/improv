@@ -15,15 +15,15 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 	const farSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode == ColdEffectMode.Background ? 120 : 70 },
+				{ length: mode == ColdEffectMode.Background ? 80 : 45 },
 				(_, i) => ({
 					id: i,
 					x: random(0, 100),
 					y: random(0, 100),
 					size:
-						mode == ColdEffectMode.Background ? random(1, 3.5) : random(1, 3),
+						mode == ColdEffectMode.Background ? random(1, 2.5) : random(1, 2),
 					duration:
-						mode == ColdEffectMode.Background ? random(9, 18) : random(10, 20),
+						mode == ColdEffectMode.Background ? random(10, 20) : random(12, 22),
 					delay: random(-20, 0),
 				}),
 			),
@@ -32,24 +32,24 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 	const middleSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode == ColdEffectMode.Background ? 90 : 50 },
+				{ length: mode == ColdEffectMode.Background ? 60 : 30 },
 				(_, i) => ({
 					id: i,
 					px: random(0, 100),
 					py: random(0, 100),
 					sx:
-						mode == ColdEffectMode.Background
-							? random(20, 110)
-							: random(20, 85),
-					sy: mode == ColdEffectMode.Background ? random(1, 2.5) : random(1, 2),
+						mode == ColdEffectMode.Background ? random(20, 80) : random(16, 64),
+					sy: mode == ColdEffectMode.Background ? random(1, 2) : random(1, 1.5),
 					opacity:
 						mode == ColdEffectMode.Background
-							? random(0.15, 0.55)
-							: random(0.08, 0.3),
+							? random(0.08, 0.3)
+							: random(0.05, 0.16),
 					blur:
-						mode == ColdEffectMode.Background ? random(0, 2.2) : random(0.3, 2),
+						mode == ColdEffectMode.Background
+							? random(0.3, 2.2)
+							: random(0.5, 2),
 					duration:
-						mode == ColdEffectMode.Background ? random(3, 7) : random(3.5, 8),
+						mode == ColdEffectMode.Background ? random(4, 8) : random(4.5, 0),
 					delay: random(-12, 0),
 				}),
 			),
@@ -58,26 +58,26 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 	const nearSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode == ColdEffectMode.Background ? 50 : 25 },
+				{ length: mode == ColdEffectMode.Background ? 30 : 15 },
 				(_, i) => ({
 					id: i,
 					px: random(0, 100),
 					py: random(0, 100),
 					sx:
 						mode == ColdEffectMode.Background
-							? random(120, 480)
-							: random(90, 320),
-					sy: mode == ColdEffectMode.Background ? random(1, 4) : random(1, 3),
+							? random(80, 280)
+							: random(60, 200),
+					sy: mode == ColdEffectMode.Background ? random(1, 3) : random(1, 2),
 					opacity:
 						mode == ColdEffectMode.Background
-							? random(0.2, 0.7)
-							: random(0.1, 0.35),
+							? random(0.1, 0.35)
+							: random(0.05, 0.2),
 					blur:
 						mode == ColdEffectMode.Background
-							? random(0, 2.5)
+							? random(0.3, 2.5)
 							: random(0.5, 2.5),
 					duration:
-						mode == ColdEffectMode.Background ? random(3, 7) : random(2, 4.5),
+						mode == ColdEffectMode.Background ? random(3, 7) : random(2.5, 5),
 					delay:
 						mode == ColdEffectMode.Background ? random(-12, 0) : random(-9, 0),
 				}),
@@ -87,25 +87,25 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 	const snowflakes = useMemo(
 		() =>
 			Array.from(
-				{ length: mode == ColdEffectMode.Background ? 30 : 15 },
+				{ length: mode == ColdEffectMode.Background ? 15 : 10 },
 				(_, i) => ({
 					id: i,
 					x: random(0, 100),
 					y: random(0, 100),
 					size:
-						mode == ColdEffectMode.Background ? random(18, 55) : random(16, 44),
+						mode == ColdEffectMode.Background ? random(16, 40) : random(12, 36),
 					scale:
 						mode == ColdEffectMode.Background
-							? random(0.5, 1.1)
-							: random(0.4, 0.95),
+							? random(0.4, 0.9)
+							: random(0.3, 0.75),
 					opacity:
 						mode == ColdEffectMode.Background
-							? random(0.1, 0.4)
-							: random(0.06, 0.22),
+							? random(0.05, 0.2)
+							: random(0.025, 0.15),
 					duration:
-						mode == ColdEffectMode.Background ? random(12, 26) : random(14, 28),
+						mode == ColdEffectMode.Background ? random(14, 28) : random(16, 30),
 					delay:
-						mode == ColdEffectMode.Background ? random(-24, 0) : random(-26, 0),
+						mode == ColdEffectMode.Background ? random(-26, 0) : random(-28, 0),
 				}),
 			),
 		[],
@@ -113,20 +113,18 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 	const windGusts = useMemo(
 		() =>
 			Array.from(
-				{ length: mode == ColdEffectMode.Background ? 12 : 8 },
+				{ length: mode == ColdEffectMode.Background ? 8 : 4 },
 				(_, i) => ({
 					id: i,
 					y: random(0, 110),
 					height:
-						mode == ColdEffectMode.Background
-							? random(30, 120)
-							: random(30, 95),
+						mode == ColdEffectMode.Background ? random(25, 80) : random(20, 60),
 					blur:
-						mode == ColdEffectMode.Background ? random(8, 22) : random(10, 24),
+						mode == ColdEffectMode.Background ? random(10, 24) : random(12, 26),
 					duration:
-						mode == ColdEffectMode.Background ? random(7, 14) : random(8, 16),
+						mode == ColdEffectMode.Background ? random(8, 16) : random(10, 18),
 					delay:
-						mode == ColdEffectMode.Background ? random(-12, 0) : random(-14, 0),
+						mode == ColdEffectMode.Background ? random(-14, 0) : random(-16, 0),
 				}),
 			),
 		[],
