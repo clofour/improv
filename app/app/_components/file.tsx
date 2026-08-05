@@ -1,15 +1,22 @@
 "use client";
 
-import { useRef } from "react";
-import { useDesktop, Vector2D } from "./desktop";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { useDesktop } from "./desktop";
 import Image from "next/image";
 import { clamp } from "@/lib/utils";
+import { getRelativeMousePosition, Vector2D } from "@/lib/2d";
 
 const GRID_SIZE = 50;
 const MARGIN_SIZE = 10;
 
 interface FileProps {
+	screenRef: React.RefObject<HTMLDivElement | null>;
 	id: string;
+	initLocation: Vector2D;
+}
+
+export function alignToGrid(axis: number) {
+	return Math.round(axis / GRID_SIZE) * GRID_SIZE;
 }
 
 export function locationToPosition(location: Vector2D) {
@@ -19,22 +26,29 @@ export function locationToPosition(location: Vector2D) {
 	};
 }
 
-export function clampFilePosition(position: Vector2D) {
+export function clampFilePosition(
+	position: Vector2D,
+	file: HTMLElement,
+	container: HTMLElement,
+) {
+	const fileRect = file.getBoundingClientRect();
+	const containerRect = container.getBoundingClientRect();
+
 	return {
 		x: clamp(
-			Math.round(position.x / GRID_SIZE) * GRID_SIZE,
+			alignToGrid(position.x),
 			MARGIN_SIZE,
-			window.innerWidth - MARGIN_SIZE,
+			containerRect.width - fileRect.width - MARGIN_SIZE,
 		),
 		y: clamp(
-			Math.round(position.y / GRID_SIZE) * GRID_SIZE,
+			alignToGrid(position.y),
 			MARGIN_SIZE,
-			window.innerHeight - MARGIN_SIZE,
+			containerRect.height - fileRect.height - MARGIN_SIZE,
 		),
 	};
 }
 
-export default function File({ id }: FileProps) {
+export default function File({ screenRef, id, initLocation }: FileProps) {
 	const item = useDesktop((state) => state.items[id]);
 	const openWindow = useDesktop((state) => state.openWindow);
 	const moveFile = useDesktop((state) => state.moveFile);
@@ -43,17 +57,40 @@ export default function File({ id }: FileProps) {
 	const selectedFileIDs = useDesktop((state) => state.selectedFiles);
 	const isSelected = selectedFileIDs.includes(id);
 
-	console.log(selectedFileIDs, isSelected, id);
-
+	const initialized = useRef<boolean>(false);
+	const fileRef = useRef<HTMLButtonElement | null>(null);
 	const moveOffset = useRef<Vector2D | null>(null);
+
+	useLayoutEffect(() => {
+		if (initialized.current || !fileRef.current || !screenRef.current) return;
+
+		initialized.current = true;
+
+		moveFile(
+			id,
+			clampFilePosition(
+				locationToPosition(initLocation),
+				fileRef.current,
+				screenRef.current,
+			),
+		);
+	}, [item, id, initLocation, moveFile, fileRef, screenRef]);
 
 	if (!item) return;
 	const file = item.file;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
+		if (!screenRef.current) return;
+		const screenElement = screenRef.current;
+
+		const relative = getRelativeMousePosition(screenElement, {
+			x: e.clientX,
+			y: e.clientY,
+		});
+
 		moveOffset.current = {
-			x: e.clientX - file.position.x,
-			y: e.clientY - file.position.y,
+			x: relative.x - file.position.x,
+			y: relative.y - file.position.y,
 		};
 
 		if (e.currentTarget instanceof HTMLElement) {
@@ -61,22 +98,51 @@ export default function File({ id }: FileProps) {
 		}
 	};
 	const onMovePointerMove = (e: React.PointerEvent) => {
-		if (!moveOffset.current) return;
+		if (!fileRef.current || !screenRef.current || !moveOffset.current) return;
 
-		const clampX = clamp(e.clientX, 0, window.innerWidth);
-		const clampY = clamp(e.clientY, 0, window.innerHeight);
+		const fileElement = fileRef.current;
+		const screenElement = screenRef.current;
+
+		const relative = getRelativeMousePosition(screenElement, {
+			x: e.clientX,
+			y: e.clientY,
+		});
+
+		const screenRect = screenElement.getBoundingClientRect();
+		const fileRect = fileElement.getBoundingClientRect();
 
 		moveFile(id, {
-			x: clampX - moveOffset.current.x,
-			y: clampY - moveOffset.current.y,
+			x: clamp(
+				relative.x - moveOffset.current.x,
+				0,
+				screenRect.width - fileRect.width,
+			),
+			y: clamp(
+				relative.y - moveOffset.current.y,
+				0,
+				screenRect.height - fileRect.height,
+			),
 		});
 	};
 	const onMovePointerUp = (e: React.PointerEvent) => {
-		if (!moveOffset.current) return;
+		if (!fileRef.current || !screenRef.current || !moveOffset.current) return;
 
-		const x = e.clientX - moveOffset.current.x;
-		const y = e.clientY - moveOffset.current.y;
-		moveFile(id, clampFilePosition({ x: x, y: y }));
+		const fileElement = fileRef.current;
+		const screenElement = screenRef.current;
+
+		const relative = getRelativeMousePosition(screenElement, {
+			x: e.clientX,
+			y: e.clientY,
+		});
+
+		const x = relative.x - moveOffset.current.x;
+		const y = relative.y - moveOffset.current.y;
+		const position = clampFilePosition(
+			{ x: x, y: y },
+			fileElement,
+			screenElement,
+		);
+		moveFile(id, position);
 
 		moveOffset.current = null;
 	};
@@ -84,6 +150,7 @@ export default function File({ id }: FileProps) {
 	return (
 		<>
 			<button
+				ref={fileRef}
 				className={`absolute flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
 				onClick={() => selectFiles([id])}
 				onDoubleClick={() => openWindow(id)}

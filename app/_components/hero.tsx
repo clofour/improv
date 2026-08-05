@@ -19,13 +19,19 @@ export default function Hero() {
 					</h1>
 					<div className="space-y-4 text-muted-foreground text-base font-mono">
 						<p>
-							Do you know what happens under the hood when you deploy on
+							{">"} It's 2030. Temperatures dropped overnight. No explanation,
+							no managed services, no cloud providers and no one coming to help.
+							If you want compute, comms, or storage, you build it yourself.
+						</p>
+
+						<p>
+							{">"} Do you know what happens under the hood when you deploy on
 							services like Vercel or Railway, or spin up a VM on a cloud
 							provider? Do you <span className="italic">really</span>?
 						</p>
 
 						<p>
-							Infrastructure is all around us, and yet most of us barely
+							{">"} Infrastructure is all around us, and yet most of us barely
 							understand it. <span className="text-foreground">Improv</span>{" "}
 							aims to change that, by helping YOU build your provisioning
 							tooling, which you'll actually use for years to come.

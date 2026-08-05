@@ -1,3 +1,4 @@
+import { Vector2D } from "@/lib/2d";
 import { create } from "zustand";
 
 export enum WindowStatus {
@@ -6,8 +7,6 @@ export enum WindowStatus {
 	Closed,
 	Minimized,
 }
-
-export type Vector2D = { x: number; y: number };
 
 interface FileState {
 	position: Vector2D;
@@ -34,12 +33,7 @@ interface DesktopState {
 	selectedFiles: string[];
 	topZIndex: number;
 
-	register: (
-		id: string,
-		name: string,
-		logo: string,
-		filePosition: Vector2D,
-	) => void;
+	register: (id: string, name: string, logo: string) => void;
 	openWindow: (id: string) => void;
 	closeWindow: (id: string) => void;
 	expandWindow: (id: string) => void;
@@ -57,7 +51,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 	selectedFiles: [],
 	topZIndex: 0,
 
-	register: (id, name, logo, filePosition) => {
+	register: (id, name, logo) => {
 		set((state) => {
 			const item = {
 				name: name,
@@ -69,7 +63,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 					zIndex: 0,
 				},
 				file: {
-					position: filePosition,
+					position: { x: 0, y: 0 },
 					draggable: true,
 				},
 			};
