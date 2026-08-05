@@ -4,6 +4,7 @@ import { useDesktop, WindowStatus } from "./desktop";
 import Panel from "@/components/panel";
 import { clamp } from "@/lib/utils";
 import { Vector2D } from "@/lib/2d";
+import { useMediaQuery } from "react-responsive";
 
 interface WindowProps {
 	screenRef: React.RefObject<HTMLDivElement | null>;
@@ -153,24 +154,24 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 				</span>
 				<div className="flex items-center gap-2">
 					<div
-						className="h-2.5 w-2.5 rounded-full bg-primary/80"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-primary/80"
 						onClick={() => {
 							expand(id);
 						}}
 					/>
 					<div
-						className="h-2.5 w-2.5 rounded-full bg-secondary/80"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-secondary/80"
 						onClick={() => minimize(id)}
 					/>
 					<div
-						className="h-2.5 w-2.5 rounded-full bg-destructive/80"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-destructive/80"
 						onClick={() => close(id)}
 					/>
 				</div>
 			</div>
 			<div className="min-h-0 w-full flex flex-1 flex-col p-2">{children}</div>
 			<div
-				className="absolute bottom-0 right-0 w-3 h-3 cursor-nwse-resize"
+				className="absolute bottom-0 right-0 hidden sm:block w-3 h-3 cursor-nwse-resize"
 				onPointerDown={onResizePointerDown}
 				onPointerMove={onResizePointerMove}
 				onPointerUp={onResizePointerUp}

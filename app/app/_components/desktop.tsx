@@ -34,7 +34,7 @@ interface DesktopState {
 	topZIndex: number;
 
 	register: (id: string, name: string, logo: string) => void;
-	openWindow: (id: string) => void;
+	openWindow: (id: string, isMobile: boolean) => void;
 	closeWindow: (id: string) => void;
 	expandWindow: (id: string) => void;
 	minimizeWindow: (id: string) => void;
@@ -76,7 +76,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 			};
 		});
 	},
-	openWindow: (id) => {
+	openWindow: (id, isMobile) => {
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
@@ -88,7 +88,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 				...item,
 				window: {
 					...window,
-					status: WindowStatus.Open,
+					status: isMobile ? WindowStatus.Fullscreen : WindowStatus.Open,
 					zIndex: nextZIndex,
 				},
 			};

@@ -5,6 +5,7 @@ import { useDesktop } from "./desktop";
 import Image from "next/image";
 import { clamp } from "@/lib/utils";
 import { getRelativeMousePosition, Vector2D } from "@/lib/2d";
+import { useMediaQuery } from "react-responsive";
 
 const GRID_SIZE = 50;
 const MARGIN_SIZE = 10;
@@ -49,6 +50,7 @@ export function clampFilePosition(
 }
 
 export default function File({ screenRef, id, initLocation }: FileProps) {
+	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 	const item = useDesktop((state) => state.items[id]);
 	const openWindow = useDesktop((state) => state.openWindow);
 	const moveFile = useDesktop((state) => state.moveFile);
@@ -153,7 +155,7 @@ export default function File({ screenRef, id, initLocation }: FileProps) {
 				ref={fileRef}
 				className={`absolute flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
 				onClick={() => selectFiles([id])}
-				onDoubleClick={() => openWindow(id)}
+				onDoubleClick={() => openWindow(id, isMobile)}
 				onPointerDown={onMovePointerDown}
 				onPointerMove={onMovePointerMove}
 				onPointerUp={onMovePointerUp}
