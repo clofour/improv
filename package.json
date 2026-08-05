@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"format": "biome format --write",
-		"check": "biome check --write"
+		"check": "biome check --write",
+		"migrate": "drizzle-kit migrate"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.6.0",
@@ -17,7 +18,7 @@
 		"clsx": "^2.1.1",
 		"dotenv": "^17.4.2",
 		"drizzle-orm": "^0.45.2",
-		"next": "16.2.11",
+		"next": "16.3.0",
 		"pg": "^8.22.0",
 		"react": "19.2.8",
 		"react-dom": "19.2.8",

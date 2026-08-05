@@ -1,12 +1,17 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["config:recommended"],
+	"baseBranchPatterns": ["main"],
+	"vulnerabilityAlerts": {
+		"enabled": true
+	},
+	"osvVulnerabilityAlerts": true,
 	"minimumReleaseAge": "7 days",
 	"semanticCommits": "disabled",
 	"commitMessagePrefix": "deps:",
 	"commitMessageAction": "update",
 	"commitMessageTopic": "{{depName}}",
 	"branchPrefix": "deps/",
-	"prTitle": "Update {{{commitMessageTopic}}} {{{commitMessageExtra}}}",
-	"baseBranchPatterns": ["app"]
+	"prHourlyLimit": 8,
+	"prTitle": "Update {{{commitMessageTopic}}} {{{commitMessageExtra}}}"
 }
