@@ -145,7 +145,7 @@ export default function Prizes() {
 						<ShopItem key={item.name} {...item} />
 					))}
 				</div>
-				<p className="text-sm text-muted-foreground">...and more</p>
+				<p className="text-sm text-muted-foreground">...tip of the iceberg</p>
 			</div>
 		</NameSection>
 	);
