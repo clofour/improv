@@ -2,7 +2,16 @@ import { random } from "@/lib/utils";
 import Image from "next/image";
 import React, { useMemo } from "react";
 
-export default function ColdEffect() {
+enum EffectMode {
+	Foreground,
+	Background,
+}
+
+interface ColdEffectProps {
+	mode: EffectMode;
+}
+
+export default function ColdEffect({ mode }: ColdEffectProps) {
 	const farSnow = useMemo(
 		() =>
 			Array.from({ length: 120 }, (_, i) => ({
@@ -56,6 +65,18 @@ export default function ColdEffect() {
 				opacity: random(0.1, 0.4),
 				duration: random(12, 26),
 				delay: random(-24, 0),
+			})),
+		[],
+	);
+	const windGusts = useMemo(
+		() =>
+			Array.from({ length: 12 }, (_, i) => ({
+				id: i,
+				y: random(0, 110),
+				height: random(30, 120),
+				blur: random(8, 22),
+				duration: random(7, 14),
+				delay: random(-12, 0),
 			})),
 		[],
 	);
@@ -147,6 +168,27 @@ export default function ColdEffect() {
 					/>
 				))}
 			</div>
+
+			<div className="fixed inset-0">
+				{windGusts.map((gust) => (
+					<div
+						key={`gust-${gust.id}`}
+						className="absolute -left-[60%] w-[220%] bg-[linear-gradient(110deg,transparent_0%,rgba(230,250,255,0.02)_25%,rgba(235,251,255,0.12)_45%,rgba(235,251,255,0.04)_55%,transparent_80%)] animate-wind-gust"
+						style={
+							{
+								"--duration": `${gust.duration}s`,
+								"--delay": `${gust.delay}s`,
+
+								top: `${gust.y}%`,
+								height: `${gust.height}px`,
+								filter: `blur(${gust.blur}px)`,
+							} as React.CSSProperties
+						}
+					/>
+				))}
+			</div>
+
+			<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)]" />
 		</div>
 	);
 }

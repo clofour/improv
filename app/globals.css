@@ -59,6 +59,9 @@ html {
 	--animate-snow-near: snow-near var(--duration)
 		cubic-bezier(0.12, 0.45, 0.28, 1) var(--delay) infinite;
 	--animate-snowflake: snowflake var(--duration) linear var(--delay) infinite;
+	--animate-wind-gust: wind-gust var(--duration) cubic-bezier(0.15, 0.5, 0.3, 1)
+		var(--delay) infinite;
+	--animate-whiteout: whiteout 13s ease-in-out infinite;
 	--animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
 	--animate-crt-noise: crt-noise 6s linear infinite;
 }
@@ -208,6 +211,45 @@ html {
 	100% {
 		transform: translate3d(65vw, 125vh, 0) rotate(220deg) scale(var(--scale));
 		opacity: 0;
+	}
+}
+
+@keyframes wind-gust {
+	0% {
+		transform: translate3d(-20vw, -20vh, 0) rotate(20deg) scaleY(0.7);
+		opacity: 0;
+	}
+	20% {
+		opacity: 0.55;
+	}
+	55% {
+		opacity: 0.3;
+	}
+	100% {
+		transform: translate3d(40vw, 90vh, 0) rotate(20deg) scaleY(1.2);
+		opacity: 0;
+	}
+}
+
+@keyframes whiteout {
+	0%,
+	100% {
+		opacity: 0.12;
+	}
+	38% {
+		opacity: 0.22;
+	}
+	45% {
+		opacity: 0.55;
+	}
+	49% {
+		opacity: 0.2;
+	}
+	52% {
+		opacity: 0.45;
+	}
+	60% {
+		opacity: 0.1;
 	}
 }
 
