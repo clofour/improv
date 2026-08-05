@@ -6,6 +6,7 @@ import { clamp } from "@/lib/utils";
 import { Vector2D } from "@/lib/2d";
 
 interface WindowProps {
+	screenRef: React.RefObject<HTMLDivElement | null>;
 	id: string;
 	name: string;
 	children: ReactNode;
@@ -16,6 +17,20 @@ interface WindowResize {
 	position: Vector2D;
 }
 
+export function clampWindowPosition(
+	position: Vector2D,
+	window: HTMLElement,
+	container: HTMLElement,
+) {
+	const windowRect = window.getBoundingClientRect();
+	const containerRect = container.getBoundingClientRect();
+
+	return {
+		x: clamp(position.x, 0, containerRect.width - windowRect.width),
+		y: clamp(position.y, 0, containerRect.height - windowRect.height),
+	};
+}
+
 function isWindowVisible(status: WindowStatus) {
 	if (status == WindowStatus.Open || status == WindowStatus.Fullscreen) {
 		return true;
@@ -24,7 +39,7 @@ function isWindowVisible(status: WindowStatus) {
 	return false;
 }
 
-export default function Window({ id, name, children }: WindowProps) {
+export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const item = useDesktop((state) => state.items[id]);
 	const close = useDesktop((state) => state.closeWindow);
 	const expand = useDesktop((state) => state.expandWindow);
@@ -34,6 +49,7 @@ export default function Window({ id, name, children }: WindowProps) {
 	const resize = useDesktop((state) => state.resizeWindow);
 
 	const moveOffset = useRef<Vector2D | null>(null);
+	const windowRef = useRef<HTMLDivElement | null>(null);
 	const resizeOffset = useRef<WindowResize | null>(null);
 
 	if (!item) return;
@@ -53,15 +69,19 @@ export default function Window({ id, name, children }: WindowProps) {
 		}
 	};
 	const onMovePointerMove = (e: React.PointerEvent) => {
-		if (!moveOffset.current) return;
+		if (!moveOffset.current || !windowRef.current || !screenRef.current) return;
 
-		const clampX = clamp(e.clientX, 0, window.innerWidth);
-		const clampY = clamp(e.clientY, 0, window.innerHeight);
-
-		move(id, {
-			x: clampX - moveOffset.current.x,
-			y: clampY - moveOffset.current.y,
-		});
+		move(
+			id,
+			clampWindowPosition(
+				{
+					x: e.clientX - moveOffset.current.x,
+					y: e.clientY - moveOffset.current.y,
+				},
+				windowRef.current,
+				screenRef.current,
+			),
+		);
 	};
 	const onMovePointerUp = (e: React.PointerEvent) => {
 		moveOffset.current = null;
@@ -105,6 +125,7 @@ export default function Window({ id, name, children }: WindowProps) {
 
 	return (
 		<Panel
+			ref={windowRef}
 			className="absolute min-w-40 flex flex-col overflow-hidden"
 			style={{
 				display: isWindowVisible(itemWindow.status) ? "flex" : "none",

@@ -36,7 +36,12 @@ export default function Screen() {
 			</div>
 			<div>
 				{data.map((file) => (
-					<Window key={file.id} id={file.id} name={file.name}>
+					<Window
+						key={file.id}
+						screenRef={containerRef}
+						id={file.id}
+						name={file.name}
+					>
 						{file.app}
 					</Window>
 				))}
