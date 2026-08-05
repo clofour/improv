@@ -137,7 +137,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 			/>
 
 			<div
-				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"} will-change-transform contain-strict`}
 			>
 				{farSnow.map((snow) => (
 					<div
@@ -197,16 +197,12 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 			</div>
 
 			<div
-				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"} will-change-transform contain-strict`}
 			>
 				{snowflakes.map((snowflake) => (
-					<Image
+					<div
 						key={snowflake.id}
-						src="/fx/snowflake.png"
-						alt="Snowflake"
-						width={snowflake.size}
-						height={snowflake.size}
-						className="absolute animate-snowflake"
+						className="absolute bg-[url('/fx/snowflake.png')] bg-contain bg-no-repeat bg-center animate-snowflake"
 						style={
 							{
 								"--scale": `${snowflake.scale}`,
@@ -225,7 +221,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 			</div>
 
 			<div
-				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"} will-change-transform contain-strict`}
 			>
 				{windGusts.map((gust) => (
 					<div
