@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import File, { clampFilePosition, locationToPosition } from "./file";
-import Taskbar from "./taskbar";
+import File from "./file";
 import data from "../data";
 import { useDesktop } from "./desktop";
 import Window from "./window";
@@ -24,7 +23,6 @@ export default function Screen() {
 		<div className="relative w-full h-full">
 			<div className="absolute inset-0 flex flex-col">
 				<Background ref={containerRef} />
-				<Taskbar />
 			</div>
 			<div>
 				{data.map((file) => (
