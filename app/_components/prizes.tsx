@@ -128,15 +128,23 @@ export default function Prizes() {
 			id="prizes"
 			title="what you get"
 			description={
-				<span>
-					once your ship is reviewed, you'll receive uptime depending on the
-					complexity and hours spent on your project. you can spend uptime in
-					the shop. there's just one catch:{" "}
-					<span className="text-foreground">
-						items relevant to your projects are discounted
-					</span>
-					.
-				</span>
+				<div className="space-y-4">
+					<p>
+						ship your project, and earn uptime + discount vouchers depending on
+						the size. spend uptime in the shop. there's just one catch:{" "}
+						<span className="text-foreground">
+							items relevant to your projects are discounted
+						</span>
+						.
+					</p>
+
+					<p>
+						oh, and the tools you build?{" "}
+						<span className="text-foreground">you can use them!</span> use your
+						own PaaS, and pay 16x less. use your own provisioner, and cut down
+						waiting times. not bad at all, huh?
+					</p>
+				</div>
 			}
 		>
 			<div className="flex flex-col gap-3">
