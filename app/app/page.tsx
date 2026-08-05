@@ -11,6 +11,7 @@ export default function App() {
 				<CRTOverlay />
 				<ColdOverlay />
 			</Bezel>
+			<div className="fixed -inset-8 pointer-events-none bg-[url('/fx/snow-frame.png')] bg-cover bg-center" />
 		</div>
 	);
 }
