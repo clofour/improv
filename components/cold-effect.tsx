@@ -2,82 +2,133 @@ import { random } from "@/lib/utils";
 import Image from "next/image";
 import React, { useMemo } from "react";
 
-enum EffectMode {
+export enum ColdEffectMode {
 	Foreground,
 	Background,
 }
 
 interface ColdEffectProps {
-	mode: EffectMode;
+	mode: ColdEffectMode;
 }
 
 export default function ColdEffect({ mode }: ColdEffectProps) {
 	const farSnow = useMemo(
 		() =>
-			Array.from({ length: 120 }, (_, i) => ({
-				id: i,
-				x: random(0, 100),
-				y: random(0, 100),
-				size: random(1, 3.5),
-				duration: random(9, 18),
-				delay: random(-20, 0),
-			})),
+			Array.from(
+				{ length: mode == ColdEffectMode.Background ? 120 : 70 },
+				(_, i) => ({
+					id: i,
+					x: random(0, 100),
+					y: random(0, 100),
+					size:
+						mode == ColdEffectMode.Background ? random(1, 3.5) : random(1, 3),
+					duration:
+						mode == ColdEffectMode.Background ? random(9, 18) : random(10, 20),
+					delay: random(-20, 0),
+				}),
+			),
 		[],
 	);
 	const middleSnow = useMemo(
 		() =>
-			Array.from({ length: 90 }, (_, i) => ({
-				id: i,
-				px: random(0, 100),
-				py: random(0, 100),
-				sx: random(20, 110),
-				sy: random(1, 2.5),
-				opacity: random(0.15, 0.55),
-				blur: random(0, 2.2),
-				duration: random(3, 7),
-				delay: random(-12, 0),
-			})),
+			Array.from(
+				{ length: mode == ColdEffectMode.Background ? 90 : 50 },
+				(_, i) => ({
+					id: i,
+					px: random(0, 100),
+					py: random(0, 100),
+					sx:
+						mode == ColdEffectMode.Background
+							? random(20, 110)
+							: random(20, 85),
+					sy: mode == ColdEffectMode.Background ? random(1, 2.5) : random(1, 2),
+					opacity:
+						mode == ColdEffectMode.Background
+							? random(0.15, 0.55)
+							: random(0.08, 0.3),
+					blur:
+						mode == ColdEffectMode.Background ? random(0, 2.2) : random(0.3, 2),
+					duration:
+						mode == ColdEffectMode.Background ? random(3, 7) : random(3.5, 8),
+					delay: random(-12, 0),
+				}),
+			),
 		[],
 	);
 	const nearSnow = useMemo(
 		() =>
-			Array.from({ length: 50 }, (_, i) => ({
-				id: i,
-				px: random(0, 100),
-				py: random(0, 100),
-				sx: random(120, 480),
-				sy: random(1, 4),
-				opacity: random(0.2, 0.7),
-				blur: random(0, 2.5),
-				duration: random(3, 7),
-				delay: random(-12, 0),
-			})),
+			Array.from(
+				{ length: mode == ColdEffectMode.Background ? 50 : 25 },
+				(_, i) => ({
+					id: i,
+					px: random(0, 100),
+					py: random(0, 100),
+					sx:
+						mode == ColdEffectMode.Background
+							? random(120, 480)
+							: random(90, 320),
+					sy: mode == ColdEffectMode.Background ? random(1, 4) : random(1, 3),
+					opacity:
+						mode == ColdEffectMode.Background
+							? random(0.2, 0.7)
+							: random(0.1, 0.35),
+					blur:
+						mode == ColdEffectMode.Background
+							? random(0, 2.5)
+							: random(0.5, 2.5),
+					duration:
+						mode == ColdEffectMode.Background ? random(3, 7) : random(2, 4.5),
+					delay:
+						mode == ColdEffectMode.Background ? random(-12, 0) : random(-9, 0),
+				}),
+			),
 		[],
 	);
 	const snowflakes = useMemo(
 		() =>
-			Array.from({ length: 30 }, (_, i) => ({
-				id: i,
-				x: random(0, 100),
-				y: random(0, 100),
-				size: random(18, 55),
-				scale: random(0.5, 1.1),
-				opacity: random(0.1, 0.4),
-				duration: random(12, 26),
-				delay: random(-24, 0),
-			})),
+			Array.from(
+				{ length: mode == ColdEffectMode.Background ? 30 : 15 },
+				(_, i) => ({
+					id: i,
+					x: random(0, 100),
+					y: random(0, 100),
+					size:
+						mode == ColdEffectMode.Background ? random(18, 55) : random(16, 44),
+					scale:
+						mode == ColdEffectMode.Background
+							? random(0.5, 1.1)
+							: random(0.4, 0.95),
+					opacity:
+						mode == ColdEffectMode.Background
+							? random(0.1, 0.4)
+							: random(0.06, 0.22),
+					duration:
+						mode == ColdEffectMode.Background ? random(12, 26) : random(14, 28),
+					delay:
+						mode == ColdEffectMode.Background ? random(-24, 0) : random(-26, 0),
+				}),
+			),
 		[],
 	);
 	const windGusts = useMemo(
 		() =>
-			Array.from({ length: 12 }, (_, i) => ({
-				id: i,
-				y: random(0, 110),
-				height: random(30, 120),
-				blur: random(8, 22),
-				duration: random(7, 14),
-				delay: random(-12, 0),
-			})),
+			Array.from(
+				{ length: mode == ColdEffectMode.Background ? 12 : 8 },
+				(_, i) => ({
+					id: i,
+					y: random(0, 110),
+					height:
+						mode == ColdEffectMode.Background
+							? random(30, 120)
+							: random(30, 95),
+					blur:
+						mode == ColdEffectMode.Background ? random(8, 22) : random(10, 24),
+					duration:
+						mode == ColdEffectMode.Background ? random(7, 14) : random(8, 16),
+					delay:
+						mode == ColdEffectMode.Background ? random(-12, 0) : random(-14, 0),
+				}),
+			),
 		[],
 	);
 
@@ -85,7 +136,9 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 		<div className="fixed inset-0 pointer-events-none">
 			<div className="fixed inset-0 shadow-[inset_0_0_150px_rgba(0,3,7,0.9),inset_0_60px_90px_rgba(0,8,15,0.5),inset_0_-90px_130px_rgba(0,5,10,0.75)]" />
 
-			<div className="fixed inset-0">
+			<div
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+			>
 				{farSnow.map((snow) => (
 					<div
 						key={`far-${snow.id}`}
@@ -143,7 +196,9 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 				))}
 			</div>
 
-			<div className="fixed inset-0">
+			<div
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+			>
 				{snowflakes.map((snowflake) => (
 					<Image
 						key={snowflake.id}
@@ -169,7 +224,9 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 				))}
 			</div>
 
-			<div className="fixed inset-0">
+			<div
+				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
+			>
 				{windGusts.map((gust) => (
 					<div
 						key={`gust-${gust.id}`}
@@ -188,7 +245,9 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 				))}
 			</div>
 
-			<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)]" />
+			{mode == ColdEffectMode.Background && (
+				<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)]" />
+			)}
 		</div>
 	);
 }
