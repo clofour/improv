@@ -1,6 +1,8 @@
+"use client";
+
 import { random } from "@/lib/utils";
-import Image from "next/image";
 import React, { useMemo } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export enum ColdEffectMode {
 	Foreground,
@@ -12,6 +14,12 @@ interface ColdEffectProps {
 }
 
 export default function ColdEffect({ mode }: ColdEffectProps) {
+	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+	const prefersReducedMotion = useMediaQuery({
+		query: "(prefers-reduced-motion: reduce)",
+	});
+	const visible = !isMobile && !prefersReducedMotion;
+
 	const farSnow = useMemo(
 		() =>
 			Array.from(
@@ -129,6 +137,8 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 			),
 		[],
 	);
+
+	if (!visible) return null;
 
 	return (
 		<div className="fixed inset-0 pointer-events-none">
