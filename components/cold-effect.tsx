@@ -49,7 +49,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 							? random(0.3, 2.2)
 							: random(0.5, 2),
 					duration:
-						mode == ColdEffectMode.Background ? random(4, 8) : random(4.5, 0),
+						mode == ColdEffectMode.Background ? random(4, 8) : random(4.5, 9),
 					delay: random(-12, 0),
 				}),
 			),
@@ -132,7 +132,9 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 
 	return (
 		<div className="fixed inset-0 pointer-events-none">
-			<div className="fixed inset-0 shadow-[inset_0_0_150px_rgba(0,3,7,0.9),inset_0_60px_90px_rgba(0,8,15,0.5),inset_0_-90px_130px_rgba(0,5,10,0.75)]" />
+			<div
+				className={`fixed inset-0 ${mode == ColdEffectMode.Background ? "shadow-[inset_0_0_150px_rgba(0,3,7,0.9),inset_0_60px_90px_rgba(0,8,15,0.5),inset_0_-90px_130px_rgba(0,5,10,0.75)]" : "shadow-[inset_0_0_120px_rgba(0,3,7,0.50),inset_0_50px_75px_rgba(0,8,15,0.25),inset_0_-70px_100px_rgba(0,5,10,0.35)]"}`}
+			/>
 
 			<div
 				className={`fixed ${mode == ColdEffectMode.Background ? "inset-0" : "-inset-[25%]"}`}
@@ -157,7 +159,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 				{middleSnow.map((snow) => (
 					<div
 						key={`middle-${snow.id}`}
-						className="absolute bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),rgba(255,255,255,0.95),rgba(255,255,255,0.25),transparent)] rounded-full animate-snow-middle"
+						className={`absolute ${mode == ColdEffectMode.Background ? "bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),rgba(255,255,255,0.95),rgba(255,255,255,0.25),transparent)]" : "bg-[linear-gradient(90deg,transparent,rgba(225,248,255,0.16),rgba(255,255,255,0.70),rgba(225,248,255,0.16),transparent)]"} rounded-full animate-snow-middle`}
 						style={
 							{
 								"--opacity": `${snow.opacity}`,
@@ -176,7 +178,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 				{nearSnow.map((snow) => (
 					<div
 						key={`near-${snow.id}`}
-						className="absolute bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.35)_20%,rgba(255,255,255,0.95)_50%,rgba(255,255,255,0.45)_80%,transparent)] rounded-full animate-snow-near"
+						className={`absolute ${mode == ColdEffectMode.Background ? "bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.35)_20%,rgba(255,255,255,0.95)_50%,rgba(255,255,255,0.45)_80%,transparent)]" : "bg-[linear-gradient(90deg,transparent,rgba(220,247,255,0.22)_20%,rgba(255,255,255,0.65)_52%,rgba(220,247,255,0.28)_78%,transparent)]"} rounded-full animate-snow-near`}
 						style={
 							{
 								"--opacity": `${snow.opacity}`,
