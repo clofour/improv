@@ -13,8 +13,48 @@ export interface DesktopItemData {
 
 const data: DesktopItemData[] = [
 	{
+		id: "project",
+		name: "Projects",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 0, y: 0 },
+		draggable: true,
+	},
+	{
 		id: "shop",
 		name: "Shop",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 0, y: 0 },
+		draggable: true,
+	},
+	{
+		id: "explore",
+		name: "Explore",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 0, y: 0 },
+		draggable: true,
+	},
+	{
+		id: "guide",
+		name: "Guides",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 0, y: 0 },
+		draggable: true,
+	},
+	{
+		id: "guide",
+		name: "Guides",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 0, y: 0 },
+		draggable: true,
+	},
+	{
+		id: "documentation",
+		name: "Documentation",
 		logo: "/placeholder.webp",
 		app: <Shop />,
 		location: { x: 0, y: 0 },
