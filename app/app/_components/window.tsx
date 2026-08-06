@@ -1,10 +1,10 @@
-import Terminal from "@/components/terminal";
-import { ReactNode, useRef } from "react";
-import { useDesktop, WindowStatus } from "./desktop";
-import Panel from "@/components/panel";
-import { clamp } from "@/lib/utils";
-import { Vector2D } from "@/lib/2d";
+import { type ReactNode, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
+import Panel from "@/components/panel";
+import Terminal from "@/components/terminal";
+import type { Vector2D } from "@/lib/2d";
+import { clamp } from "@/lib/utils";
+import { useDesktop, WindowStatus } from "./desktop";
 
 interface WindowProps {
 	screenRef: React.RefObject<HTMLDivElement | null>;

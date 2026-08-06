@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { Vector2D } from "@/lib/2d";
 import Shop from "./shop/page";
-import { Vector2D } from "@/lib/2d";
 
 export interface DesktopItemData {
 	id: string;

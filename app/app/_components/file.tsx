@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
-import { useDesktop } from "./desktop";
 import Image from "next/image";
-import { clamp } from "@/lib/utils";
-import { getRelativeMousePosition, Vector2D } from "@/lib/2d";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
+import { getRelativeMousePosition, type Vector2D } from "@/lib/2d";
+import { clamp } from "@/lib/utils";
+import { useDesktop } from "./desktop";
 
 const GRID_SIZE = 50;
 const MARGIN_SIZE = 10;

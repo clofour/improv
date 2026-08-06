@@ -1,8 +1,9 @@
 "use client";
 
-import { random } from "@/lib/utils";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
+import { random } from "@/lib/utils";
 
 export enum ColdEffectMode {
 	Foreground,

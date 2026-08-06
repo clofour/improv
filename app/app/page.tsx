@@ -1,8 +1,8 @@
+import ColdEffect, { ColdEffectMode } from "@/components/cold-effect";
 import Bezel from "./_components/bezel";
-import Screen from "./_components/screen";
 import ColdOverlay from "./_components/cold-overlay";
 import CRTOverlay from "./_components/crt-overlay";
-import ColdEffect, { ColdEffectMode } from "@/components/cold-effect";
+import Screen from "./_components/screen";
 
 export default function App() {
 	return (

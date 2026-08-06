@@ -1,5 +1,5 @@
-import data from "./data";
 import ShopItem from "./_components/shop-item";
+import data from "./data";
 
 export default function Shop() {
 	return (

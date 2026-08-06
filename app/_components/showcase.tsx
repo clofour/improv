@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { sleep } from "@/lib/utils";
 import { cn } from "@/lib/class";
+import { sleep } from "@/lib/utils";
 import data from "./showcase.json";
 
 const SHORT_PUNCTUATION = ",:;";

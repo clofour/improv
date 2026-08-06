@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import File from "./file";
 import data from "../data";
-import { useDesktop } from "./desktop";
-import Window from "./window";
 import Background from "./background";
+import { useDesktop } from "./desktop";
+import File from "./file";
+import Window from "./window";
 
 export default function Screen() {
 	const containerRef = useRef<HTMLDivElement | null>(null);
