@@ -2,7 +2,7 @@
 
 Improv is a permafrost-themed Hack Club YSWS centered around building tools to deploy software automatically in order to receive infrastructure-related prizes and discounts. This repository contains the website for Improv, built on NextJS.
 
-For further information about the YSWS, see the [/#summary](Knowledge Base), [https://hackclub.enterprise.slack.com/archives/C0BEVTSE0BD](the Slack channel) and [https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0BL5FG724C](the in-depth explanation canvas).
+For further information about the YSWS, see the [Knowledge Base](/#summary), the [Slack channel](https://hackclub.enterprise.slack.com/archives/C0BEVTSE0BD) and the [explanation canvas](https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0BL5FG724C).
 
 ## Quick Start
 
