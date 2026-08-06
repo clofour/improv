@@ -7,9 +7,6 @@ interface TerminalProps {
 	style?: {};
 	title: string;
 	children: ReactNode;
-	onClose?: () => void;
-	onMinimize?: () => void;
-	onExpand?: () => void;
 }
 
 export default function Terminal({
@@ -17,9 +14,6 @@ export default function Terminal({
 	className,
 	style,
 	children,
-	onClose,
-	onMinimize,
-	onExpand,
 }: TerminalProps) {
 	return (
 		<Panel
@@ -32,17 +26,14 @@ export default function Terminal({
 					<button
 						type="button"
 						className="h-2.5 w-2.5 rounded-full bg-primary/80"
-						onClick={onExpand}
 					/>
 					<button
 						type="button"
 						className="h-2.5 w-2.5 rounded-full bg-secondary/80"
-						onClick={onMinimize}
 					/>
 					<button
 						type="button"
 						className="h-2.5 w-2.5 rounded-full bg-destructive/80"
-						onClick={onClose}
 					/>
 				</div>
 			</div>
