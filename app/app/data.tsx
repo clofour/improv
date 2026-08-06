@@ -54,7 +54,7 @@ const data: DesktopItemData[] = [
 	},
 	{
 		id: "documentation",
-		name: "Documentation",
+		name: "Docs",
 		logo: "/placeholder.webp",
 		app: <Shop />,
 		location: { x: 0, y: 0 },
