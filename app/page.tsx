@@ -1,4 +1,4 @@
-import ColdEffect, { ColdEffectMode } from "@/components/cold-effect";
+import { ColdEffectClient, ColdEffectMode } from "@/components/cold-effect";
 import FAQ from "./_components/faq";
 import Flow from "./_components/flow";
 import Footer from "./_components/footer";
@@ -11,7 +11,7 @@ export default function Home() {
 		<div className="min-w-screen min-h-screen">
 			<Navbar />
 			<main className="flex flex-col flex-1 items-center justify-center">
-				<ColdEffect mode={ColdEffectMode.Background} />
+				<ColdEffectClient mode={ColdEffectMode.Background} />
 				<Hero />
 				<Flow />
 				<Prizes />

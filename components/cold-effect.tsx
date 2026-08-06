@@ -4,6 +4,7 @@ import type React from "react";
 import { useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
 import { random } from "@/lib/utils";
+import dynamic from "next/dynamic";
 
 export enum ColdEffectMode {
 	Foreground,
@@ -14,7 +15,7 @@ interface ColdEffectProps {
 	mode: ColdEffectMode;
 }
 
-export default function ColdEffect({ mode }: ColdEffectProps) {
+export function ColdEffect({ mode }: ColdEffectProps) {
 	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 	const prefersReducedMotion = useMediaQuery({
 		query: "(prefers-reduced-motion: reduce)",
@@ -258,3 +259,7 @@ export default function ColdEffect({ mode }: ColdEffectProps) {
 		</div>
 	);
 }
+
+export const ColdEffectClient = dynamic(() => Promise.resolve(ColdEffect), {
+	ssr: false,
+});

@@ -1,4 +1,4 @@
-import ColdEffect, { ColdEffectMode } from "@/components/cold-effect";
+import { ColdEffectClient, ColdEffectMode } from "@/components/cold-effect";
 import Bezel from "./_components/bezel";
 import ColdOverlay from "./_components/cold-overlay";
 import CRTOverlay from "./_components/crt-overlay";
@@ -13,7 +13,7 @@ export default function App() {
 				<ColdOverlay />
 			</Bezel>
 			<div className="fixed -inset-8 pointer-events-none bg-[url('/fx/snow-frame.png')] bg-cover bg-center" />
-			<ColdEffect mode={ColdEffectMode.Foreground} />
+			<ColdEffectClient mode={ColdEffectMode.Foreground} />
 		</div>
 	);
 }
