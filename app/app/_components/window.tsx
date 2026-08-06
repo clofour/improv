@@ -169,7 +169,9 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 					/>
 				</div>
 			</div>
-			<div className="min-h-0 w-full flex flex-1 flex-col p-2">{children}</div>
+			<div className="min-h-0 w-full flex flex-1 flex-col overflow-y-auto p-2">
+				{children}
+			</div>
 			<div
 				className="absolute bottom-0 right-0 hidden sm:block w-3 h-3 cursor-nwse-resize"
 				onPointerDown={onResizePointerDown}
