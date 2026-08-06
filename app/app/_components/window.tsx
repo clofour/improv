@@ -1,7 +1,5 @@
 import { type ReactNode, useRef } from "react";
-import { useMediaQuery } from "react-responsive";
 import Panel from "@/components/panel";
-import Terminal from "@/components/terminal";
 import type { Vector2D } from "@/lib/2d";
 import { clamp } from "@/lib/utils";
 import { useDesktop, WindowStatus } from "./desktop";
@@ -33,7 +31,7 @@ export function clampWindowPosition(
 }
 
 function isWindowVisible(status: WindowStatus) {
-	if (status == WindowStatus.Open || status == WindowStatus.Fullscreen) {
+	if (status === WindowStatus.Open || status === WindowStatus.Fullscreen) {
 		return true;
 	}
 
@@ -57,7 +55,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const itemWindow = item.window;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
-		if (e.target != e.currentTarget) return;
+		if (e.target !== e.currentTarget) return;
 
 		focus(id);
 		moveOffset.current = {
@@ -84,12 +82,12 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 			),
 		);
 	};
-	const onMovePointerUp = (e: React.PointerEvent) => {
+	const onMovePointerUp = () => {
 		moveOffset.current = null;
 	};
 
 	const onResizePointerDown = (e: React.PointerEvent) => {
-		if (e.target != e.currentTarget) return;
+		if (e.target !== e.currentTarget) return;
 
 		focus(id);
 		resizeOffset.current = {
@@ -120,7 +118,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 			y: clamp(resizeOperation.size.y - dy, 100, 1000),
 		});
 	};
-	const onResizePointerUp = (e: React.PointerEvent) => {
+	const onResizePointerUp = () => {
 		resizeOffset.current = null;
 	};
 
@@ -134,11 +132,11 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 				left: itemWindow.position.x,
 				top: itemWindow.position.y,
 				width:
-					itemWindow.status == WindowStatus.Fullscreen
+					itemWindow.status === WindowStatus.Fullscreen
 						? "100%"
 						: itemWindow.size.x,
 				height:
-					itemWindow.status == WindowStatus.Fullscreen
+					itemWindow.status === WindowStatus.Fullscreen
 						? "100%"
 						: itemWindow.size.y,
 			}}
@@ -153,17 +151,20 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 					{name}
 				</span>
 				<div className="flex items-center gap-2">
-					<div
+					<button
+						type="button"
 						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-primary/80"
 						onClick={() => {
 							expand(id);
 						}}
 					/>
-					<div
+					<button
+						type="button"
 						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-secondary/80"
 						onClick={() => minimize(id)}
 					/>
-					<div
+					<button
+						type="button"
 						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-destructive/80"
 						onClick={() => close(id)}
 					/>

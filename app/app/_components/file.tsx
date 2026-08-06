@@ -76,7 +76,7 @@ export default function File({ screenRef, id, initLocation }: FileProps) {
 				screenRef.current,
 			),
 		);
-	}, [item, id, initLocation, moveFile, fileRef, screenRef]);
+	}, [id, initLocation, moveFile, screenRef]);
 
 	if (!item) return;
 	const file = item.file;
@@ -150,31 +150,30 @@ export default function File({ screenRef, id, initLocation }: FileProps) {
 	};
 
 	return (
-		<>
-			<button
-				ref={fileRef}
-				className={`absolute flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
-				onClick={() => selectFiles([id])}
-				onDoubleClick={() => openWindow(id, isMobile)}
-				onPointerDown={onMovePointerDown}
-				onPointerMove={onMovePointerMove}
-				onPointerUp={onMovePointerUp}
-				style={{
-					left: file.position.x,
-					top: file.position.y,
-				}}
-			>
-				<div className="flex justify-center align-center">
-					<Image
-						src={item.logo}
-						alt={item.name}
-						width={40}
-						height={40}
-						draggable={false}
-					/>
-				</div>
-				<span className="text-xs">{item.name}</span>
-			</button>
-		</>
+		<button
+			ref={fileRef}
+			type="button"
+			className={`absolute flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
+			onClick={() => selectFiles([id])}
+			onDoubleClick={() => openWindow(id, isMobile)}
+			onPointerDown={onMovePointerDown}
+			onPointerMove={onMovePointerMove}
+			onPointerUp={onMovePointerUp}
+			style={{
+				left: file.position.x,
+				top: file.position.y,
+			}}
+		>
+			<div className="flex justify-center align-center">
+				<Image
+					src={item.logo}
+					alt={item.name}
+					width={40}
+					height={40}
+					draggable={false}
+				/>
+			</div>
+			<span className="text-xs">{item.name}</span>
+		</button>
 	);
 }

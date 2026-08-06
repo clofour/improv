@@ -1,10 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { random } from "@/lib/utils";
 import type React from "react";
-import { useMediaQuery } from "react-responsive";
 import { useMemo } from "react";
+import { useMediaQuery } from "react-responsive";
+import { random } from "@/lib/utils";
 
 export enum ColdEffectMode {
 	Foreground,
