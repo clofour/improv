@@ -160,7 +160,9 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 	if (!visible) return null;
 
 	return (
-		<div className="fixed inset-0 pointer-events-none">
+		<div
+			className={`fixed inset-0 ${mode === ColdEffectMode.Background ? "-z-5" : "z-5"} pointer-events-none`}
+		>
 			<div
 				className={`fixed inset-0 ${mode === ColdEffectMode.Background ? "shadow-[inset_0_0_150px_rgba(0,3,7,0.9),inset_0_60px_90px_rgba(0,8,15,0.5),inset_0_-90px_130px_rgba(0,5,10,0.75)]" : "shadow-[inset_0_0_120px_rgba(0,3,7,0.50),inset_0_50px_75px_rgba(0,8,15,0.25),inset_0_-70px_100px_rgba(0,5,10,0.35)]"}`}
 			/>
