@@ -67,7 +67,7 @@ html {
 }
 
 :root {
-	--background: oklch(0.12 0.02 240);
+	--background: oklch(0.11 0.018 236);
 	--foreground: oklch(0.93 0.015 230);
 	--panel: oklch(0.16 0.02 235);
 	--panel-foreground: oklch(0.9 0.015 230);

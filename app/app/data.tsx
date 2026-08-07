@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { Vector2D } from "@/lib/2d";
 import Shop from "./shop/page";
-import { Vector2D } from "@/lib/2d";
 
 export interface DesktopItemData {
 	id: string;
@@ -13,11 +13,43 @@ export interface DesktopItemData {
 
 const data: DesktopItemData[] = [
 	{
+		id: "project",
+		name: "Projects",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 4, y: 4 },
+		draggable: true,
+	},
+	{
 		id: "shop",
 		name: "Shop",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 4, y: 5 },
+		draggable: true,
+	},
+	{
+		id: "explore",
+		name: "Explore",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 5, y: 4 },
+		draggable: true,
+	},
+	{
+		id: "guide",
+		name: "Guides",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 4, y: 6 },
+		draggable: true,
+	},
+	{
+		id: "documentation",
+		name: "Docs",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 5, y: 6 },
 		draggable: true,
 	},
 ];

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import type { VariantProps } from "class-variance-authority";
+import { Button, type buttonVariants } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
-import { VariantProps } from "class-variance-authority";
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 

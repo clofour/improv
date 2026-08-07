@@ -1,9 +1,8 @@
-import Terminal from "@/components/terminal";
-import { ReactNode, useRef } from "react";
-import { useDesktop, WindowStatus } from "./desktop";
+import { type ReactNode, useRef } from "react";
 import Panel from "@/components/panel";
+import type { Vector2D } from "@/lib/2d";
 import { clamp } from "@/lib/utils";
-import { Vector2D } from "@/lib/2d";
+import { useDesktop, WindowStatus } from "./desktop";
 
 interface WindowProps {
 	screenRef: React.RefObject<HTMLDivElement | null>;
@@ -32,7 +31,7 @@ export function clampWindowPosition(
 }
 
 function isWindowVisible(status: WindowStatus) {
-	if (status == WindowStatus.Open || status == WindowStatus.Fullscreen) {
+	if (status === WindowStatus.Open || status === WindowStatus.Fullscreen) {
 		return true;
 	}
 
@@ -56,7 +55,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const itemWindow = item.window;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
-		if (e.target != e.currentTarget) return;
+		if (e.target !== e.currentTarget) return;
 
 		focus(id);
 		moveOffset.current = {
@@ -83,12 +82,12 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 			),
 		);
 	};
-	const onMovePointerUp = (e: React.PointerEvent) => {
+	const onMovePointerUp = () => {
 		moveOffset.current = null;
 	};
 
 	const onResizePointerDown = (e: React.PointerEvent) => {
-		if (e.target != e.currentTarget) return;
+		if (e.target !== e.currentTarget) return;
 
 		focus(id);
 		resizeOffset.current = {
@@ -119,7 +118,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 			y: clamp(resizeOperation.size.y - dy, 100, 1000),
 		});
 	};
-	const onResizePointerUp = (e: React.PointerEvent) => {
+	const onResizePointerUp = () => {
 		resizeOffset.current = null;
 	};
 
@@ -133,11 +132,11 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 				left: itemWindow.position.x,
 				top: itemWindow.position.y,
 				width:
-					itemWindow.status == WindowStatus.Fullscreen
+					itemWindow.status === WindowStatus.Fullscreen
 						? "100%"
 						: itemWindow.size.x,
 				height:
-					itemWindow.status == WindowStatus.Fullscreen
+					itemWindow.status === WindowStatus.Fullscreen
 						? "100%"
 						: itemWindow.size.y,
 			}}
@@ -152,25 +151,30 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 					{name}
 				</span>
 				<div className="flex items-center gap-2">
-					<div
-						className="h-2.5 w-2.5 rounded-full bg-primary/80"
+					<button
+						type="button"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-primary/80"
 						onClick={() => {
 							expand(id);
 						}}
 					/>
-					<div
-						className="h-2.5 w-2.5 rounded-full bg-secondary/80"
+					<button
+						type="button"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-secondary/80"
 						onClick={() => minimize(id)}
 					/>
-					<div
-						className="h-2.5 w-2.5 rounded-full bg-destructive/80"
+					<button
+						type="button"
+						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-destructive/80"
 						onClick={() => close(id)}
 					/>
 				</div>
 			</div>
-			<div className="min-h-0 w-full flex flex-1 flex-col p-2">{children}</div>
+			<div className="min-h-0 w-full flex flex-1 flex-col overflow-y-auto p-2">
+				{children}
+			</div>
 			<div
-				className="absolute bottom-0 right-0 w-3 h-3 cursor-nwse-resize"
+				className="absolute bottom-0 right-0 hidden sm:block w-3 h-3 cursor-nwse-resize"
 				onPointerDown={onResizePointerDown}
 				onPointerMove={onResizePointerMove}
 				onPointerUp={onResizePointerUp}

@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Panel from "@/components/panel";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 interface ShopItemProps {
 	name: string;

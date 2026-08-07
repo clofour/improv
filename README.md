@@ -1,32 +1,45 @@
 # improv
 
-Improv is a Hack Club YSWS centered around shipping provisioning toolings to receive infrastructure-related prizes and discounts. This repository contains the website for Improv, built on NextJS. Currently, only the landing page is implemented, with more to come soon.
+Improv is a permafrost-themed Hack Club YSWS centered around building tools to deploy software automatically in order to receive infrastructure-related prizes and discounts. This repository contains the website for Improv, built on NextJS.
+
+For further information about the YSWS, see the [Knowledge Base](/#summary), the [Slack channel](https://hackclub.enterprise.slack.com/archives/C0BEVTSE0BD) and the [explanation canvas](https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0BL5FG724C).
 
 ## Quick Start
 
-To run the website, use `npm run dev`. To build the website, use `npm run build`.
+To run the website for development, use `npm run dev`. To build the website, use `npm run build`.
 
 ## Knowledge Base
 
-### Basics
+### Summary
 
-#### Why
-Many Hack Clubbers rely on services like Railway or Vercel without actually understanding what happens under the hood. When these services no longer meet their needs (price, features, reliability...), they're stuck. At the same time, Hack Clubbers make a lot of awesome projects, which are left behind to collect dust while they work on their next project.
+**YS**: Build tools that deploy software automatically such as container orchestrators, image builders, CI/CD pipelines, Kubernetes operators, PaaS, game hosting services... If you're just getting started, you can also use existing tools such as Terraform or Ansible to get a feel for provisioning.
 
-#### How
-Improv aims to change that by teaching participants about the very infrastructure they depend on by exploring Linux, networking, infrastructure as code, automation, security, DevOps and more. Along the way, they will build tooling that they can rely on in their future projects. After all, infrastructure is everywhere.
-
-#### What
-**YS:** Build infrastructure projects using existing tools (such as Terraform or Ansible) or create your own tools, whether that be a bash script to set up a server, a container orchestrator, an image builder or anything else you can think of!
-**WS:** Earn Uptime depending on the complexity and hours spent on your project. Redeem it for typical YSWS rewards (hosting credits, domains, Minecraft...) or Improv-exclusive items (ePaper Display for monitoring, "works on my machine"). There's just one catch: items relevant to your projects are discounted. For example, if you make a Minecraft server provisioner, you'll get a discount on a Minecraft license key.
+**WS**: The reward is two-fold:
+* Earn Uptime, which you can spend on rewards such as hosting/domain credits, CPU/GPU grants, Minecraft, cool merch ("coffee now, dev never" mug) and more! There's just one catch: items relevant to your projects are discounted, encouraging making projects that YOU will actually use. For example, if you make a Minecraft server provisioner, you'll get a discount on a Minecraft license key.
+* Use your creations in future projects. Create a PaaS, and deploy your application on-demand at lower cost than services like Railway. Design a database provisioner, and spin up databases quicklier than the hyperscalers.
 
 ### Structure
 
 #### Landing Page
 
 The Landing Page is split into six sections:
-* **Hero:** explains what the YSWS is about and showcases some of the tools participants will be using, with a terminal
-* **Flow:** explains how it works using an architecture diagram with animated cables
-* **Prizes:** shows the various prizes participants can get with various cards, and explains the discount mechanic
-* **FAQ:** answers some frequently asked questions using accordions
-* **Footer:** contains common links to Hack Club resources
+* **Hero**: explains what the YSWS is about and showcases some of the tools participants will be using, with a terminal
+* **Flow**: explains how it works using an architecture diagram with animated cables
+* **Prizes**: shows the various prizes participants can get with various cards, and explains the discount mechanic
+* **FAQ**: answers some frequently asked questions using accordions
+* **Footer**: contains common links to Hack Club resources
+
+#### App
+
+The application is a WebOS decorated as a screen in the middle of the frozen tundra. It has various files with different uses:
+* **Projects**: managing projects (CRUD)
+* **Shop**: purchasing items using currency from projects
+* **Explore**: exploring projects made by other people
+* **Guides**: getting started with infra through guides
+* **Docs**: reading documentation for the program
+
+None of the files have been implemented yet.
+
+#### Internal Dashboard
+
+An internal dashboard will be implemented in the future.

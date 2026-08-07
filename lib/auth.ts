@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "./db";
 import { genericOAuth } from "better-auth/plugins/generic-oauth";
+import { db } from "./db";
 import * as authSchema from "./db/auth-schema";
 
 export const auth = betterAuth({
@@ -23,12 +23,10 @@ export const auth = betterAuth({
 					tokenUrl: "https://hackatime.hackclub.com/oauth/token",
 					userInfoUrl: "https://hackatime.hackclub.com/api/v1/authenticated/me",
 					scopes: ["profile", "read"],
-					mapProfileToUser: function (profile) {
-						return {
-							name: profile.slack_id,
-							email: profile.emails[0],
-						};
-					},
+					mapProfileToUser: (profile) => ({
+						name: profile.slack_id,
+						email: profile.emails[0],
+					}),
 				},
 			],
 		}),
