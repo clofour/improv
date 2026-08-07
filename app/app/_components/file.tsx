@@ -136,7 +136,7 @@ export default function File({ id, screenRef, isMobile }: FileProps) {
 		<button
 			ref={fileRef}
 			type="button"
-			className={`flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
+			className={`flex flex-col items-center justify-center p-1 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
 			onClick={() => selectFiles([id])}
 			onDoubleClick={() => openWindow(id, isMobile)}
 			onPointerDown={onMovePointerDown}
@@ -144,15 +144,13 @@ export default function File({ id, screenRef, isMobile }: FileProps) {
 			onPointerUp={onMovePointerUp}
 			style={style}
 		>
-			<div className="flex justify-center align-center">
-				<Image
-					src={item.logo}
-					alt={item.name}
-					width={35}
-					height={35}
-					draggable={false}
-				/>
-			</div>
+			<Image
+				src={item.logo}
+				alt={item.name}
+				width={35}
+				height={35}
+				draggable={false}
+			/>
 			<span className="text-xs">{item.name}</span>
 		</button>
 	);
