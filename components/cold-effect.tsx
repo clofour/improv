@@ -100,7 +100,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 							: random(0.3, 0.75),
 					opacity:
 						mode === EffectMode.Background
-							? random(0.05, 0.2)
+							? random(0.05, 0.25)
 							: random(0.025, 0.15),
 					duration:
 						mode === EffectMode.Background ? random(14, 28) : random(16, 30),
@@ -113,7 +113,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 	const windGusts = useMemo(
 		() =>
 			Array.from(
-				{ length: mode === EffectMode.Background ? 8 : 4 },
+				{ length: mode === EffectMode.Background ? 4 : 4 },
 				(_, i) => ({
 					id: i,
 					y: random(0, 110),
@@ -244,10 +244,6 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 					/>
 				))}
 			</div>
-
-			{mode === EffectMode.Background && (
-				<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)] animate-whiteout" />
-			)}
 		</div>
 	);
 }
