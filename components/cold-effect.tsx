@@ -246,7 +246,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 			</div>
 
 			{mode === EffectMode.Background && (
-				<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)]" />
+				<div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(205,238,250,0.14),transparent_45%),linear-gradient(105deg,transparent_10%,rgba(220,246,255,0.05)_35%,rgba(230,250,255,0.10)_50%,rgba(220,246,255,0.04)_65%,transparent_90%)] animate-whiteout" />
 			)}
 		</div>
 	);
