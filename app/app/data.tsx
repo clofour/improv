@@ -17,7 +17,7 @@ const data: DesktopItemData[] = [
 		name: "Projects",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 4, y: 4 },
 		draggable: true,
 	},
 	{
@@ -25,7 +25,7 @@ const data: DesktopItemData[] = [
 		name: "Shop",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 4, y: 5 },
 		draggable: true,
 	},
 	{
@@ -33,7 +33,7 @@ const data: DesktopItemData[] = [
 		name: "Explore",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 5, y: 4 },
 		draggable: true,
 	},
 	{
@@ -41,15 +41,7 @@ const data: DesktopItemData[] = [
 		name: "Guides",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
-		draggable: true,
-	},
-	{
-		id: "guide",
-		name: "Guides",
-		logo: "/placeholder.webp",
-		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 4, y: 6 },
 		draggable: true,
 	},
 	{
@@ -57,7 +49,7 @@ const data: DesktopItemData[] = [
 		name: "Docs",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 0, y: 0 },
+		location: { x: 5, y: 6 },
 		draggable: true,
 	},
 ];

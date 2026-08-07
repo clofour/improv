@@ -9,8 +9,7 @@ export enum WindowStatus {
 }
 
 interface FileState {
-	position: Vector2D;
-	draggable: boolean;
+	location: Vector2D;
 }
 
 interface WindowState {
@@ -33,7 +32,12 @@ interface DesktopState {
 	selectedFiles: string[];
 	topZIndex: number;
 
-	register: (id: string, name: string, logo: string) => void;
+	register: (
+		id: string,
+		name: string,
+		logo: string,
+		location: Vector2D,
+	) => void;
 	openWindow: (id: string, isMobile: boolean) => void;
 	closeWindow: (id: string) => void;
 	expandWindow: (id: string) => void;
@@ -51,7 +55,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 	selectedFiles: [],
 	topZIndex: 0,
 
-	register: (id, name, logo) => {
+	register: (id, name, logo, location) => {
 		set((state) => {
 			const item = {
 				name: name,
@@ -63,8 +67,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 					zIndex: 0,
 				},
 				file: {
-					position: { x: 0, y: 0 },
-					draggable: true,
+					location: location,
 				},
 			};
 
@@ -243,7 +246,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		});
 	},
 
-	moveFile: (id, position) => {
+	moveFile: (id, location) => {
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
@@ -254,7 +257,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 				...item,
 				file: {
 					...file,
-					position: position,
+					location: location,
 				},
 			};
 

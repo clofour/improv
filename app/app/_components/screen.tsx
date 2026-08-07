@@ -4,10 +4,13 @@ import { useEffect, useRef } from "react";
 import data from "../data";
 import Background from "./background";
 import { useDesktop } from "./desktop";
-import File from "./file";
+import File, { COL_SIZE, ROW_SIZE } from "./file";
 import Window from "./window";
+import { useMediaQuery } from "react-responsive";
 
 export default function Screen() {
+	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const register = useDesktop((state) => state.register);
 
@@ -15,7 +18,7 @@ export default function Screen() {
 		if (!containerRef.current) return;
 
 		for (const item of data) {
-			register(item.id, item.name, item.logo);
+			register(item.id, item.name, item.logo, item.location);
 		}
 	}, []);
 
@@ -24,13 +27,19 @@ export default function Screen() {
 			<div className="absolute inset-0 flex flex-col">
 				<Background ref={containerRef} />
 			</div>
-			<div>
+			<div
+				className="absolute inset-0 grid"
+				style={{
+					gridTemplateColumns: `repeat(auto-fill, ${COL_SIZE}px)`,
+					gridAutoRows: `${ROW_SIZE}px`,
+				}}
+			>
 				{data.map((file) => (
 					<File
 						key={file.id}
-						screenRef={containerRef}
 						id={file.id}
-						initLocation={file.location}
+						screenRef={containerRef}
+						isMobile={isMobile}
 					/>
 				))}
 			</div>
