@@ -1,17 +1,18 @@
-import { ColdEffectClient, ColdEffectMode } from "@/components/cold-effect";
+import { ColdEffectClient } from "@/components/cold-effect";
 import FAQ from "./_components/faq";
 import Flow from "./_components/flow";
 import Footer from "./_components/footer";
 import Hero from "./_components/hero";
 import Navbar from "./_components/navbar";
 import Prizes from "./_components/prizes";
+import { EffectMode } from "@/components/effect-mode";
 
 export default function Home() {
 	return (
 		<div className="min-w-screen min-h-screen">
 			<Navbar />
 			<main className="flex flex-col flex-1 items-center justify-center">
-				<ColdEffectClient mode={ColdEffectMode.Background} />
+				<ColdEffectClient mode={EffectMode.Background} />
 				<Hero />
 				<Flow />
 				<Prizes />
