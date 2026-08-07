@@ -39,10 +39,14 @@ export default function File({ id, screenRef, isMobile }: FileProps) {
 				position: "absolute",
 				left: dragPosition?.x,
 				top: dragPosition?.y,
+				width: COL_SIZE,
+				height: ROW_SIZE,
 			}
 		: {
 				gridColumn: file.location.x + 1,
 				gridRow: file.location.y + 1,
+				width: "100%",
+				height: "100%",
 			};
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
@@ -132,7 +136,7 @@ export default function File({ id, screenRef, isMobile }: FileProps) {
 		<button
 			ref={fileRef}
 			type="button"
-			className={`w-full h-full flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
+			className={`flex flex-col px-2.5 py-2 gap-2 ${isSelected ? "bg-blue-500/20 border border-blue-500/50" : ""}`}
 			onClick={() => selectFiles([id])}
 			onDoubleClick={() => openWindow(id, isMobile)}
 			onPointerDown={onMovePointerDown}
