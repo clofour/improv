@@ -5,6 +5,16 @@ import { db } from "./db";
 import * as authSchema from "./db/auth-schema";
 
 export const auth = betterAuth({
+	user: {
+		additionalFields: {
+			uptimeBalance: {
+				type: "number",
+				required: true,
+				defaultValue: 0,
+				input: false,
+			},
+		},
+	},
 	plugins: [
 		genericOAuth({
 			config: [

@@ -1,5 +1,12 @@
 import { relations } from "drizzle-orm";
-import { boolean, index, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import {
+	pgTable,
+	text,
+	timestamp,
+	boolean,
+	integer,
+	index,
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey(),
@@ -12,6 +19,7 @@ export const user = pgTable("user", {
 		.defaultNow()
 		.$onUpdate(() => /* @__PURE__ */ new Date())
 		.notNull(),
+	uptimeBalance: integer("uptime_balance").default(0).notNull(),
 });
 
 export const session = pgTable(
