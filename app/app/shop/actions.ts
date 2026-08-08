@@ -1,6 +1,6 @@
 "use server";
 
-import { errParse } from "@/lib/utils/result";
+import { errParse, ok } from "@/lib/utils/result";
 import { getSession } from "@/lib/auth/session";
 import { CreateOrderSchema } from "@/lib/shop/schema";
 import { createOrder } from "@/lib/shop/service";
@@ -14,18 +14,18 @@ const CreateOrderFormSchema = z.object({
 
 export async function createOrderAction(data: FormData) {
 	const session = await getSession();
-	if (!session.ok) return; // session;
+	if (!session.ok) return session;
 
 	const parse = CreateOrderFormSchema.safeParse({
 		itemId: data.get("itemId"),
 		quantity: data.get("quantity"),
 	});
 	if (!parse.success) {
-		console.log(errParse(parse));
-		return;
+		return errParse(parse);
 	}
 
-	await createOrder(session.data.user.id, parse.data);
+	const result = await createOrder(session.data.user.id, parse.data);
+	if (result.ok) return revalidatePath("/app/shop");
 
-	revalidatePath("/api/shop");
+	return result;
 }
