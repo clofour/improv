@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Vector2D } from "@/lib/2d";
 import Shop from "./shop/page";
+import Project from "./project/project";
 
 export interface DesktopItemData {
 	id: string;
@@ -13,18 +14,10 @@ export interface DesktopItemData {
 
 const data: DesktopItemData[] = [
 	{
-		id: "project",
+		id: "projects",
 		name: "Projects",
 		logo: "/placeholder.webp",
-		app: <Shop />,
-		location: { x: 4, y: 4 },
-		draggable: true,
-	},
-	{
-		id: "shop",
-		name: "Shop",
-		logo: "/placeholder.webp",
-		app: <Shop />,
+		app: <Project />,
 		location: { x: 4, y: 5 },
 		draggable: true,
 	},
