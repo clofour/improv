@@ -1,8 +1,7 @@
 "use server";
 
-import { errParse, ok } from "@/lib/utils/result";
+import { errParse, ok, Result } from "@/lib/utils/result";
 import { getSession } from "@/lib/auth/session";
-import { CreateOrderSchema } from "@/lib/shop/schema";
 import { createOrder } from "@/lib/shop/service";
 import { revalidatePath } from "next/cache";
 import z from "zod";
@@ -12,7 +11,10 @@ const CreateOrderFormSchema = z.object({
 	quantity: z.coerce.number(),
 });
 
-export async function createOrderAction(data: FormData) {
+export async function createOrderAction(
+	_prev: Result<null> | null,
+	data: FormData,
+) {
 	const session = await getSession();
 	if (!session.ok) return session;
 

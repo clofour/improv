@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Panel from "@/components/panel";
-import { Button } from "@/components/ui/button";
-import FormButton from "@/components/form-button";
 import { createOrderAction } from "../actions";
+import { useActionState } from "react";
+import { Button } from "@/components/ui/button";
 
 interface ShopItemProps {
 	id: string;
@@ -21,6 +23,8 @@ export default function ShopItem({
 	price,
 	discountPrice,
 }: ShopItemProps) {
+	const [state, formAction, pending] = useActionState(createOrderAction, null);
+
 	return (
 		<Panel className="flex flex-col">
 			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
@@ -43,10 +47,12 @@ export default function ShopItem({
 						{price}
 						{discountPrice}
 					</div>
-					<form action={createOrderAction}>
+					<form action={formAction}>
 						<input type="hidden" name="itemId" value={id} />
 						<input type="hidden" name="quantity" value={1} />
-						<FormButton defaultText="Redeem" loadingText="Redeeming" />
+						<Button type="submit" disabled={pending}>
+							{!pending ? "Redeem" : "Redeeming"}
+						</Button>
 					</form>
 				</div>
 			</div>
