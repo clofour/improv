@@ -25,7 +25,9 @@ export async function createOrderAction(data: FormData) {
 	}
 
 	const result = await createOrder(session.data.user.id, parse.data);
-	if (result.ok) return revalidatePath("/app/shop");
+	if (result.ok) {
+		revalidatePath("/app/shop");
+	}
 
 	return result;
 }
