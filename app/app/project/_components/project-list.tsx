@@ -1,0 +1,21 @@
+import React from "react";
+import data, { ProjectData } from "../data";
+import ProjItem from "./proj-item";
+
+interface ProjectListProps {
+	onSelectProject: (project: ProjectData) => void;
+}
+
+export function ProjectList({ onSelectProject }: ProjectListProps) {
+	return (
+		<div className="flex flex-col gap-2 w-full h-full px-4 py-2">
+			{data.map((project: ProjectData, index: number) => (
+				<ProjItem
+					key={`projlistitem-${project.id || index}`}
+					view={() => onSelectProject(project)}
+					{...project}
+				/>
+			))}
+		</div>
+	);
+}
