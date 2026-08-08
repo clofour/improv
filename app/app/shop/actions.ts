@@ -1,7 +1,7 @@
 "use server";
 
-import { errParse } from "@/lib/result";
-import { getSession } from "@/lib/session";
+import { errParse } from "@/lib/utils/result";
+import { getSession } from "@/lib/auth/session";
 import { CreateOrderSchema } from "@/lib/shop/schema";
 import { createOrder } from "@/lib/shop/service";
 import { revalidatePath } from "next/cache";

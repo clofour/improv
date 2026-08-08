@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Terminal from "@/components/terminal";
-import { cn } from "@/lib/class";
+import { cn } from "@/lib/utils/class";
 import NameSection from "./name-section";
 
 interface ShopItemPriceProps {
