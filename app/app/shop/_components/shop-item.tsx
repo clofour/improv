@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Panel from "@/components/panel";
 import { Button } from "@/components/ui/button";
+import FormButton from "@/components/form-button";
+import { createOrderAction } from "../actions";
 
 interface ShopItemProps {
+	id: string;
 	name: string;
 	description: string;
 	image: string;
@@ -11,6 +14,7 @@ interface ShopItemProps {
 }
 
 export default function ShopItem({
+	id,
 	name,
 	description,
 	image,
@@ -39,7 +43,11 @@ export default function ShopItem({
 						{price}
 						{discountPrice}
 					</div>
-					<Button>Redeem</Button>
+					<form action={createOrderAction}>
+						<input type="hidden" name="itemId" value={id} />
+						<input type="hidden" name="quantity" value={1} />
+						<FormButton defaultText="Redeem" loadingText="Redeeming" />
+					</form>
 				</div>
 			</div>
 		</Panel>

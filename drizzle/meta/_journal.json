@@ -8,6 +8,13 @@
 			"when": 1785164240582,
 			"tag": "0000_superb_grey_gargoyle",
 			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1786199866863,
+			"tag": "0001_past_tigra",
+			"breakpoints": true
 		}
 	]
 }

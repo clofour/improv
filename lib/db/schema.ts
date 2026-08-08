@@ -6,7 +6,7 @@ export const order = pgTable("order", {
 	userId: text("user_id")
 		.notNull()
 		.references(() => user.id),
-	itemId: integer("item_id").notNull(),
+	itemId: text("item_id").notNull(),
 	quantity: integer("quantity").notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });

@@ -4,6 +4,7 @@ import { order } from "@/lib/db/schema";
 
 export const CreateOrderSchema = createInsertSchema(order).omit({
 	id: true,
+	createdAt: true,
 });
 
 export type CreateOrderInput = z.infer<typeof CreateOrderSchema>;
