@@ -1,7 +1,7 @@
 import { type ReactNode, useRef } from "react";
 import Panel from "@/components/panel";
-import type { Vector2D } from "@/lib/2d";
-import { clamp } from "@/lib/utils";
+import type { Vector2D } from "@/lib/utils/2d";
+import { clamp } from "@/lib/utils/general";
 import { useDesktop, WindowStatus } from "./desktop";
 
 interface WindowProps {

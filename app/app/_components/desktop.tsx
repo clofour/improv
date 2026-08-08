@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Vector2D } from "@/lib/2d";
+import type { Vector2D } from "@/lib/utils/2d";
 
 export enum WindowStatus {
 	Open,

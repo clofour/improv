@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import type React from "react";
 import { useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
-import { random } from "@/lib/utils";
+import { random } from "@/lib/utils/general";
 import { EffectMode } from "./effect-mode";
 
 interface ColdEffectProps {

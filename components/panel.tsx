@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/class";
+import { cn } from "@/lib/utils/class";
 
 interface PanelProps {
 	ref?: React.Ref<HTMLDivElement>;

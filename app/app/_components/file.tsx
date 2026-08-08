@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { getRelativeMousePosition, type Vector2D } from "@/lib/2d";
-import { clamp } from "@/lib/utils";
+import { getRelativeMousePosition, type Vector2D } from "@/lib/utils/2d";
+import { clamp } from "@/lib/utils/general";
 import { useDesktop } from "./desktop";
 
 interface FileProps {

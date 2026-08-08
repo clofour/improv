@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Vector2D } from "@/lib/2d";
+import type { Vector2D } from "@/lib/utils/2d";
 import Shop from "./shop/page";
 import Project from "./project/project";
 

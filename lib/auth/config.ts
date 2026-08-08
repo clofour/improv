@@ -1,10 +1,22 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { genericOAuth } from "better-auth/plugins/generic-oauth";
-import { db } from "./db";
-import * as authSchema from "./db/auth-schema";
+import { db } from "../db";
+import * as authSchema from "@/lib/db/auth-schema";
+import { admin } from "better-auth/plugins/admin";
+import { accessControl, fulfiller, helper, reviewer } from "./access-control";
 
 export const auth = betterAuth({
+	user: {
+		additionalFields: {
+			uptimeBalance: {
+				type: "number",
+				required: true,
+				defaultValue: 0,
+				input: false,
+			},
+		},
+	},
 	plugins: [
 		genericOAuth({
 			config: [
@@ -29,6 +41,14 @@ export const auth = betterAuth({
 					}),
 				},
 			],
+		}),
+		admin({
+			ac: accessControl,
+			roles: {
+				helper,
+				reviewer,
+				fulfiller,
+			},
 		}),
 	],
 	database: drizzleAdapter(db, {
