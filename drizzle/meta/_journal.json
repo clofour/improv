@@ -15,6 +15,13 @@
 			"when": 1786199866863,
 			"tag": "0001_past_tigra",
 			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1786209339844,
+			"tag": "0002_green_hannibal_king",
+			"breakpoints": true
 		}
 	]
 }
