@@ -35,7 +35,7 @@ export function EditableField({
 			className="flex flex-row items-center hover:cursor-pointer"
 			onClick={handleClick}
 		>
-			<p className="text-[var(--accent)]">"{label}": </p>
+			<p className="text-accent">"{label}": </p>
 			{isEditing ? (
 				<form
 					className="flex flex-row w-full"
@@ -44,16 +44,16 @@ export function EditableField({
 					<input
 						defaultValue={value}
 						autoFocus
-						className="w-full outline-none border border-[var(--border)] ml-0.5 px-1"
+						className="w-full outline-none border border-border ml-0.5 px-1"
 					/>
 				</form>
 			) : (
-				<p className="text-[var(--foreground)]">"{value}"</p>
+				<p className="text-foreground">"{value}"</p>
 			)}
 			{url && (
 				<ArrowSquareOutIcon
 					onClick={externalClick}
-					className="hover:text-[var(--primary)] w-6 h-6 ml-2 flex-shrink-0"
+					className="hover:text-primary w-6 h-6 ml-2 flex-shrink-0"
 				/>
 			)}
 		</div>
@@ -69,8 +69,8 @@ export function ReadOnlyField({
 }) {
 	return (
 		<div className="flex flex-row">
-			<p className="text-[var(--accent)]">"{label}": </p>
-			<p className="text-[var(--muted-foreground)]">"{value}"</p>
+			<p className="text-accent">"{label}": </p>
+			<p className="text-muted-foreground">"{value}"</p>
 		</div>
 	);
 }

@@ -34,9 +34,7 @@ export default function ProjItem({
 				<p className="text-sm text-muted-foreground mt-0.5 w-fit">
 					{description}
 				</p>
-				<p className="text-sm text-[var(--accent)]">
-					{relativeTime(Number(timestamp))}
-				</p>
+				<p className="text-sm text-accent">{relativeTime(Number(timestamp))}</p>
 				<Button className="w-fit mt-1" onClick={view}>
 					<ArrowSquareOutIcon className="w-4 h-4 mr-1" />
 					View Project

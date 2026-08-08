@@ -63,10 +63,8 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 				</Button>
 				<p className="font-heading font-bold text-2xl">Project Editor</p>
 			</div>
-			<div className="relative flex flex-col flex-1 w-full h-full mt-2 border border-[var(--border)] px-4 py-2 gap-1">
-				<p className="text-base text-[var(--muted-foreground)]">
-					// Project info
-				</p>
+			<div className="relative flex flex-col flex-1 w-full h-full mt-2 border border-border px-4 py-2 gap-1">
+				<p className="text-base text-muted-foreground">// Project info</p>
 				<ReadOnlyField label="id" value={data.id} />
 
 				<EditableField
@@ -101,9 +99,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 				<hr className="mt-3" />
 				<div className="relative flex flex-col w-full h-full">
-					<p className="text-base text-[var(--muted-foreground)]">
-						// Journals
-					</p>
+					<p className="text-base text-muted-foreground">// Journals</p>
 					{data.logs.length > 0 ? (
 						data.logs.map((log, index) => (
 							<div key={`projlog-${index}`}>
@@ -116,7 +112,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 								<div className="flex flex-row gap-4">
 									<ReadOnlyField label="time" value={log.timestamp} />
-									<p className="text-[var(--muted-foreground)]">
+									<p className="text-muted-foreground">
 										// {relativeTime(Number(log.timestamp))}
 									</p>
 								</div>
@@ -131,7 +127,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 							</div>
 						))
 					) : (
-						<p className="text-[var(--secondary)]">No logs yet :(</p>
+						<p className="text-secondary">No logs yet :(</p>
 					)}
 					<Button className="absolute top-0 right-0">
 						<PlusIcon className="w-4 h-4" />
@@ -146,7 +142,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 						e.stopPropagation();
 						setImView(!imView);
 					}}
-					className={`absolute top-0 right-0 ${imView ? "w-full h-full" : "w-24 h-24"} object-contain p-5 hover:bg-[var(--muted)] hover:cursor-pointer transition-color duration-200`}
+					className={`absolute top-0 right-0 ${imView ? "w-full h-full" : "w-24 h-24"} object-contain p-5 hover:bg-muted hover:cursor-pointer transition-color duration-200`}
 				/>
 			</div>
 		</div>
