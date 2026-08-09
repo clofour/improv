@@ -44,14 +44,6 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 	const [imView, setImView] = useState<boolean>(false);
 	const [editing, setEditing] = useState<string>("");
 
-	useEffect(() => {
-		const disable = () => setEditing("");
-
-		window.addEventListener("click", disable);
-
-		return () => window.removeEventListener("click", disable);
-	}, []);
-
 	const selectField = (field: string) => {
 		setImView(false);
 		setEditing(field);
@@ -70,45 +62,53 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 				<ReadOnlyField label="id" value={data.id} />
 
 				<EditableField
+					name="name"
 					label="name"
-					key="name"
 					value={data.name}
+					projectId={data.id}
 					isEditing={editing === "name"}
 					onSelect={() => selectField("name")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
+					name="description"
 					label="description"
-					key="description"
 					value={data.description}
+					projectId={data.id}
 					isEditing={editing === "description"}
 					onSelect={() => selectField("description")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
+					name="codeURL"
 					label="code_url"
-					key="code_url"
 					value={data.codeURL}
-					isEditing={editing === "url"}
+					projectId={data.id}
+					isEditing={editing === "code_url"}
 					url={data.codeURL}
-					onSelect={() => selectField("url")}
+					onSelect={() => selectField("code_url")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
-					label="demo"
-					key="demo_url"
+					name="demoURL"
+					label="demo_url"
 					value={data.demoURL}
-					isEditing={editing === "demo"}
+					projectId={data.id}
+					isEditing={editing === "demo_url"}
 					url={data.demoURL}
-					onSelect={() => selectField("demo")}
+					onSelect={() => selectField("demo_url")}
+					onBlur={() => selectField("")}
 				/>
 
-				<hr className="mt-3" />
+				{/* <hr className="mt-3" />
 				<div className="relative flex flex-col w-full h-full">
 					<p className="text-base text-muted-foreground">// Journals</p>
 					{data.logs.length > 0 ? (
 						data.logs.map((log, index) => (
-							<div key={`projlog-${index}`}>
+							<div field={`projlog-${index}`}>
 								<EditableField
 									label="title"
 									value={log.title}
@@ -138,7 +138,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					<Button className="absolute top-0 right-0">
 						<PlusIcon className="w-4 h-4" />
 					</Button>
-				</div>
+				</div> */}
 				<Image
 					src={data.image}
 					alt={data.name}

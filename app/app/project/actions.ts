@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 import { createProject, updateProject } from "@/lib/projects/service";
+import extract from "@/lib/utils/form";
 
 const CreateProjectFormSchema = z.object({
 	name: z.string().nullish(),
@@ -22,14 +23,7 @@ export async function createProjectAction(
 	const session = await getSession();
 	if (!session.ok) return session;
 
-	const parse = CreateProjectFormSchema.safeParse({
-		name: data.get("name"),
-		description: data.get("description"),
-		codeURL: data.get("codeURL"),
-		demoURL: data.get("demoURL"),
-		updateDeclaration: data.get("updateDeclaration"),
-		aiDeclaration: data.get("aiDeclaration"),
-	});
+	const parse = CreateProjectFormSchema.safeParse(extract(data));
 	if (!parse.success) {
 		console.log("here");
 		return errParse(parse);
@@ -61,15 +55,7 @@ export async function updateProjectAction(
 	const session = await getSession();
 	if (!session.ok) return session;
 
-	const parse = UpdateProjectFormSchema.safeParse({
-		id: data.get("id"),
-		name: data.get("name"),
-		description: data.get("description"),
-		codeURL: data.get("codeURL"),
-		demoURL: data.get("demoURL"),
-		updateDeclaration: data.get("updateDeclaration"),
-		aiDeclaration: data.get("aiDeclaration"),
-	});
+	const parse = UpdateProjectFormSchema.safeParse(extract(data));
 	if (!parse.success) {
 		return errParse(parse);
 	}

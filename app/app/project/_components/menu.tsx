@@ -17,14 +17,16 @@ export default function Menu({ data }: ProjectsProps) {
 		createProjectAction,
 		null,
 	);
-	const [selected, setSelected] = useState<ProjectData | null>(null);
+	const [selectedId, setSelectedId] = useState<string | null>(null);
+
+	const selected = data.find((project) => project.id === selectedId) ?? null;
 
 	return (
 		<div className="w-full h-full">
 			{selected ? (
-				<ProjectEditor data={selected} back={() => setSelected(null)} />
+				<ProjectEditor data={selected} back={() => setSelectedId(null)} />
 			) : (
-				<div className="flex flex-row">
+				<div className="flex flex-col">
 					<div className="w-full flex justify-end p-2">
 						<form action={formAction}>
 							<Button type="submit">
@@ -33,7 +35,7 @@ export default function Menu({ data }: ProjectsProps) {
 							</Button>
 						</form>
 					</div>
-					<ProjectList data={data} onSelectProject={setSelected} />
+					<ProjectList data={data} onSelectProject={setSelectedId} />
 				</div>
 			)}
 		</div>

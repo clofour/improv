@@ -4,7 +4,7 @@ import { getSession } from "@/lib/auth/session";
 
 interface ProjectListProps {
 	data: ProjectData[];
-	onSelectProject: (project: ProjectData) => void;
+	onSelectProject: (projectId: string) => void;
 }
 
 export function ProjectList({ data, onSelectProject }: ProjectListProps) {
@@ -13,7 +13,7 @@ export function ProjectList({ data, onSelectProject }: ProjectListProps) {
 			{data.map((project: ProjectData, index: number) => (
 				<ProjItem
 					key={`projlistitem-${project.id || index}`}
-					view={() => onSelectProject(project)}
+					view={() => onSelectProject(project.id)}
 					{...project}
 				/>
 			))}

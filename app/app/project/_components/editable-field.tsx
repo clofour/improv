@@ -5,18 +5,19 @@ import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { updateProjectAction } from "../actions";
 
 interface EditableProps {
+	name: string;
 	label: string;
-	key: string;
 	value: string;
 	projectId: string;
 	isEditing: boolean;
 	onSelect: () => void;
+	onBlur: () => void;
 	url?: string;
 }
 
 export function EditableField({
+	name,
 	label,
-	key,
 	value,
 	projectId,
 	isEditing,
@@ -52,9 +53,13 @@ export function EditableField({
 				<form className="flex flex-row w-full" action={formAction}>
 					<input type="hidden" name="id" value={projectId} />
 					<input
-						name={key}
+						name={name}
 						defaultValue={value}
 						autoFocus
+						onBlur={(e) => {
+							e.target.form?.requestSubmit();
+							onSelect();
+						}}
 						className="w-full outline-none border border-border ml-0.5 px-1"
 					/>
 				</form>
