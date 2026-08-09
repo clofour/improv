@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowLeftIcon, PlusIcon } from "@phosphor-icons/react";
@@ -69,6 +71,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 				<EditableField
 					label="name"
+					key="name"
 					value={data.name}
 					isEditing={editing === "name"}
 					onSelect={() => selectField("name")}
@@ -76,13 +79,15 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 				<EditableField
 					label="description"
+					key="description"
 					value={data.description}
 					isEditing={editing === "description"}
 					onSelect={() => selectField("description")}
 				/>
 
 				<EditableField
-					label="url"
+					label="code_url"
+					key="code_url"
 					value={data.url}
 					isEditing={editing === "url"}
 					url={data.url}
@@ -91,6 +96,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 				<EditableField
 					label="demo"
+					key="demo_url"
 					value={data.demo}
 					isEditing={editing === "demo"}
 					url={data.demo}

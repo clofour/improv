@@ -1,7 +1,29 @@
 import { db } from "@/lib/db";
-import { CreateProjectInput, CreateProjectSchema } from "./schema";
+import {
+	CreateProjectInput,
+	CreateProjectSchema,
+	UpdateProjectInput,
+	UpdateProjectSchema,
+} from "./schema";
 import { project } from "@/lib/db/schema";
 import { err, errParse, ok, Result } from "@/lib/utils/result";
+import { and, eq, InferSelectModel } from "drizzle-orm";
+
+type SelectProject = InferSelectModel<typeof project>;
+
+export async function listProjects(
+	userId: string,
+): Promise<Result<SelectProject[]>> {
+	try {
+		const projects = await db
+			.select()
+			.from(project)
+			.where(eq(project.userId, userId));
+		return ok(projects);
+	} catch (e) {
+		return err(["Failed to create project"]);
+	}
+}
 
 export async function createProject(
 	userId: string,
@@ -19,6 +41,25 @@ export async function createProject(
 		await db.insert(project).values(data);
 		return ok(null);
 	} catch (e) {
-		return err(["Failed to create order"]);
+		return err(["Failed to create project"]);
+	}
+}
+
+export async function updateProject(
+	userId: string,
+	projectId: string,
+	input: UpdateProjectInput,
+): Promise<Result<null>> {
+	const parse = UpdateProjectSchema.safeParse(input);
+	if (!parse.success) return errParse(parse);
+
+	try {
+		await db
+			.update(project)
+			.set(parse.data)
+			.where(and(eq(project.userId, userId), eq(project.id, projectId)));
+		return ok(null);
+	} catch (e) {
+		return err(["Failed to update project"]);
 	}
 }

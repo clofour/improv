@@ -1,5 +1,5 @@
 import z from "zod";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
 import { project } from "@/lib/db/schema";
 
 export const CreateProjectSchema = createInsertSchema(project).omit({
@@ -7,5 +7,11 @@ export const CreateProjectSchema = createInsertSchema(project).omit({
 	userId: true,
 	createdAt: true,
 });
-
 export type CreateProjectInput = z.infer<typeof CreateProjectSchema>;
+
+export const UpdateProjectSchema = createUpdateSchema(project).omit({
+	id: true,
+	userId: true,
+	createdAt: true,
+});
+export type UpdateProjectInput = z.infer<typeof UpdateProjectSchema>;

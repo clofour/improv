@@ -6,12 +6,12 @@ export const project = pgTable("project", {
 	userId: text("user_id")
 		.notNull()
 		.references(() => user.id),
-	name: text("name").notNull(),
-	description: text("description").notNull(),
-	codeURL: text("code_url").notNull(),
-	demoURL: text("demo_url").notNull(),
-	updateDeclaration: text("update_declaration").notNull(),
-	aiDeclaration: text("ai_declaration").notNull(),
+	name: text("name"),
+	description: text("description"),
+	codeURL: text("code_url"),
+	demoURL: text("demo_url"),
+	updateDeclaration: text("update_declaration"),
+	aiDeclaration: text("ai_declaration"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

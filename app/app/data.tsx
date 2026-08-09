@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Vector2D } from "@/lib/utils/2d";
 import Shop from "./shop/page";
-import Project from "./project/project";
+import Projects from "./project/page";
 
 export interface DesktopItemData {
 	id: string;
@@ -12,12 +12,14 @@ export interface DesktopItemData {
 	draggable: boolean;
 }
 
-const data: DesktopItemData[] = [
+export type AppData = DesktopItemData[];
+
+const data: AppData = [
 	{
 		id: "projects",
 		name: "Projects",
 		logo: "/placeholder.webp",
-		app: <Project />,
+		app: <Projects />,
 		location: { x: 4, y: 5 },
 		draggable: true,
 	},

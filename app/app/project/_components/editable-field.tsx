@@ -1,9 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useActionState } from "react";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import { updateProjectAction } from "../actions";
 
 interface EditableProps {
 	label: string;
+	key: string;
 	value: string;
+	projectId: string;
 	isEditing: boolean;
 	onSelect: () => void;
 	url?: string;
@@ -11,11 +16,18 @@ interface EditableProps {
 
 export function EditableField({
 	label,
+	key,
 	value,
+	projectId,
 	isEditing,
 	onSelect,
 	url,
 }: EditableProps) {
+	const [state, formAction, pending] = useActionState(
+		updateProjectAction,
+		null,
+	);
+
 	const handleClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		onSelect();
@@ -37,11 +49,10 @@ export function EditableField({
 		>
 			<p className="text-accent">"{label}": </p>
 			{isEditing ? (
-				<form
-					className="flex flex-row w-full"
-					onSubmit={(e) => e.preventDefault()}
-				>
+				<form className="flex flex-row w-full" action={formAction}>
+					<input type="hidden" name="id" value={projectId} />
 					<input
+						name={key}
 						defaultValue={value}
 						autoFocus
 						className="w-full outline-none border border-border ml-0.5 px-1"
