@@ -13,7 +13,7 @@ export default async function Projects() {
 		id: project.id,
 		name: project.name ?? "",
 		description: project.description ?? "",
-		image: "placeholder.webp",
+		image: "/placeholder.webp",
 		codeURL: project.codeURL ?? "",
 		demoURL: project.demoURL ?? "",
 		createdAt: project.createdAt.toISOString(),

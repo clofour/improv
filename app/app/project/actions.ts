@@ -7,12 +7,12 @@ import z from "zod";
 import { createProject, updateProject } from "@/lib/projects/service";
 
 const CreateProjectFormSchema = z.object({
-	name: z.string(),
-	description: z.string(),
-	codeURL: z.string(),
-	demoURL: z.string(),
-	updateDeclaration: z.string(),
-	aiDeclaration: z.string(),
+	name: z.string().nullish(),
+	description: z.string().nullish(),
+	codeURL: z.string().nullish(),
+	demoURL: z.string().nullish(),
+	updateDeclaration: z.string().nullish(),
+	aiDeclaration: z.string().nullish(),
 });
 
 export async function createProjectAction(
@@ -31,6 +31,7 @@ export async function createProjectAction(
 		aiDeclaration: data.get("aiDeclaration"),
 	});
 	if (!parse.success) {
+		console.log("here");
 		return errParse(parse);
 	}
 
