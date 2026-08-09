@@ -11,7 +11,7 @@ export default async function Projects() {
 
 	const data = result.data.map((project) => ({
 		id: project.id,
-		name: project.name ?? "",
+		name: project.name ?? "My Project",
 		description: project.description ?? "",
 		image: "/placeholder.webp",
 		codeURL: project.codeURL ?? "",

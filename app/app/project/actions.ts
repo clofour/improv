@@ -17,7 +17,7 @@ const CreateProjectFormSchema = z.object({
 });
 
 export async function createProjectAction(
-	_prev: Result<null> | null,
+	_prev: Result<string> | null,
 	data: FormData,
 ) {
 	const session = await getSession();

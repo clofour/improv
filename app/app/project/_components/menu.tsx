@@ -1,12 +1,13 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { ProjectData } from "../data";
 import { ProjectList } from "./project-list";
 import { ProjectEditor } from "./editor";
 import { Button } from "@/components/ui/button";
 import { createProjectAction } from "../actions";
 import { PlusIcon } from "@phosphor-icons/react";
+import { stat } from "fs";
 
 interface ProjectsProps {
 	data: ProjectData[];
@@ -18,8 +19,13 @@ export default function Menu({ data }: ProjectsProps) {
 		null,
 	);
 	const [selectedId, setSelectedId] = useState<string | null>(null);
-
 	const selected = data.find((project) => project.id === selectedId) ?? null;
+
+	useEffect(() => {
+		if (state?.ok) {
+			setSelectedId(state.data);
+		}
+	}, [state]);
 
 	return (
 		<div className="w-full h-full">

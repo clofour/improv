@@ -44,7 +44,7 @@ export async function getProject(
 export async function createProject(
 	userId: string,
 	input: CreateProjectInput,
-): Promise<Result<null>> {
+): Promise<Result<string>> {
 	const parse = CreateProjectSchema.safeParse(input);
 	if (!parse.success) return errParse(parse);
 
@@ -54,8 +54,11 @@ export async function createProject(
 	};
 
 	try {
-		await db.insert(project).values(data);
-		return ok(null);
+		const [result] = await db
+			.insert(project)
+			.values(data)
+			.returning({ id: project.id });
+		return ok(result.id);
 	} catch (e) {
 		return err(["Failed to create project"]);
 	}

@@ -22,6 +22,7 @@ export function EditableField({
 	projectId,
 	isEditing,
 	onSelect,
+	onBlur,
 	url,
 }: EditableProps) {
 	const [state, formAction, pending] = useActionState(
@@ -56,9 +57,14 @@ export function EditableField({
 						name={name}
 						defaultValue={value}
 						autoFocus
+						onKeyDown={(e) => {
+							if (e.key === "Enter") {
+								e.currentTarget.blur();
+							}
+						}}
 						onBlur={(e) => {
 							e.target.form?.requestSubmit();
-							onSelect();
+							onBlur();
 						}}
 						className="w-full outline-none border border-border ml-0.5 px-1"
 					/>
