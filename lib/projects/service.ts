@@ -15,13 +15,29 @@ export async function listProjects(
 	userId: string,
 ): Promise<Result<SelectProject[]>> {
 	try {
-		const projects = await db
+		const result = await db
 			.select()
 			.from(project)
 			.where(eq(project.userId, userId));
-		return ok(projects);
+		return ok(result);
 	} catch (e) {
 		return err(["Failed to create project"]);
+	}
+}
+
+export async function getProject(
+	userId: string,
+	projectId: string,
+): Promise<Result<SelectProject>> {
+	try {
+		const [result] = await db
+			.select()
+			.from(project)
+			.where(and(eq(project.userId, userId), eq(project.id, projectId)))
+			.limit(1);
+		return ok(result);
+	} catch (e) {
+		return err(["Failed to delete project"]);
 	}
 }
 
@@ -61,5 +77,19 @@ export async function updateProject(
 		return ok(null);
 	} catch (e) {
 		return err(["Failed to update project"]);
+	}
+}
+
+export async function deleteProject(
+	userId: string,
+	projectId: string,
+): Promise<Result<null>> {
+	try {
+		await db
+			.delete(project)
+			.where(and(eq(project.userId, userId), eq(project.id, projectId)));
+		return ok(null);
+	} catch (e) {
+		return err(["Failed to delete project"]);
 	}
 }
