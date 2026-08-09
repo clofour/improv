@@ -88,18 +88,18 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 				<EditableField
 					label="code_url"
 					key="code_url"
-					value={data.url}
+					value={data.codeURL}
 					isEditing={editing === "url"}
-					url={data.url}
+					url={data.codeURL}
 					onSelect={() => selectField("url")}
 				/>
 
 				<EditableField
 					label="demo"
 					key="demo_url"
-					value={data.demo}
+					value={data.demoURL}
 					isEditing={editing === "demo"}
-					url={data.demo}
+					url={data.demoURL}
 					onSelect={() => selectField("demo")}
 				/>
 

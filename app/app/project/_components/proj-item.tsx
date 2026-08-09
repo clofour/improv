@@ -8,12 +8,12 @@ import { Discounted } from "./tags";
 
 export default function ProjItem({
 	id,
-	timestamp,
+	createdAt: timestamp,
 	name,
 	description,
 	image,
-	url,
-	demo,
+	codeURL: url,
+	demoURL: demo,
 	logs,
 	view,
 }: ProjectData & { view: () => void }) {
