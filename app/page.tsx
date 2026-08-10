@@ -12,7 +12,7 @@ export default function Home() {
 		<div className="min-w-screen min-h-screen">
 			<Navbar />
 			<main className="flex flex-col flex-1 items-center justify-center">
-				<div className="-z-10 absolute inset-0 bg-[linear-gradient(180deg,oklch(0.18_0.027_238)_0%,oklch(0.17_0.027_240)_38%,oklch(0.13_0.022_240)_72%,oklch(0.11_0.016_230)_100%)]" />
+				<div className="-z-10 fixed inset-0 bg-[linear-gradient(180deg,oklch(0.18_0.027_238)_0%,oklch(0.17_0.027_240)_38%,oklch(0.13_0.022_240)_72%,oklch(0.11_0.016_230)_100%)]" />
 				<ColdEffectClient mode={EffectMode.Background} />
 
 				<Hero />

@@ -4,15 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Panel from "@/components/panel";
 import Terminal from "@/components/terminal";
 import NameSection from "./name-section";
+import { Vector2D } from "@/lib/utils/2d";
 
 interface Path {
 	id: string;
 	d: string;
-}
-
-interface Point {
-	x: number;
-	y: number;
 }
 
 const columns = [
@@ -72,7 +68,7 @@ const getEdgePosition = (
 	element: HTMLElement,
 	reference: SVGSVGElement,
 	side: "left" | "right",
-): Point => {
+): Vector2D => {
 	const elementBounds = element.getBoundingClientRect();
 	const referenceBounds = reference.getBoundingClientRect();
 
@@ -150,7 +146,7 @@ export default function Flow() {
 		<NameSection
 			id="how"
 			title="how it works"
-			description="find something that interests or deeply annoys you, whether that's overpriced PaaS, missing features or something else. build a tool to fix it, ship your project and get Uptime + discounts. profit!"
+			description="find a problem deeply annoys you: overpriced PaaS, missing features, lack of customization or something else. build a tool to fix it, ship your project and get Uptime + discounts."
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
 				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
