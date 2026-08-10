@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Vector2D } from "@/lib/utils/2d";
-import Shop from "./shop/page";
 import Projects from "./project/page";
+import Shop from "./shop/page";
 
 export interface DesktopItemData {
 	id: string;

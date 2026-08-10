@@ -1,13 +1,13 @@
+import { and, eq, type InferSelectModel } from "drizzle-orm";
 import { db } from "@/lib/db";
+import { project } from "@/lib/db/schema";
+import { err, errParse, ok, type Result } from "@/lib/utils/result";
 import {
-	CreateProjectInput,
+	type CreateProjectInput,
 	CreateProjectSchema,
-	UpdateProjectInput,
+	type UpdateProjectInput,
 	UpdateProjectSchema,
 } from "./schema";
-import { project } from "@/lib/db/schema";
-import { err, errParse, ok, Result } from "@/lib/utils/result";
-import { and, eq, InferSelectModel } from "drizzle-orm";
 
 type SelectProject = InferSelectModel<typeof project>;
 

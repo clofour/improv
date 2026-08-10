@@ -1,5 +1,5 @@
-import z from "zod";
 import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
+import type z from "zod";
 import { project } from "@/lib/db/schema";
 
 export const CreateProjectSchema = createInsertSchema(project).omit({

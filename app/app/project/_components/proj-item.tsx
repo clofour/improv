@@ -1,9 +1,9 @@
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import Panel from "@/components/panel";
 import { Button } from "@/components/ui/button";
-import { ProjectData } from "../data";
+import type { ProjectData } from "../data";
 import { relativeTime } from "./editor";
-import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { Discounted } from "./tags";
 
 export default function ProjItem({

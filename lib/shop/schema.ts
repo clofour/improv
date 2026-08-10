@@ -1,5 +1,5 @@
-import z from "zod";
 import { createInsertSchema } from "drizzle-zod";
+import type z from "zod";
 import { order } from "@/lib/db/schema";
 
 export const CreateOrderSchema = createInsertSchema(order).omit({

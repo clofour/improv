@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+import type { AppData } from "../data";
 import Background from "./background";
 import { useDesktop } from "./desktop";
 import File, { COL_SIZE, ROW_SIZE } from "./file";
 import Window from "./window";
-import { useMediaQuery } from "react-responsive";
-import { AppData } from "../data";
 
 interface ScreenProps {
 	data: AppData;

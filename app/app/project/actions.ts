@@ -1,11 +1,11 @@
 "use server";
 
-import { errParse, ok, Result } from "@/lib/utils/result";
-import { getSession } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import z from "zod";
+import { getSession } from "@/lib/auth/session";
 import { createProject, updateProject } from "@/lib/projects/service";
 import extract from "@/lib/utils/form";
+import { errParse, ok, type Result } from "@/lib/utils/result";
 
 const CreateProjectFormSchema = z.object({
 	name: z.string().nullish(),

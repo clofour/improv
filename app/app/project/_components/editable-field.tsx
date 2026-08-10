@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useActionState } from "react";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import type React from "react";
+import { useActionState } from "react";
 import { updateProjectAction } from "../actions";
 
 interface EditableProps {
