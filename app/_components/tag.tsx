@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/class";
 import { ReactNode } from "react";
 
 interface TagProps {
-	className: string;
+	className?: string;
 	children: ReactNode;
 }
 
