@@ -19,15 +19,15 @@ export default function Hero() {
 					</h1>
 					<div className="space-y-4 text-muted-foreground text-base font-mono">
 						<p>
-							{">"} Do you know what happens under the hood when you deploy on
+							do you know what happens under the hood when you deploy on
 							services like Vercel or Railway, or spin up a VM on a cloud
-							provider? Do you <span className="italic">really</span>?
+							provider? do you <span className="italic">really</span>?
 						</p>
 
 						<p>
-							{">"} Because it's 2030. Temperatures dropped out of nowhere. No
+							because it's 2030. temperatures dropped out of nowhere. no
 							explanations, no managed services, no cloud providers and no one
-							coming to help. If you want compute, comms, or storage, you build
+							coming to help. if you want compute, comms, or storage, you build
 							it yourself.
 						</p>
 					</div>
