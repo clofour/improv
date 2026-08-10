@@ -1,7 +1,7 @@
 "use server";
 
 import { errParse, ok, Result } from "@/lib/utils/result";
-import { getSession } from "@/lib/auth/session";
+import { getSession } from "@/lib/auth/utils";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 import { createProject, updateProject } from "@/lib/projects/service";
