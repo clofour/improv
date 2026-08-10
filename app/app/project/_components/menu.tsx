@@ -7,7 +7,6 @@ import { ProjectEditor } from "./editor";
 import { Button } from "@/components/ui/button";
 import { createProjectAction } from "../actions";
 import { PlusIcon } from "@phosphor-icons/react";
-import { stat } from "fs";
 
 interface ProjectsProps {
 	data: ProjectData[];
