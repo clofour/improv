@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Panel from "@/components/panel";
 import Terminal from "@/components/terminal";
+import type { Vector2D } from "@/lib/utils/2d";
 import NameSection from "./name-section";
-import { Vector2D } from "@/lib/utils/2d";
 
 interface Path {
 	id: string;

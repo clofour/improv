@@ -1,12 +1,12 @@
 "use client";
 
+import { useState } from "react";
+import { calculateBasePrice, calculateDiscount } from "@/lib/helpers/discount";
+import { ProjectType } from "@/lib/helpers/project";
+import { clamp } from "@/lib/utils/general";
 import NameSection from "./name-section";
 import PrizeCalculator from "./prize-calculator";
 import { ShopItem } from "./shop-item";
-import { calculateBasePrice, calculateDiscount } from "@/lib/helpers/discount";
-import { useState } from "react";
-import { clamp } from "@/lib/utils/general";
-import { ProjectType } from "@/lib/helpers/project";
 
 export const items = [
 	{

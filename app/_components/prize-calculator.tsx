@@ -1,4 +1,4 @@
-import { Slider } from "@/components/ui/slider";
+import Terminal from "@/components/terminal";
 import {
 	Select,
 	SelectContent,
@@ -7,7 +7,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import Terminal from "@/components/terminal";
+import { Slider } from "@/components/ui/slider";
 import { projects } from "./prizes";
 import Tag from "./tag";
 

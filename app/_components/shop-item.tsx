@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Terminal from "@/components/terminal";
 import { cn } from "@/lib/utils/class";
-import Tag from "./tag";
 import { projects } from "./prizes";
+import Tag from "./tag";
 
 interface ShopItemPriceProps {
 	className: string;
