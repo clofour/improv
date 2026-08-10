@@ -21,7 +21,7 @@ export default function FAQ() {
 		{
 			id: "eligibility",
 			q: "Am I eligible?",
-			a: "You are eligible participate if you are between the ages of 13 to 18 inclusive.",
+			a: "You are eligible to participate if you are between the ages of 13 to 18 inclusive.",
 		},
 		{
 			id: "definition",

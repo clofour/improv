@@ -17,8 +17,6 @@ export default function ProjItem({
 	logs,
 	view,
 }: ProjectData & { view: () => void }) {
-	console.log(createdAt);
-
 	return (
 		<Panel className="flex flex-row w-full px-2 py-1 items-center">
 			<Image

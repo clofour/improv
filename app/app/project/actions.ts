@@ -25,7 +25,6 @@ export async function createProjectAction(
 
 	const parse = CreateProjectFormSchema.safeParse(extract(data));
 	if (!parse.success) {
-		console.log("here");
 		return errParse(parse);
 	}
 

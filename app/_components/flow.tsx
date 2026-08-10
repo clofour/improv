@@ -128,7 +128,6 @@ export default function Flow() {
 			}
 
 			setPaths(updatedPaths);
-			console.log(updatedPaths);
 		};
 
 		const scheduleUpdate = () => {

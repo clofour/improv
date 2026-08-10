@@ -72,8 +72,6 @@ export async function updateProject(
 	const parse = UpdateProjectSchema.safeParse(input);
 	if (!parse.success) return errParse(parse);
 
-	console.log(parse.data);
-
 	try {
 		await db
 			.update(project)
