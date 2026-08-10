@@ -1,128 +1,78 @@
-import Image from "next/image";
-import Terminal from "@/components/terminal";
-import { cn } from "@/lib/utils/class";
+"use client";
+
 import NameSection from "./name-section";
+import PrizeCalculator from "./prize-calculator";
+import { ShopItem } from "./shop-item";
+import { calculateBasePrice, calculateDiscount } from "@/lib/helpers/discount";
+import { useState } from "react";
+import { clamp } from "@/lib/utils/general";
+import { ProjectType } from "@/lib/helpers/project";
 
-interface ShopItemPriceProps {
-	className: string;
-	type: string;
-	price: number;
-}
-
-interface ShopItemProps {
-	name: string;
-	description: string;
-	image: string;
-	price: number;
-	discountPrice: number;
-	discountExamples: string[];
-}
-
-const items = [
+export const items = [
 	{
 		name: "Minecraft",
 		description: "the kids yearn for the mines",
 		image: "/shop/minecraft.png",
-		price: 70,
-		discountPrice: 60,
-		discountExamples: ["Minecraft Server Installer", "Managed Minecraft"],
+		basePrice: calculateBasePrice(35),
+		tags: ["games"],
 	},
 	{
 		name: "ePaper Display",
 		description: "monitoring, readily available on your desk",
 		image: "/shop/epaper-display.png",
-		price: 100,
-		discountPrice: 80,
-		discountExamples: [
-			"Monitoring Dashboard",
-			"Automatic Deployment Rollbacks",
-		],
+		basePrice: calculateBasePrice(50),
+		tags: ["monitoring"],
 	},
 	{
 		name: "Cloud Credits",
 		description: "you'll need these, until you don't",
 		image: "/shop/cloud-credits.png",
-		price: 20,
-		discountPrice: 16,
-		discountExamples: ["Platform as a Service", "CI/CD Pipeline"],
+		basePrice: calculateBasePrice(25),
+		tags: ["hosting"],
 	},
 	{
 		name: "'Works on my machine' cup",
 		description: "coffee first, dev never",
 		image: "/shop/mug.png",
-		price: 100,
-		discountPrice: 80,
-		discountExamples: ["Image Builder", "IaC Templates"],
+		basePrice: calculateBasePrice(10),
+		tags: ["reproducibility"],
 	},
 ];
 
-function ShopItemPrice({ className, type, price }: ShopItemPriceProps) {
-	return (
-		<div className={cn("p-3", className)}>
-			<div className="text-xs text-muted-foreground uppercase">{type}</div>
-			<div className="text-3xl font-heading font-bold">{price}</div>
-		</div>
-	);
-}
-
-function ShopItem({
-	name,
-	description,
-	image,
-	price,
-	discountPrice,
-	discountExamples,
-}: ShopItemProps) {
-	return (
-		<Terminal className="flex flex-col" title="Shop Item">
-			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
-				<Image
-					src={image}
-					alt={name}
-					width={400}
-					height={300}
-					className="w-full h-full object-contain p-5"
-				/>
-			</div>
-
-			<div className="flex flex-col flex-1 gap-5 p-5">
-				<div className="flex flex-col gap-2">
-					<p className="text-xl font-heading font-bold">{name}</p>
-					<p className="text-sm text-muted-foreground">{description}</p>
-				</div>
-				<div className="flex flex-col gap-5 mt-auto">
-					<div className="grid grid-cols-2 border border-border">
-						<ShopItemPrice
-							className="border-r border-border"
-							type="base"
-							price={price}
-						/>
-						<ShopItemPrice
-							className="bg-primary/10"
-							type="relevant"
-							price={discountPrice}
-						/>
-					</div>
-					<div className="flex flex-row flex-wrap items-center gap-2">
-						<span className="text-xs text-muted-foreground uppercase whitespace-nowrap">
-							Example Projects:
-						</span>
-						{discountExamples.map((example) => (
-							<span
-								key={example}
-								className="px-2 py-1 bg-muted/50 border border-border text-xs text-muted-foreground"
-							>
-								{example}
-							</span>
-						))}
-					</div>
-				</div>
-			</div>
-		</Terminal>
-	);
-}
+export const projects = [
+	{
+		value: "paas",
+		label: "PaaS",
+		type: ProjectType.Advanced,
+		tags: ["hosting"],
+	},
+	{
+		value: "minecraft",
+		label: "Managed Minecraft",
+		type: ProjectType.Advanced,
+		tags: ["games", "hosting"],
+	},
+	{
+		value: "homelab",
+		label: "Homelab Setup Manifests",
+		type: ProjectType.Beginner,
+		tags: ["reproducibility"],
+	},
+	{
+		value: "orchestrator",
+		label: "Container Orchestrator",
+		type: ProjectType.Advanced,
+		tags: ["hosting"],
+	},
+];
 
 export default function Prizes() {
+	const [projectId, setProjectId] = useState("paas");
+	const [length, setLength] = useState(20);
+
+	const project = projects.find((p) => p.value === projectId) ?? projects[0];
+	const discount = calculateDiscount(project.type, length);
+
 	return (
 		<NameSection
 			id="prizes"
@@ -150,9 +100,20 @@ export default function Prizes() {
 			<div className="flex flex-col gap-3">
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 					{items.map((item) => (
-						<ShopItem key={item.name} {...item} />
+						<ShopItem
+							key={item.name}
+							discountPrice={clamp(item.basePrice - discount, 0, 10000)}
+							projectId={projectId}
+							{...item}
+						/>
 					))}
 				</div>
+				<PrizeCalculator
+					projectId={projectId}
+					setProjectId={setProjectId}
+					length={length}
+					setLength={setLength}
+				/>
 				<p className="text-sm text-muted-foreground">...tip of the iceberg</p>
 			</div>
 		</NameSection>
