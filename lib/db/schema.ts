@@ -1,6 +1,20 @@
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
+export const project = pgTable("project", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	userId: text("user_id")
+		.notNull()
+		.references(() => user.id),
+	name: text("name"),
+	description: text("description"),
+	codeURL: text("code_url"),
+	demoURL: text("demo_url"),
+	updateDeclaration: text("update_declaration"),
+	aiDeclaration: text("ai_declaration"),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const order = pgTable("order", {
 	id: uuid("id").defaultRandom().primaryKey(),
 	userId: text("user_id")

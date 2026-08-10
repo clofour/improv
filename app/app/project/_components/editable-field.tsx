@@ -1,21 +1,35 @@
-import React from "react";
+"use client";
+
+import React, { useActionState } from "react";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import { updateProjectAction } from "../actions";
 
 interface EditableProps {
+	name: string;
 	label: string;
 	value: string;
+	projectId: string;
 	isEditing: boolean;
 	onSelect: () => void;
+	onBlur: () => void;
 	url?: string;
 }
 
 export function EditableField({
+	name,
 	label,
 	value,
+	projectId,
 	isEditing,
 	onSelect,
+	onBlur,
 	url,
 }: EditableProps) {
+	const [state, formAction, pending] = useActionState(
+		updateProjectAction,
+		null,
+	);
+
 	const handleClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		onSelect();
@@ -37,13 +51,21 @@ export function EditableField({
 		>
 			<p className="text-accent">"{label}": </p>
 			{isEditing ? (
-				<form
-					className="flex flex-row w-full"
-					onSubmit={(e) => e.preventDefault()}
-				>
+				<form className="flex flex-row w-full" action={formAction}>
+					<input type="hidden" name="id" value={projectId} />
 					<input
+						name={name}
 						defaultValue={value}
 						autoFocus
+						onKeyDown={(e) => {
+							if (e.key === "Enter") {
+								e.currentTarget.blur();
+							}
+						}}
+						onBlur={(e) => {
+							e.target.form?.requestSubmit();
+							onBlur();
+						}}
 						className="w-full outline-none border border-border ml-0.5 px-1"
 					/>
 				</form>

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowLeftIcon, PlusIcon } from "@phosphor-icons/react";
@@ -42,14 +44,6 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 	const [imView, setImView] = useState<boolean>(false);
 	const [editing, setEditing] = useState<string>("");
 
-	useEffect(() => {
-		const disable = () => setEditing("");
-
-		window.addEventListener("click", disable);
-
-		return () => window.removeEventListener("click", disable);
-	}, []);
-
 	const selectField = (field: string) => {
 		setImView(false);
 		setEditing(field);
@@ -68,41 +62,53 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 				<ReadOnlyField label="id" value={data.id} />
 
 				<EditableField
+					name="name"
 					label="name"
 					value={data.name}
+					projectId={data.id}
 					isEditing={editing === "name"}
 					onSelect={() => selectField("name")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
+					name="description"
 					label="description"
 					value={data.description}
+					projectId={data.id}
 					isEditing={editing === "description"}
 					onSelect={() => selectField("description")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
-					label="url"
-					value={data.url}
-					isEditing={editing === "url"}
-					url={data.url}
-					onSelect={() => selectField("url")}
+					name="codeURL"
+					label="code_url"
+					value={data.codeURL}
+					projectId={data.id}
+					isEditing={editing === "code_url"}
+					url={data.codeURL}
+					onSelect={() => selectField("code_url")}
+					onBlur={() => selectField("")}
 				/>
 
 				<EditableField
-					label="demo"
-					value={data.demo}
-					isEditing={editing === "demo"}
-					url={data.demo}
-					onSelect={() => selectField("demo")}
+					name="demoURL"
+					label="demo_url"
+					value={data.demoURL}
+					projectId={data.id}
+					isEditing={editing === "demo_url"}
+					url={data.demoURL}
+					onSelect={() => selectField("demo_url")}
+					onBlur={() => selectField("")}
 				/>
 
-				<hr className="mt-3" />
+				{/* <hr className="mt-3" />
 				<div className="relative flex flex-col w-full h-full">
 					<p className="text-base text-muted-foreground">// Journals</p>
 					{data.logs.length > 0 ? (
 						data.logs.map((log, index) => (
-							<div key={`projlog-${index}`}>
+							<div field={`projlog-${index}`}>
 								<EditableField
 									label="title"
 									value={log.title}
@@ -132,7 +138,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					<Button className="absolute top-0 right-0">
 						<PlusIcon className="w-4 h-4" />
 					</Button>
-				</div>
+				</div> */}
 				<Image
 					src={data.image}
 					alt={data.name}

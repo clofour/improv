@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import data from "../data";
 import Background from "./background";
 import { useDesktop } from "./desktop";
 import File, { COL_SIZE, ROW_SIZE } from "./file";
 import Window from "./window";
 import { useMediaQuery } from "react-responsive";
+import { AppData } from "../data";
 
-export default function Screen() {
+interface ScreenProps {
+	data: AppData;
+}
+
+export default function Screen({ data }: ScreenProps) {
 	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
 	const containerRef = useRef<HTMLDivElement | null>(null);

@@ -8,8 +8,8 @@ export default function Proj({
 	name,
 	description,
 	image,
-	url,
-	demo,
+	codeURL: url,
+	demoURL: demo,
 	logs,
 }: ProjectData) {
 	return <p>Proj</p>;

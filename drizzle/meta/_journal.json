@@ -22,6 +22,20 @@
 			"when": 1786209339844,
 			"tag": "0002_green_hannibal_king",
 			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "7",
+			"when": 1786260849999,
+			"tag": "0003_elite_garia",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1786267765284,
+			"tag": "0004_closed_skin",
+			"breakpoints": true
 		}
 	]
 }

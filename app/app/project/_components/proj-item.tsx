@@ -8,15 +8,17 @@ import { Discounted } from "./tags";
 
 export default function ProjItem({
 	id,
-	timestamp,
+	createdAt,
 	name,
 	description,
 	image,
-	url,
-	demo,
+	codeURL,
+	demoURL,
 	logs,
 	view,
 }: ProjectData & { view: () => void }) {
+	console.log(createdAt);
+
 	return (
 		<Panel className="flex flex-row w-full px-2 py-1 items-center">
 			<Image
@@ -34,7 +36,7 @@ export default function ProjItem({
 				<p className="text-sm text-muted-foreground mt-0.5 w-fit">
 					{description}
 				</p>
-				<p className="text-sm text-accent">{relativeTime(Number(timestamp))}</p>
+				<p className="text-sm text-accent">{relativeTime(createdAt)}</p>
 				<Button className="w-fit mt-1" onClick={view}>
 					<ArrowSquareOutIcon className="w-4 h-4 mr-1" />
 					View Project

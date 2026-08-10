@@ -7,24 +7,24 @@ export interface ProjectLog {
 
 export interface ProjectData {
 	id: string;
-	timestamp: string;
 	name: string;
 	description: string;
 	image: string;
-	url: string;
-	demo: string;
+	codeURL: string;
+	demoURL: string;
+	createdAt: string;
 	logs: ProjectLog[];
 }
 
 const data: ProjectData[] = [
 	{
 		id: "proj1",
-		timestamp: "1021020110",
+		createdAt: "1021020110",
 		name: "Improv YSWS",
 		description: "A provisioning service focused YSWS",
 		image: "/shop/mug.png",
-		url: "https://github.com/clofour/improv",
-		demo: "https://improv-silk.vercel.app/",
+		codeURL: "https://github.com/clofour/improv",
+		demoURL: "https://improv-silk.vercel.app/",
 		logs: [],
 	},
 ];

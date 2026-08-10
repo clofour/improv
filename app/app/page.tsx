@@ -4,12 +4,13 @@ import ColdOverlay from "./_components/cold-overlay";
 import CRTOverlay from "./_components/crt-overlay";
 import Screen from "./_components/screen";
 import { EffectMode } from "@/components/effect-mode";
+import data from "./data";
 
 export default function App() {
 	return (
 		<div className="w-screen h-screen overflow-hidden">
 			<Bezel>
-				<Screen />
+				<Screen data={data} />
 				<CRTOverlay />
 				<ColdOverlay />
 			</Bezel>
