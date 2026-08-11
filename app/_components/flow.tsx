@@ -58,7 +58,7 @@ const columns = [
 	[
 		{
 			id: "shop",
-			title: "Redeem prizes",
+			title: "redeem prizes",
 			description:
 				"spend your Uptime in the shop. if your project is relevant to the shop item, you can use your discount vouchers on it.",
 			links: [],
