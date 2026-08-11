@@ -17,7 +17,7 @@ export default async function Users({
 	const authorization = await checkPermissions(session.data.user.id, {
 		user: ["list"],
 	});
-	if (!authorization) return null;
+	if (!authorization.ok || !authorization.data) return null;
 
 	const query = String(searchParams.q ?? "");
 	const page = Number(searchParams.page ?? 1);

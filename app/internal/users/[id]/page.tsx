@@ -19,7 +19,7 @@ export default async function User({ params: paramsPromise }: UserProps) {
 	const authorization = await checkPermissions(session.data.user.id, {
 		user: ["get"],
 	});
-	if (!authorization) return null;
+	if (!authorization.ok || !authorization.data) return null;
 
 	const result = await getUser(userId);
 	if (!result.ok) return null;
