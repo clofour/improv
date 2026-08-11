@@ -15,23 +15,23 @@ const columns = [
 	[
 		{
 			id: "need",
-			title: "Identify a real need",
+			title: "identify a real need",
 			description:
-				"Look around you. What annoys you on a daily basis? Expensive hosting? Unreliable services? Missing features?",
+				"look around you. what annoys you on a daily basis? expensive hosting? unreliable services? missing features?",
 			links: ["existing", "new"],
 		},
 	],
 	[
 		{
 			id: "new",
-			title: "Create your own provisioning tools",
+			title: "create your own provisioning tools",
 			description:
-				"Container orchestrators, image builders, CI/CD pipelines, PaaS, game hosting services... the sky's the limit!",
+				"container orchestrators, image builders, CI/CD pipelines, PaaS, game hosting services... the sky's the limit!",
 			links: ["ship"],
 		},
 		{
 			id: "existing",
-			title: "Get started with existing provisioning tools",
+			title: "get started with existing provisioning tools",
 			description:
 				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
 			links: ["ship"],
@@ -40,18 +40,18 @@ const columns = [
 	[
 		{
 			id: "ship",
-			title: "Ship a working project",
+			title: "ship a working project",
 			description:
-				"Create a demo, add a README and make sure your project meets guidelines before submitting it.",
+				"create a demo, add a README and make sure your project meets guidelines before submitting it.",
 			links: ["uptime"],
 		},
 	],
 	[
 		{
 			id: "uptime",
-			title: "Receive Uptime and discounts",
+			title: "receive Uptime and discounts",
 			description:
-				"The bigger and the more complex your project is, the more Uptime you earn.",
+				"the bigger and the more complex your project is, the more Uptime you earn.",
 			links: ["shop"],
 		},
 	],
@@ -60,7 +60,7 @@ const columns = [
 			id: "shop",
 			title: "Redeem prizes",
 			description:
-				"Spend your Uptime in the Shop. If your project is relevant to the shop item, you can use your discount vouchers on it.",
+				"spend your Uptime in the shop. if your project is relevant to the shop item, you can use your discount vouchers on it.",
 			links: [],
 		},
 	],
