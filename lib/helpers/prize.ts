@@ -16,6 +16,14 @@ const PROJECT_RATE = {
 	},
 };
 
+export function calculateBaseReward(type: ProjectType, length: number) {
+	return PROJECT_RATE[type].base * length;
+}
+
+export function calculateDiscountReward(type: ProjectType, length: number) {
+	return PROJECT_RATE[type].discount * length;
+}
+
 export function calculateBasePrice(value: number) {
 	return value * CURRENCY_DOLLAR_RATE;
 }

@@ -41,8 +41,6 @@ export function ShopItem({
 	const project = projects.find((p) => p.value === projectId) ?? projects[0];
 	const isDiscount = project.tags.some((tag) => tags.includes(tag));
 
-	const activeStyling = "bg-primary/10";
-
 	return (
 		<Terminal className="flex flex-col" title="Shop Item">
 			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
@@ -63,12 +61,12 @@ export function ShopItem({
 				<div className="flex flex-col gap-5 mt-auto">
 					<div className="grid grid-cols-2 border border-border">
 						<ShopItemPrice
-							className={`border-r border-border ${isDiscount ? "" : activeStyling}`}
+							className={`border-r border-border ${isDiscount ? "" : "bg-primary/10"}`}
 							type="base"
 							price={basePrice}
 						/>
 						<ShopItemPrice
-							className={`${isDiscount ? activeStyling : ""}`}
+							className={`${isDiscount ? "bg-primary/10" : ""}`}
 							type="relevant"
 							price={discountPrice}
 						/>

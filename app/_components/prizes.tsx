@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { calculateBasePrice, calculateDiscount } from "@/lib/helpers/discount";
+import { calculateBasePrice, calculateDiscount } from "@/lib/helpers/prize";
 import { ProjectType } from "@/lib/helpers/project";
 import { clamp } from "@/lib/utils/general";
 import NameSection from "./name-section";
@@ -62,7 +62,7 @@ export const projects = [
 		value: "orchestrator",
 		label: "Container Orchestrator",
 		type: ProjectType.Advanced,
-		tags: ["hosting"],
+		tags: ["hosting", "reproducibility"],
 	},
 ];
 

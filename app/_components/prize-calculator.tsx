@@ -8,8 +8,13 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { projects } from "./prizes";
+import { items, projects } from "./prizes";
 import Tag from "./tag";
+import {
+	calculateBaseReward,
+	calculateDiscountReward,
+} from "@/lib/helpers/prize";
+import { Separator } from "@/components/ui/separator";
 
 interface PrizeDemoProps {
 	projectId: string;
@@ -27,7 +32,7 @@ export default function PrizeCalculator({
 	const project = projects.find((p) => p.value === projectId) ?? projects[0];
 
 	return (
-		<Terminal title="Demo">
+		<Terminal title="Calculator">
 			<div className="flex flex-col p-2 gap-4">
 				<div className="flex flex-row justify-center items-center gap-4">
 					<Slider
@@ -68,10 +73,20 @@ export default function PrizeCalculator({
 
 					<div>{project.type}</div>
 					<div className="flex flex-row gap-2">
-						{project.tags.map((example) => (
-							<Tag key={example}>{example}</Tag>
+						{project.tags.map((tag) => (
+							<Tag
+								key={tag}
+								className={`${items.some((i) => i.tags.includes(tag)) ? "text-foreground bg-primary/50" : ""}`}
+							>
+								{tag}
+							</Tag>
 						))}
 					</div>
+				</div>
+
+				<div className="flex flex-row">
+					{">"} {calculateBaseReward(project.type, length)} Uptime +{" "}
+					{calculateDiscountReward(project.type, length)} Discount Vouchers
 				</div>
 			</div>
 		</Terminal>
