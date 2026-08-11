@@ -20,7 +20,15 @@ const data: AppData = [
 		name: "Projects",
 		logo: "/placeholder.webp",
 		app: <Projects />,
-		location: { x: 4, y: 5 },
+		location: { x: 2, y: 2 },
+		draggable: true,
+	},
+	{
+		id: "shop",
+		name: "Shop",
+		logo: "/placeholder.webp",
+		app: <Shop />,
+		location: { x: 3, y: 2 },
 		draggable: true,
 	},
 	{
@@ -28,7 +36,7 @@ const data: AppData = [
 		name: "Explore",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 5, y: 4 },
+		location: { x: 2, y: 3 },
 		draggable: true,
 	},
 	{
@@ -36,7 +44,7 @@ const data: AppData = [
 		name: "Guides",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 4, y: 6 },
+		location: { x: 3, y: 4 },
 		draggable: true,
 	},
 	{
@@ -44,7 +52,7 @@ const data: AppData = [
 		name: "Docs",
 		logo: "/placeholder.webp",
 		app: <Shop />,
-		location: { x: 5, y: 6 },
+		location: { x: 4, y: 4 },
 		draggable: true,
 	},
 ];
