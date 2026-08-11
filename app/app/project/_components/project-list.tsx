@@ -1,6 +1,6 @@
-import { ProjectData } from "../data";
-import ProjItem from "./proj-item";
 import { getSession } from "@/lib/auth/session";
+import type { ProjectData } from "../data";
+import ProjItem from "./proj-item";
 
 interface ProjectListProps {
 	data: ProjectData[];

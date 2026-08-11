@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { ArrowLeftIcon, PlusIcon } from "@phosphor-icons/react";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ProjectData } from "../data";
+import type { ProjectData } from "../data";
 import { EditableField, ReadOnlyField } from "./editable-field";
 
 interface ProjectEditorProps {

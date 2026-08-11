@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
-import { CreateOrderInput, CreateOrderSchema } from "./schema";
 import { order } from "@/lib/db/schema";
-import { err, errParse, ok, Result } from "@/lib/utils/result";
+import { err, errParse, ok, type Result } from "@/lib/utils/result";
+import { type CreateOrderInput, CreateOrderSchema } from "./schema";
 
 export async function createOrder(
 	userId: string,

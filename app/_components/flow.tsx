@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Panel from "@/components/panel";
 import Terminal from "@/components/terminal";
+import type { Vector2D } from "@/lib/utils/2d";
 import NameSection from "./name-section";
 
 interface Path {
@@ -10,59 +11,56 @@ interface Path {
 	d: string;
 }
 
-interface Point {
-	x: number;
-	y: number;
-}
-
 const columns = [
 	[
 		{
 			id: "need",
-			title: "Identify a real need",
+			title: "identify a real need",
 			description:
-				"Look around you. What annoys you on a daily basis? Expensive hosting? Unreliable services? Missing features?",
+				"look around you. what annoys you on a daily basis? expensive hosting? unreliable services? missing features?",
 			links: ["existing", "new"],
 		},
 	],
 	[
 		{
-			id: "existing",
-			title: "Use existing provisioning tools",
+			id: "new",
+			title: "create your own provisioning tools",
 			description:
-				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
+				"container orchestrators, image builders, CI/CD pipelines, PaaS, game hosting services... the sky's the limit!",
 			links: ["ship"],
 		},
 		{
-			id: "new",
-			title: "Create your own provisioning tools",
+			id: "existing",
+			title: "get started with existing provisioning tools",
 			description:
-				"Scripts, CLIs, configuration managers, orchestrators, provisioners, CI/CD pipelines... the sky's the limit!",
+				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
 			links: ["ship"],
 		},
 	],
 	[
 		{
 			id: "ship",
-			title: "Ship a working project",
+			title: "ship a working project",
 			description:
-				"Create a demo, add a README and polish your project before submitting it",
+				"create a demo, add a README and make sure your project meets guidelines before submitting it.",
 			links: ["uptime"],
 		},
 	],
 	[
 		{
 			id: "uptime",
-			title: "Receive Uptime and discounts",
-			description: "Complexity, hours spent and theme factor in here",
+			title: "receive Uptime and discounts",
+			description:
+				"the bigger and the more complex your project is, the more Uptime you earn.",
 			links: ["shop"],
 		},
 	],
 	[
 		{
 			id: "shop",
-			title: "Redeem prizes",
-			description: "Spend your Uptime in the Shop",
+			title: "redeem prizes",
+			description:
+				"spend your Uptime in the shop. if your project is relevant to the shop item, you can use your discount vouchers on it.",
 			links: [],
 		},
 	],
@@ -72,7 +70,7 @@ const getEdgePosition = (
 	element: HTMLElement,
 	reference: SVGSVGElement,
 	side: "left" | "right",
-): Point => {
+): Vector2D => {
 	const elementBounds = element.getBoundingClientRect();
 	const referenceBounds = reference.getBoundingClientRect();
 
@@ -128,7 +126,6 @@ export default function Flow() {
 			}
 
 			setPaths(updatedPaths);
-			console.log(updatedPaths);
 		};
 
 		const scheduleUpdate = () => {
@@ -151,7 +148,7 @@ export default function Flow() {
 		<NameSection
 			id="how"
 			title="how it works"
-			description="find something that interests or deeply annoys you, whether that's overpriced PaaS, missing features or something else. build a tool to fix it, ship your project and get Uptime + discounts. profit!"
+			description="find a problem deeply annoys you: overpriced PaaS, missing features, lack of customization or something else. build a tool to fix it, ship your project and get Uptime + discounts."
 		>
 			<Terminal title="architecture diagram" className="w-full h-full">
 				<div className="sm:hidden flex flex-col px-4 py-2 gap-4">
