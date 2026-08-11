@@ -23,17 +23,17 @@ const columns = [
 	],
 	[
 		{
-			id: "existing",
-			title: "Use existing provisioning tools",
-			description:
-				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
-			links: ["ship"],
-		},
-		{
 			id: "new",
 			title: "Create your own provisioning tools",
 			description:
-				"Scripts, CLIs, configuration managers, orchestrators, provisioners, CI/CD pipelines... the sky's the limit!",
+				"Container orchestrators, image builders, CI/CD pipelines, PaaS, game hosting services... the sky's the limit!",
+			links: ["ship"],
+		},
+		{
+			id: "existing",
+			title: "Get started with existing provisioning tools",
+			description:
+				"Terraform, OpenTofu, Ansible, cloud-init, Dockerfiles, Nix... anything you can think of!",
 			links: ["ship"],
 		},
 	],
@@ -42,7 +42,7 @@ const columns = [
 			id: "ship",
 			title: "Ship a working project",
 			description:
-				"Create a demo, add a README and polish your project before submitting it",
+				"Create a demo, add a README and make sure your project meets guidelines before submitting it.",
 			links: ["uptime"],
 		},
 	],
@@ -50,7 +50,8 @@ const columns = [
 		{
 			id: "uptime",
 			title: "Receive Uptime and discounts",
-			description: "Complexity, hours spent and theme factor in here",
+			description:
+				"The bigger and the more complex your project is, the more Uptime you earn.",
 			links: ["shop"],
 		},
 	],
@@ -58,7 +59,8 @@ const columns = [
 		{
 			id: "shop",
 			title: "Redeem prizes",
-			description: "Spend your Uptime in the Shop",
+			description:
+				"Spend your Uptime in the Shop. If your project is relevant to the shop item, you can use your discount vouchers on it.",
 			links: [],
 		},
 	],

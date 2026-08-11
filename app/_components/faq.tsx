@@ -33,6 +33,11 @@ export default function FAQ() {
 			q: "what if I don't know how to code?",
 			a: "that's completely fine! Hack Club is all about learning how to code. if you ever get stuck, you can ask for help.",
 		},
+		{
+			id: "discounts",
+			q: "how do discounts work?",
+			a: "at review time, the reviewer assigns relevant tags to your project. you receive discount vouchers, which can only be used on items with the same tags as your project.",
+		},
 	];
 
 	return (
