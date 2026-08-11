@@ -21,5 +21,11 @@ export default function SearchBar() {
 		});
 	}
 
-	return <Input name="q" onChange={(e) => updateQuery(e.target.value)} />;
+	return (
+		<Input
+			name="q"
+			onChange={(e) => updateQuery(e.target.value)}
+			placeholder="Search for users..."
+		/>
+	);
 }

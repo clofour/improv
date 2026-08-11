@@ -12,7 +12,7 @@ import data from "../data";
 import Link, { LinkType } from "@/components/link";
 import { usePathname } from "next/navigation";
 
-export default function Nav() {
+export default function Navbar() {
 	const path = usePathname();
 	const page = data.find((page) => path.startsWith(page.href));
 

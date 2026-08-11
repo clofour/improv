@@ -4,7 +4,13 @@ import { genericOAuth } from "better-auth/plugins/generic-oauth";
 import { db } from "../db";
 import * as authSchema from "@/lib/db/auth-schema";
 import { admin } from "better-auth/plugins/admin";
-import { accessControl, fulfiller, helper, reviewer } from "./access-control";
+import {
+	accessControl,
+	adminRole,
+	fulfillerRole,
+	helperRole,
+	reviewerRole,
+} from "./access-control";
 
 export const auth = betterAuth({
 	user: {
@@ -45,9 +51,10 @@ export const auth = betterAuth({
 		admin({
 			ac: accessControl,
 			roles: {
-				helper,
-				reviewer,
-				fulfiller,
+				helper: helperRole,
+				reviewer: reviewerRole,
+				fulfiller: fulfillerRole,
+				admin: adminRole,
 			},
 		}),
 	],
