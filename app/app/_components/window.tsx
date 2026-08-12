@@ -42,6 +42,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const item = useDesktop((state) => state.items[id]);
 	const close = useDesktop((state) => state.closeWindow);
 	const expand = useDesktop((state) => state.expandWindow);
+	const restore = useDesktop((state) => state.restoreWindow);
 	const minimize = useDesktop((state) => state.minimizeWindow);
 	const focus = useDesktop((state) => state.focusWindow);
 	const move = useDesktop((state) => state.moveWindow);
@@ -155,7 +156,11 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 						type="button"
 						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-primary/80"
 						onClick={() => {
-							expand(id);
+							if (itemWindow.status === WindowStatus.Fullscreen) {
+								restore(id);
+							} else {
+								expand(id);
+							}
 						}}
 					/>
 					<button
