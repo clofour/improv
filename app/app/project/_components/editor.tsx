@@ -1,8 +1,13 @@
 "use client";
 
-import { ArrowLeftIcon, PlusIcon } from "@phosphor-icons/react";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import {
+	ArrowClockwiseIcon,
+	ArrowLeftIcon,
+	ArrowSquareOutIcon,
+	PlusIcon,
+} from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import type { ProjectData } from "../data";
 import { EditableField, ReadOnlyField } from "./editable-field";
@@ -51,11 +56,22 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 
 	return (
 		<div className="flex flex-col w-full h-full">
-			<div className="flex flex-row items-center gap-2">
-				<Button onClick={back}>
-					<ArrowLeftIcon className="w-4 h-4" />
-				</Button>
-				<p className="font-heading font-bold text-2xl">Project Editor</p>
+			<div className="flex flex-row items-center justify-between gap-2">
+				<div className="flex flex-row items-center gap-2">
+					<Button onClick={back}>
+						<ArrowLeftIcon className="w-4 h-4" />
+					</Button>
+					<p className="font-heading font-bold text-2xl">Project Editor</p>
+				</div>
+				<div className="flex flex-row items-center gap-2">
+					<ArrowClockwiseIcon className="animate-spin w-4 h-4" />
+					<p className="text-sm mr-2">Saving...</p>
+
+					<Button className="flex flex-row items-center gap-2 w-fit">
+						<ArrowSquareOutIcon className="w-4 h-4" />
+						<p>Ship</p>
+					</Button>
+				</div>
 			</div>
 			<div className="relative flex flex-col flex-1 w-full h-full mt-2 border border-border px-4 py-2 gap-1">
 				<p className="text-base text-muted-foreground">// Project info</p>

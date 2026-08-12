@@ -1,9 +1,9 @@
-import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import Panel from "@/components/panel";
 import { Button } from "@/components/ui/button";
 import type { ProjectData } from "../data";
 import { relativeTime } from "./editor";
+import { ArrowSquareOutIcon, TrashIcon } from "@phosphor-icons/react";
 import { Discounted } from "./tags";
 
 export default function ProjItem({
@@ -35,10 +35,15 @@ export default function ProjItem({
 					{description}
 				</p>
 				<p className="text-sm text-accent">{relativeTime(createdAt)}</p>
-				<Button className="w-fit mt-1" onClick={view}>
-					<ArrowSquareOutIcon className="w-4 h-4 mr-1" />
-					View Project
-				</Button>
+				<div className="flex flex-row gap-2">
+					<Button className="w-fit mt-1" onClick={view}>
+						<ArrowSquareOutIcon className="w-4 h-4 mr-1" />
+						View Project
+					</Button>
+					<Button className="w-fit mt-1 !bg-destructive">
+						<TrashIcon className="w-4 h-4 mr-1" />
+					</Button>
+				</div>
 			</div>
 		</Panel>
 	);
