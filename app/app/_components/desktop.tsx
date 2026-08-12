@@ -141,6 +141,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 				window: {
 					...window,
 					status: WindowStatus.Fullscreen,
+					position: { x: 1, y: 1 },
 				},
 			};
 
