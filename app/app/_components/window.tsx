@@ -122,6 +122,13 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const onResizePointerUp = () => {
 		resizeOffset.current = null;
 	};
+	const toggleMaximise = () => {
+		if (itemWindow.status === WindowStatus.Fullscreen) {
+			restore(id);
+		} else {
+			expand(id);
+		}
+	};
 
 	return (
 		<Panel
@@ -147,6 +154,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 				onPointerDown={onMovePointerDown}
 				onPointerMove={onMovePointerMove}
 				onPointerUp={onMovePointerUp}
+				onDoubleClick={toggleMaximise}
 			>
 				<span className="text-muted-foreground uppercase select-none pointer-events-none">
 					{name}
@@ -155,13 +163,7 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 					<button
 						type="button"
 						className="w-5 h-5 sm:w-2.5 sm:h-2.5 rounded-full bg-primary/80"
-						onClick={() => {
-							if (itemWindow.status === WindowStatus.Fullscreen) {
-								restore(id);
-							} else {
-								expand(id);
-							}
-						}}
+						onClick={toggleMaximise}
 					/>
 					<button
 						type="button"
