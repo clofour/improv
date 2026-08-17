@@ -86,8 +86,6 @@ export async function updateProjectShipStateAction(
 	_prev: Result<null> | null,
 	data: FormData,
 ) {
-	console.log(data);
-
 	const session = await getSession();
 	if (!session.ok) return session;
 
@@ -95,8 +93,6 @@ export async function updateProjectShipStateAction(
 	if (!parse.success) {
 		return errParse(parse);
 	}
-
-	console.log(parse.data);
 
 	const result = await updateProjectShipState(
 		session.data.user.id,

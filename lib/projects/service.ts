@@ -104,8 +104,6 @@ export async function updateProjectShipState(
 		const oldShipState = result.shipState;
 		const newShipState = parse.data.shipState;
 
-		console.log(oldShipState, newShipState);
-
 		if (oldShipState == newShipState) return ok(null);
 
 		await db
