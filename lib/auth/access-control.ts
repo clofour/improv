@@ -3,6 +3,7 @@ import { adminAc, defaultStatements } from "better-auth/plugins/admin/access";
 
 const statement = {
 	...defaultStatements,
+	internal: ["view"],
 } as const;
 
 export const accessControl = createAccessControl(statement);
@@ -15,4 +16,5 @@ export const fulfillerRole = accessControl.newRole({});
 
 export const adminRole = accessControl.newRole({
 	...adminAc.statements,
+	internal: ["view"],
 });
