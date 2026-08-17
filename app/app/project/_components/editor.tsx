@@ -48,6 +48,7 @@ export function relativeTime(date: Date | string | number): string {
 export function ProjectEditor({ data, back }: ProjectEditorProps) {
 	const [imView, setImView] = useState<boolean>(false);
 	const [editing, setEditing] = useState<string>("");
+	const [savingState, setSavingState] = useState(false);
 
 	const selectField = (field: string) => {
 		setImView(false);
@@ -64,8 +65,12 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					<p className="font-heading font-bold text-2xl">Project Editor</p>
 				</div>
 				<div className="flex flex-row items-center gap-2">
-					<ArrowClockwiseIcon className="animate-spin w-4 h-4" />
-					<p className="text-sm mr-2">Saving...</p>
+					{savingState && (
+						<div className="flex flex-row items-center gap-1">
+							<ArrowClockwiseIcon className="animate-spin w-4 h-4" />
+							<p className="text-sm mr-2">Saving...</p>
+						</div>
+					)}
 
 					<Button className="flex flex-row items-center gap-2 w-fit">
 						<ArrowSquareOutIcon className="w-4 h-4" />
@@ -85,6 +90,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					isEditing={editing === "name"}
 					onSelect={() => selectField("name")}
 					onBlur={() => selectField("")}
+					onSavingStateChange={(state: boolean) => setSavingState(state)}
 				/>
 
 				<EditableField
@@ -95,6 +101,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					isEditing={editing === "description"}
 					onSelect={() => selectField("description")}
 					onBlur={() => selectField("")}
+					onSavingStateChange={(state: boolean) => setSavingState(state)}
 				/>
 
 				<EditableField
@@ -106,6 +113,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					url={data.codeURL}
 					onSelect={() => selectField("code_url")}
 					onBlur={() => selectField("")}
+					onSavingStateChange={(state: boolean) => setSavingState(state)}
 				/>
 
 				<EditableField
@@ -117,6 +125,7 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 					url={data.demoURL}
 					onSelect={() => selectField("demo_url")}
 					onBlur={() => selectField("")}
+					onSavingStateChange={(state: boolean) => setSavingState(state)}
 				/>
 
 				{/* <hr className="mt-3" />
