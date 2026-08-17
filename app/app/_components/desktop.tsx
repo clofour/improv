@@ -41,6 +41,7 @@ interface DesktopState {
 	openWindow: (id: string, isMobile: boolean) => void;
 	closeWindow: (id: string) => void;
 	expandWindow: (id: string) => void;
+	restoreWindow: (id: string) => void;
 	minimizeWindow: (id: string) => void;
 	focusWindow: (id: string) => void;
 	moveWindow: (id: string, position: Vector2D) => void;
@@ -140,6 +141,30 @@ export const useDesktop = create<DesktopState>((set) => ({
 				window: {
 					...window,
 					status: WindowStatus.Fullscreen,
+					position: { x: 1, y: 1 },
+				},
+			};
+
+			return {
+				items: {
+					...state.items,
+					[id]: newItem,
+				},
+			};
+		});
+	},
+	restoreWindow: (id) => {
+		set((state) => {
+			const item = state.items[id];
+			if (!item) return state;
+
+			const window = item.window;
+
+			const newItem = {
+				...item,
+				window: {
+					...window,
+					status: WindowStatus.Open,
 				},
 			};
 

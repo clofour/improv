@@ -31,7 +31,7 @@ export default function Navbar() {
 						textType={TextType.Improv}
 						size="md"
 					/>
-					<div className="flex flex-row justify-center items-center gap-7.5 hidden sm:flex">
+					<div className="hidden sm:flex flex-row justify-center items-center gap-7.5">
 						{links.map((link) => (
 							<Link
 								type={LinkType.Internal}

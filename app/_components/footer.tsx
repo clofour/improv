@@ -7,20 +7,20 @@ import Section from "./section";
 export default function Footer() {
 	const sections = [
 		{
-			name: "Hack Club",
+			name: "hack club",
 			links: [
-				{ label: "Philosophy", to: "https://hackclub.com/philosophy/" },
-				{ label: "Team", to: "https://hackclub.com/team/" },
-				{ label: "Donate", to: "https://hackclub.com/philanthropy/" },
+				{ label: "philosophy", to: "https://hackclub.com/philosophy/" },
+				{ label: "team", to: "https://hackclub.com/team/" },
+				{ label: "donate", to: "https://hackclub.com/philanthropy/" },
 			],
 		},
 		{
-			name: "Resources",
+			name: "resources",
 			links: [
-				{ label: "Slack", to: "https://slack.hackclub.com/" },
-				{ label: "Community Events", to: "https://events.hackclub.com/" },
-				{ label: "Workshops", to: "https://workshops.hackclub.com/" },
-				{ label: "Code of Conduct", to: "https://hackclub.com/conduct/" },
+				{ label: "slack", to: "https://slack.hackclub.com/" },
+				{ label: "community events", to: "https://events.hackclub.com/" },
+				{ label: "workshops", to: "https://workshops.hackclub.com/" },
+				{ label: "code of conduct", to: "https://hackclub.com/conduct/" },
 			],
 		},
 	];
@@ -45,9 +45,9 @@ export default function Footer() {
 							</div>
 							<div className="text-sm text-muted-foreground">
 								Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical
-								high schoolers. We believe you learn best by building, so we're
+								high schoolers. we believe you learn best by building, so we're
 								creating community and providing grants so you can make awesome
-								projects. In the past few years, we've{" "}
+								projects. in the past few years, we've{" "}
 								<Link
 									type={LinkType.External}
 									href="https://summer.hackclub.com/"

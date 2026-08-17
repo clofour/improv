@@ -1,4 +1,4 @@
-import { ZodSafeParseResult } from "zod";
+import type { ZodSafeParseResult } from "zod";
 
 type Success<T> = {
 	ok: true;

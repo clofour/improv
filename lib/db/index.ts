@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { drizzle as drizzlePG } from "drizzle-orm/node-postgres";
 import { drizzle as drizzleNeon } from "drizzle-orm/neon-serverless";
+import { drizzle as drizzlePG } from "drizzle-orm/node-postgres";
 import ws from "ws";
 
 export const db =

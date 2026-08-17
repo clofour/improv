@@ -1,13 +1,12 @@
 "use client";
 
+import { PlusIcon } from "@phosphor-icons/react";
 import { useActionState, useEffect, useState } from "react";
-import { ProjectData } from "../data";
-import { ProjectList } from "./project-list";
-import { ProjectEditor } from "./editor";
 import { Button } from "@/components/ui/button";
 import { createProjectAction } from "../actions";
-import { PlusIcon } from "@phosphor-icons/react";
-import { stat } from "fs";
+import type { ProjectData } from "../data";
+import { ProjectEditor } from "./editor";
+import { ProjectList } from "./project-list";
 
 interface ProjectsProps {
 	data: ProjectData[];

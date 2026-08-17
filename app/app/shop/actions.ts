@@ -1,10 +1,10 @@
 "use server";
 
-import { errParse, ok, Result } from "@/lib/utils/result";
 import { getSession } from "@/lib/auth/utils";
 import { createOrder } from "@/lib/shop/service";
 import { revalidatePath } from "next/cache";
 import z from "zod";
+import { errParse, ok, type Result } from "@/lib/utils/result";
 
 const CreateOrderFormSchema = z.object({
 	itemId: z.string(),
