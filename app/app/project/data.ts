@@ -12,6 +12,7 @@ export interface ProjectData {
 	image: string;
 	codeURL: string;
 	demoURL: string;
+	shipState: boolean;
 	createdAt: string;
 	logs: ProjectLog[];
 }

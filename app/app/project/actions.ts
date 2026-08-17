@@ -7,6 +7,7 @@ import {
 	createProject,
 	deleteProject,
 	updateProject,
+	updateProjectShipState,
 } from "@/lib/projects/service";
 import extract from "@/lib/utils/form";
 import { errParse, ok, type Result } from "@/lib/utils/result";
@@ -64,6 +65,40 @@ export async function updateProjectAction(
 	}
 
 	const result = await updateProject(
+		session.data.user.id,
+		parse.data.id,
+		parse.data,
+	);
+	if (result.ok) {
+		revalidatePath("/app/project");
+	}
+
+	return result;
+}
+
+const UpdateProjectShipStateFormSchema = z.object({
+	id: z.uuid(),
+
+	shipState: z.enum(["true", "false"]).transform((value) => value === "true"),
+});
+
+export async function updateProjectShipStateAction(
+	_prev: Result<null> | null,
+	data: FormData,
+) {
+	console.log(data);
+
+	const session = await getSession();
+	if (!session.ok) return session;
+
+	const parse = UpdateProjectShipStateFormSchema.safeParse(extract(data));
+	if (!parse.success) {
+		return errParse(parse);
+	}
+
+	console.log(parse.data);
+
+	const result = await updateProjectShipState(
 		session.data.user.id,
 		parse.data.id,
 		parse.data,

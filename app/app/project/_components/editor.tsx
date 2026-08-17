@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 import Image from "next/image";
 import {
 	ArrowClockwiseIcon,
@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { ProjectData } from "../data";
 import { EditableField, ReadOnlyField } from "./editable-field";
+import { updateProjectShipStateAction } from "../actions";
 
 interface ProjectEditorProps {
 	data: ProjectData;
@@ -50,6 +51,11 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 	const [editing, setEditing] = useState<string>("");
 	const [savingState, setSavingState] = useState(false);
 
+	const [state, formAction, pending] = useActionState(
+		updateProjectShipStateAction,
+		null,
+	);
+
 	const selectField = (field: string) => {
 		setImView(false);
 		setEditing(field);
@@ -72,10 +78,24 @@ export function ProjectEditor({ data, back }: ProjectEditorProps) {
 						</div>
 					)}
 
-					<Button className="flex flex-row items-center gap-2 w-fit">
-						<ArrowSquareOutIcon className="w-4 h-4" />
-						<p>Ship</p>
-					</Button>
+					<form action={formAction}>
+						<input type="hidden" name="id" value={data.id} />
+						<input
+							type="hidden"
+							name="shipState"
+							value={String(!data.shipState)}
+						/>
+						<Button
+							type="submit"
+							className="flex flex-row items-center gap-2 w-fit"
+						>
+							<ArrowSquareOutIcon className="w-4 h-4" />
+							<p>
+								{data.shipState === false ? "Ship" : "Unship"}
+								{pending ? "ping" : ""}
+							</p>
+						</Button>
+					</form>
 				</div>
 			</div>
 			<div className="relative flex flex-col flex-1 w-full h-full mt-2 border border-border px-4 py-2 gap-1">

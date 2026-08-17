@@ -1,0 +1,1 @@
+ALTER TABLE "project" ADD COLUMN "ship_state" boolean DEFAULT false NOT NULL;
