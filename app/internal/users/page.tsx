@@ -29,9 +29,7 @@ export default async function Users({
 	const query = String(searchParams.q ?? "");
 	const page = Number(searchParams.page ?? 1);
 	const parse = ListUsersSchema.safeParse({ query, page });
-	if (!parse.success) {
-		return errParse(parse);
-	}
+	if (!parse.success) return null;
 	const result = await listUsers(query, page);
 	if (!result.ok) return null;
 
