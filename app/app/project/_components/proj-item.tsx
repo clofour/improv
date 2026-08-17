@@ -29,7 +29,6 @@ export default function ProjItem({
 			<div className="flex flex-col px-4 w-full h-full py-6 gap-0.5">
 				<div className="flex flex-row items-center gap-4">
 					<p className="text-2xl font-heading font-bold w-fit">{name}</p>
-					<Discounted />
 				</div>
 				<p className="text-sm text-muted-foreground mt-0.5 w-fit">
 					{description}
