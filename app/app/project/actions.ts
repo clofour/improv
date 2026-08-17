@@ -3,7 +3,11 @@
 import { revalidatePath } from "next/cache";
 import z from "zod";
 import { getSession } from "@/lib/auth/session";
-import { createProject, updateProject } from "@/lib/projects/service";
+import {
+	createProject,
+	deleteProject,
+	updateProject,
+} from "@/lib/projects/service";
 import extract from "@/lib/utils/form";
 import { errParse, ok, type Result } from "@/lib/utils/result";
 
@@ -64,6 +68,30 @@ export async function updateProjectAction(
 		parse.data.id,
 		parse.data,
 	);
+	if (result.ok) {
+		revalidatePath("/app/project");
+	}
+
+	return result;
+}
+
+const DeleteProjectFormSchema = z.object({
+	id: z.uuid(),
+});
+
+export async function deleteProjectAction(
+	_prev: Result<null> | null,
+	data: FormData,
+) {
+	const session = await getSession();
+	if (!session.ok) return session;
+
+	const parse = DeleteProjectFormSchema.safeParse(extract(data));
+	if (!parse.success) {
+		return errParse(parse);
+	}
+
+	const result = await deleteProject(session.data.user.id, parse.data.id);
 	if (result.ok) {
 		revalidatePath("/app/project");
 	}
