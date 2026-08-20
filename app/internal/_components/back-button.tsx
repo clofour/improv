@@ -11,6 +11,7 @@ export default function BackButton() {
 			variant="ghost"
 			size="lg"
 			href="/internal/users"
+			aria-label="Back to user list"
 		>
 			<ArrowLeftIcon />
 		</LinkButton>

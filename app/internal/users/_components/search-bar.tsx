@@ -26,6 +26,7 @@ export default function SearchBar() {
 			name="q"
 			onChange={(e) => updateQuery(e.target.value)}
 			placeholder="Search for users..."
+			aria-label="Search for users..."
 		/>
 	);
 }

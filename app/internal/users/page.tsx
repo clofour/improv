@@ -30,7 +30,7 @@ export default async function Users({
 	const page = Number(searchParams.page ?? 1);
 	const parse = ListUsersSchema.safeParse({ query, page });
 	if (!parse.success) return null;
-	const result = await listUsers(query, page);
+	const result = await listUsers(parse.data.query, parse.data.page);
 	if (!result.ok) return null;
 
 	return (
