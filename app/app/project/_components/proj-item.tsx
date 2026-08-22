@@ -48,7 +48,11 @@ export default function ProjItem({
 					</Button>
 					<form action={formAction}>
 						<input type="hidden" name="id" value={id} />
-						<Button type="submit" className="w-fit mt-1 !bg-destructive">
+						<Button
+							type="submit"
+							className="w-fit mt-1 !bg-destructive"
+							aria-label={`Delete ${name}`}
+						>
 							<TrashIcon className="w-4 h-4 mr-1" />
 						</Button>
 					</form>

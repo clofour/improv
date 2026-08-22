@@ -35,7 +35,7 @@ export function EditableField({
 
 	useEffect(() => {
 		onSavingStateChange(pending);
-	}, [pending]);
+	}, [pending, onSavingStateChange]);
 
 	const handleClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
