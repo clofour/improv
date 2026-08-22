@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/auth/session";
+import { getSession } from "@/lib/auth/utils";
 import { listProjects } from "@/lib/projects/service";
 import Menu from "./_components/menu";
 

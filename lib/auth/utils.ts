@@ -12,3 +12,17 @@ export async function getSession() {
 
 	return ok(session);
 }
+
+export async function checkPermissions(
+	userID: string,
+	permissions: Record<string, string[]>,
+) {
+	const data = await auth.api.userHasPermission({
+		body: {
+			userId: userID,
+			permissions: permissions,
+		},
+	});
+
+	return ok(data.success);
+}

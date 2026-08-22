@@ -1,8 +1,8 @@
 "use server";
 
+import { getSession } from "@/lib/auth/utils";
 import { revalidatePath } from "next/cache";
 import z from "zod";
-import { getSession } from "@/lib/auth/session";
 import {
 	createProject,
 	deleteProject,
