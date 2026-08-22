@@ -5,6 +5,8 @@ import type { ProjectData } from "../data";
 import { relativeTime } from "./editor";
 import { ArrowSquareOutIcon, TrashIcon } from "@phosphor-icons/react";
 import { Discounted } from "./tags";
+import { useActionState } from "react";
+import { deleteProjectAction } from "../actions";
 
 export default function ProjItem({
 	id,
@@ -17,6 +19,11 @@ export default function ProjItem({
 	logs,
 	view,
 }: ProjectData & { view: () => void }) {
+	const [state, formAction, pending] = useActionState(
+		deleteProjectAction,
+		null,
+	);
+
 	return (
 		<Panel className="flex flex-row w-full px-2 py-1 items-center">
 			<Image
@@ -29,7 +36,6 @@ export default function ProjItem({
 			<div className="flex flex-col px-4 w-full h-full py-6 gap-0.5">
 				<div className="flex flex-row items-center gap-4">
 					<p className="text-2xl font-heading font-bold w-fit">{name}</p>
-					<Discounted />
 				</div>
 				<p className="text-sm text-muted-foreground mt-0.5 w-fit">
 					{description}
@@ -40,9 +46,16 @@ export default function ProjItem({
 						<ArrowSquareOutIcon className="w-4 h-4 mr-1" />
 						View Project
 					</Button>
-					<Button className="w-fit mt-1 !bg-destructive">
-						<TrashIcon className="w-4 h-4 mr-1" />
-					</Button>
+					<form action={formAction}>
+						<input type="hidden" name="id" value={id} />
+						<Button
+							type="submit"
+							className="w-fit mt-1 !bg-destructive"
+							aria-label={`Delete ${name}`}
+						>
+							<TrashIcon className="w-4 h-4 mr-1" />
+						</Button>
+					</form>
 				</div>
 			</div>
 		</Panel>

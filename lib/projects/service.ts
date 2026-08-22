@@ -7,6 +7,8 @@ import {
 	CreateProjectSchema,
 	type UpdateProjectInput,
 	UpdateProjectSchema,
+	UpdateProjectShipState,
+	UpdateProjectShipStateInput,
 } from "./schema";
 
 type SelectProject = InferSelectModel<typeof project>;
@@ -21,7 +23,7 @@ export async function listProjects(
 			.where(eq(project.userId, userId));
 		return ok(result);
 	} catch (e) {
-		return err(["Failed to create project"]);
+		return err(["Failed to list projects"]);
 	}
 }
 
@@ -80,6 +82,39 @@ export async function updateProject(
 		return ok(null);
 	} catch (e) {
 		return err(["Failed to update project"]);
+	}
+}
+
+export async function updateProjectShipState(
+	userId: string,
+	projectId: string,
+	input: UpdateProjectShipStateInput,
+): Promise<Result<null>> {
+	const parse = UpdateProjectShipState.safeParse(input);
+	if (!parse.success) return errParse(parse);
+
+	try {
+		const [result] = await db
+			.select()
+			.from(project)
+			.where(and(eq(project.userId, userId), eq(project.id, projectId)))
+			.limit(1);
+		if (!result) throw new Error("Project not found");
+
+		const oldShipState = result.shipState;
+		const newShipState = parse.data.shipState;
+
+		if (oldShipState === newShipState) return ok(null);
+
+		await db
+			.update(project)
+			.set(parse.data)
+			.where(and(eq(project.userId, userId), eq(project.id, projectId)));
+		// call webhooks
+
+		return ok(null);
+	} catch (e) {
+		return err(["Failed to update project ship state"]);
 	}
 }
 
