@@ -2,40 +2,45 @@
 
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import type React from "react";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { updateProjectAction } from "../actions";
 
 interface EditableProps {
+	projectId: string;
 	name: string;
 	label: string;
 	value: string;
-	projectId: string;
+	url?: string;
 	isEditing: boolean;
 	onSelect: () => void;
 	onBlur: () => void;
-	url?: string;
+	onSavingStateChange: (state: boolean) => void;
 }
 
 export function EditableField({
+	projectId,
 	name,
 	label,
 	value,
-	projectId,
+	url,
 	isEditing,
 	onSelect,
 	onBlur,
-	url,
+	onSavingStateChange,
 }: EditableProps) {
 	const [state, formAction, pending] = useActionState(
 		updateProjectAction,
 		null,
 	);
 
+	useEffect(() => {
+		onSavingStateChange(pending);
+	}, [pending, onSavingStateChange]);
+
 	const handleClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		onSelect();
 	};
-
 	const externalClick = (e: React.MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();

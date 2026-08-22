@@ -16,6 +16,7 @@ export default async function Projects() {
 		image: "/placeholder.webp",
 		codeURL: project.codeURL ?? "",
 		demoURL: project.demoURL ?? "",
+		shipState: project.shipState,
 		createdAt: project.createdAt.toISOString(),
 		logs: [],
 	}));

@@ -1,4 +1,11 @@
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+	boolean,
+	integer,
+	pgTable,
+	text,
+	timestamp,
+	uuid,
+} from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
 export const project = pgTable("project", {
@@ -12,6 +19,7 @@ export const project = pgTable("project", {
 	demoURL: text("demo_url"),
 	updateDeclaration: text("update_declaration"),
 	aiDeclaration: text("ai_declaration"),
+	shipState: boolean("ship_state").default(false).notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
