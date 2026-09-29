@@ -19,19 +19,24 @@ export default function FAQ() {
 			a: "yup! we're Hack Club, a nonprofit organization that has been running similar programs for years.",
 		},
 		{
-			id: "eligibility",
+			id: "definition",
+			q: "what does 'provisioning' mean?",
+			a: "provisioning is the process of setting up the infrastructure necessary to run an aplication. concretely, this could be creating a server, installing software, configuring networking/storage and getting everything ready for the application to run.",
+		},
+		{
+			id: "person-eligibility",
 			q: "am I eligible?",
 			a: "you are eligible to participate if you are between the ages of 13 to 18 inclusive.",
 		},
 		{
-			id: "definition",
+			id: "project-eligibility",
 			q: "what counts as a project?",
-			a: "anything that provisions, configures, deploys, updates or secures infrastructure counts, as long as it works.",
+			a: "even though the program focuses on container ochestrators, anything that provisions, configures, deploys, updates or secures infrastructure counts.",
 		},
 		{
 			id: "capability",
-			q: "what if I don't know how to code?",
-			a: "that's completely fine! Hack Club is all about learning how to code. if you ever get stuck, you can ask for help.",
+			q: "what if I'm new to infrastructure?",
+			a: "that's completely fine! you can use the guides or if you ever get stuck, you can ask for help.",
 		},
 		{
 			id: "discounts",

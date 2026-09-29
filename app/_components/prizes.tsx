@@ -41,6 +41,18 @@ export const items = [
 
 export const projects = [
 	{
+		value: "orchestrator",
+		label: "Container Orchestrator",
+		type: ProjectType.Advanced,
+		tags: ["hosting", "reproducibility"],
+	},
+	{
+		value: "mediawiki",
+		label: "MediaWiki Deployment",
+		type: ProjectType.Beginner,
+		tags: ["hosting"],
+	},
+	{
 		value: "paas",
 		label: "PaaS",
 		type: ProjectType.Advanced,
@@ -58,16 +70,10 @@ export const projects = [
 		type: ProjectType.Beginner,
 		tags: ["reproducibility"],
 	},
-	{
-		value: "orchestrator",
-		label: "Container Orchestrator",
-		type: ProjectType.Advanced,
-		tags: ["hosting", "reproducibility"],
-	},
 ];
 
 export default function Prizes() {
-	const [projectId, setProjectId] = useState("paas");
+	const [projectId, setProjectId] = useState("orchestrator");
 	const [length, setLength] = useState(20);
 
 	const project = projects.find((p) => p.value === projectId) ?? projects[0];
@@ -91,8 +97,8 @@ export default function Prizes() {
 					<p>
 						oh, and the tools you build?{" "}
 						<span className="text-foreground">you can use them!</span> use your
-						own PaaS, and pay 16x less. use your own provisioner, and cut down
-						waiting times. not bad at all, huh?
+						own PaaS, and pay 16x less. use your own database provisioner, and
+						cut down waiting times. not bad at all, huh?
 					</p>
 				</div>
 			}
