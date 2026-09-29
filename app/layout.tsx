@@ -3,6 +3,7 @@ import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils/class";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const heading = Space_Grotesk({
 	subsets: ["latin"],
@@ -42,7 +43,9 @@ export default function RootLayout({
 				hc.variable,
 			)}
 		>
-			<body className="min-h-full flex flex-col">{children}</body>
+			<body className="min-h-full flex flex-col">
+				<TooltipProvider>{children}</TooltipProvider>
+			</body>
 		</html>
 	);
 }

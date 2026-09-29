@@ -4,6 +4,11 @@ import Terminal from "@/components/terminal";
 import RSVPButton from "./rsvp-button";
 import Section from "./section";
 import Showcase from "./showcase";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Hero() {
 	return (
@@ -15,7 +20,21 @@ export default function Hero() {
 						<br />
 						your own
 						<br />
-						<span className="text-primary glow-primary">provisioning</span>
+						<Tooltip>
+							<TooltipTrigger
+								render={
+									<span className="text-primary underline decoration-0.5 decoration-dashed glow-primary">
+										provisioning
+									</span>
+								}
+							/>
+							<TooltipContent side={"right"}>
+								process of setting up the infrastructure necessary to run an
+								aplication such as creating a server, installing software,
+								configuring networking/storage and getting everything ready for
+								the application to run
+							</TooltipContent>
+						</Tooltip>
 					</h1>
 					<div className="space-y-4 text-muted-foreground text-base font-mono">
 						<p>
@@ -34,8 +53,8 @@ export default function Hero() {
 						<p>
 							not sure where to start? you can build a small container
 							orchestrator, which takes an app and deploys it automatically,
-							without having to set it up. alternatively, you can deploy
-							MediaWiki using tools like Ansible or Terraform.
+							without setting everything up by hand. alternatively, you can
+							deploy MediaWiki using tools like Ansible or Terraform.
 						</p>
 					</div>
 					<div className="flex flex-row gap-3">
