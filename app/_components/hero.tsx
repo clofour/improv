@@ -25,10 +25,17 @@ export default function Hero() {
 						</p>
 
 						<p>
-							because it's 2030. temperatures dropped out of nowhere. no
+							well, it's 2030. temperatures dropped out of nowhere. no
 							explanations, no managed services, no cloud providers and no one
 							coming to help. if you want compute, comms, or storage, you build
 							it yourself.
+						</p>
+
+						<p>
+							not sure where to start? you can build a small container
+							orchestrator, which takes an app and deploys it automatically,
+							without having to set it up. alternatively, you can deploy
+							MediaWiki using tools like Ansible or Terraform.
 						</p>
 					</div>
 					<div className="flex flex-row gap-3">
