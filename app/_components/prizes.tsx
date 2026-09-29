@@ -97,8 +97,8 @@ export default function Prizes() {
 					<p>
 						oh, and the tools you build?{" "}
 						<span className="text-foreground">you can use them!</span> use your
-						own PaaS, and pay 16x less. use your own provisioner, and cut down
-						waiting times. not bad at all, huh?
+						own PaaS, and pay 16x less. use your own database provisioner, and
+						cut down waiting times. not bad at all, huh?
 					</p>
 				</div>
 			}
