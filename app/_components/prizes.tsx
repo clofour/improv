@@ -41,6 +41,18 @@ export const items = [
 
 export const projects = [
 	{
+		value: "orchestrator",
+		label: "Container Orchestrator",
+		type: ProjectType.Advanced,
+		tags: ["hosting", "reproducibility"],
+	},
+	{
+		value: "mediawiki",
+		label: "MediaWiki Deployment",
+		type: ProjectType.Beginner,
+		tags: ["hosting"],
+	},
+	{
 		value: "paas",
 		label: "PaaS",
 		type: ProjectType.Advanced,
@@ -58,16 +70,10 @@ export const projects = [
 		type: ProjectType.Beginner,
 		tags: ["reproducibility"],
 	},
-	{
-		value: "orchestrator",
-		label: "Container Orchestrator",
-		type: ProjectType.Advanced,
-		tags: ["hosting", "reproducibility"],
-	},
 ];
 
 export default function Prizes() {
-	const [projectId, setProjectId] = useState("paas");
+	const [projectId, setProjectId] = useState("orchestrator");
 	const [length, setLength] = useState(20);
 
 	const project = projects.find((p) => p.value === projectId) ?? projects[0];
