@@ -35,8 +35,8 @@ export default function FAQ() {
 		},
 		{
 			id: "capability",
-			q: "what if I don't know how to code?",
-			a: "that's completely fine! Hack Club is all about learning how to code. if you ever get stuck, you can ask for help.",
+			q: "what if I'm new to infrastructure?",
+			a: "that's completely fine! you can use the guides or if you ever get stuck, you can ask for help.",
 		},
 		{
 			id: "discounts",
