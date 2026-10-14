@@ -57,14 +57,12 @@ export const useDesktop = create<DesktopState>((set) => ({
 			const item = {
 				name: name,
 				logo: logo,
-				...(window && {
-					window: {
-						status: WindowStatus.Closed,
-						position: { x: 1, y: 1 },
-						size: { x: 650, y: 400 },
-						zIndex: 0,
-					},
-				}),
+				window: {
+					status: WindowStatus.Closed,
+					position: { x: 1, y: 1 },
+					size: { x: 650, y: 400 },
+					zIndex: 0,
+				},
 				...(file && {
 					file: {
 						location: file.location,
