@@ -4,13 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils/class";
 import { sleep } from "@/lib/utils/general";
 import data from "./showcase.json";
+import { typewriter } from "@/lib/utils/typewriter";
 
-const SHORT_PUNCTUATION = ",:;";
-const LONG_PUNCTUATION = ".!?";
 const PROMPT_PAUSE = 50;
-const CHAR_PAUSE = 100;
-const TYPO_RATE = 0.05;
-const TYPO_REGEX = /[a-zA-Z]/;
 const EXECUTE_PAUSE = 1000;
 const THINK_PAUSE = 1500;
 const READ_PAUSE = 3000;
@@ -31,49 +27,6 @@ export function Cursor({ className }: CursorProps) {
 			className={cn("w-2 h-[1em] inline-block bg-primary blink", className)}
 		/>
 	);
-}
-
-async function typewriter(
-	finalText: string,
-	setCurrentText: (fn: (ct: string) => string) => void,
-) {
-	const cancelled = false;
-
-	function calculateDelay(character: string) {
-		let delay = CHAR_PAUSE * (Math.random() + 0.5);
-
-		if (SHORT_PUNCTUATION.includes(character)) {
-			delay += 200;
-		}
-		if (LONG_PUNCTUATION.includes(character)) {
-			delay += 420;
-		}
-
-		return delay;
-	}
-
-	async function run() {
-		for (const character of finalText) {
-			if (cancelled) return;
-
-			if (TYPO_REGEX.test(character) && Math.random() < TYPO_RATE) {
-				const typoCharacter = String.fromCharCode(
-					97 + Math.floor(Math.random() * 26),
-				);
-				setCurrentText((ct) => ct + typoCharacter);
-
-				await sleep(calculateDelay(typoCharacter));
-				setCurrentText((prev) => prev.slice(0, -1));
-
-				await sleep(90 + Math.random() * 90);
-			}
-
-			setCurrentText((ct) => ct + character);
-			await sleep(calculateDelay(character));
-		}
-	}
-
-	await run();
 }
 
 export default function Showcase() {
