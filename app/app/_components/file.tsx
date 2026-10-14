@@ -31,6 +31,9 @@ export default function File({ id, screenRef, isMobile }: FileProps) {
 	if (!item) return;
 
 	const file = item.file;
+
+	if (!file) return;
+
 	const isSelected = selectedFileIDs.includes(id);
 
 	const isDragging = dragPosition !== null;

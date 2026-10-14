@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Vector2D } from "@/lib/utils/2d";
+import { FileData } from "../data";
 
 export enum WindowStatus {
 	Open,
@@ -23,8 +24,8 @@ interface DesktopItemState {
 	name: string;
 	logo: string;
 
-	file: FileState;
-	window: WindowState;
+	file?: FileState;
+	window?: WindowState;
 }
 
 interface DesktopState {
@@ -32,12 +33,7 @@ interface DesktopState {
 	selectedFiles: string[];
 	topZIndex: number;
 
-	register: (
-		id: string,
-		name: string,
-		logo: string,
-		location: Vector2D,
-	) => void;
+	register: (id: string, name: string, logo: string, file?: FileData) => void;
 	openWindow: (id: string, isMobile: boolean) => void;
 	closeWindow: (id: string) => void;
 	expandWindow: (id: string) => void;
@@ -56,20 +52,20 @@ export const useDesktop = create<DesktopState>((set) => ({
 	selectedFiles: [],
 	topZIndex: 0,
 
-	register: (id, name, logo, location) => {
+	register: (id, name, logo, file) => {
 		set((state) => {
 			const item = {
 				name: name,
 				logo: logo,
-				window: {
+				...(window && {
 					status: WindowStatus.Closed,
 					position: { x: 1, y: 1 },
 					size: { x: 650, y: 400 },
 					zIndex: 0,
-				},
-				file: {
-					location: location,
-				},
+				}),
+				...(file && {
+					location: file.location,
+				}),
 			};
 
 			return {
@@ -84,6 +80,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -110,6 +107,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -133,6 +131,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -157,6 +156,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -180,6 +180,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -203,6 +204,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -228,6 +230,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -251,6 +254,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.window) return state;
 
 			const window = item.window;
 
@@ -275,6 +279,7 @@ export const useDesktop = create<DesktopState>((set) => ({
 		set((state) => {
 			const item = state.items[id];
 			if (!item) return state;
+			if (!item.file) return state;
 
 			const file = item.file;
 

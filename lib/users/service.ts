@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth/config";
-import { err, ok } from "@/lib/utils/result";
+import { err, ok, Result } from "@/lib/utils/result";
 import { headers } from "next/headers";
 
 const PAGE_SIZE = 20;
@@ -38,6 +38,33 @@ export async function getUser(userId: string) {
 				id: userId,
 			},
 		});
+
+		return ok(result);
+	} catch (e) {
+		console.log(e);
+		return err(["Failed to get user"]);
+	}
+}
+
+export type OnboardingStep = {
+	step: string;
+	status: boolean;
+};
+export type OnboardingState = OnboardingStep[];
+export async function getOnboardingState(): Promise<Result<OnboardingState>> {
+	try {
+		const accountList = await auth.api.listUserAccounts({
+			headers: await headers(),
+		});
+
+		const result = [
+			{
+				step: "link-hackatime",
+				status: !accountList.some(
+					(account) => account.providerId === "hackatime",
+				),
+			},
+		];
 
 		return ok(result);
 	} catch (e) {

@@ -5,12 +5,16 @@ import ColdOverlay from "./_components/cold-overlay";
 import CRTOverlay from "./_components/crt-overlay";
 import Screen from "./_components/screen";
 import data from "./data";
+import { getOnboardingState } from "@/lib/users/service";
 
-export default function App() {
+export default async function App() {
+	const onboardingState = await getOnboardingState();
+	if (!onboardingState.ok) return;
+
 	return (
 		<div className="w-screen h-screen overflow-hidden">
 			<Bezel>
-				<Screen data={data} />
+				<Screen onboardingState={onboardingState.data} data={data} />
 				<CRTOverlay />
 				<ColdOverlay />
 			</Bezel>

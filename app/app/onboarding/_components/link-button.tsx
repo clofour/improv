@@ -21,6 +21,8 @@ export default function HackatimeButton({
 			callbackURL: "/app",
 			scopes: ["profile", "read"],
 		});
+
+		console.log(data);
 	}
 
 	return (
