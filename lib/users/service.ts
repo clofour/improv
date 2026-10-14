@@ -60,7 +60,7 @@ export async function getOnboardingState(): Promise<Result<OnboardingState>> {
 		const result = [
 			{
 				step: "link-hackatime",
-				status: !accountList.some(
+				status: accountList.some(
 					(account) => account.providerId === "hackatime",
 				),
 			},
