@@ -53,7 +53,10 @@ export default function Window({ screenRef, id, name, children }: WindowProps) {
 	const resizeOffset = useRef<WindowResize | null>(null);
 
 	if (!item) return;
+
 	const itemWindow = item.window;
+
+	if (!itemWindow) return;
 
 	const onMovePointerDown = (e: React.PointerEvent) => {
 		if (e.target !== e.currentTarget) return;
