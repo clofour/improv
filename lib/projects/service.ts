@@ -37,9 +37,10 @@ export async function getProject(
 			.from(project)
 			.where(and(eq(project.userId, userId), eq(project.id, projectId)))
 			.limit(1);
+		if (!result) return err(["Project not found"]);
 		return ok(result);
 	} catch (e) {
-		return err(["Failed to delete project"]);
+		return err(["Failed to get project"]);
 	}
 }
 
@@ -110,7 +111,6 @@ export async function updateProjectShipState(
 			.update(project)
 			.set(parse.data)
 			.where(and(eq(project.userId, userId), eq(project.id, projectId)));
-		// call webhooks
 
 		return ok(null);
 	} catch (e) {
