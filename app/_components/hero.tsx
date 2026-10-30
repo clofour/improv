@@ -51,8 +51,8 @@ export default function Hero() {
 						<p className="text-foreground">
 							well, it's 2030. temperatures dropped out of nowhere. no
 							explanations, no managed services, no cloud providers and no one
-							coming to help. if you want compute, comms, or storage, you build
-							it yourself.
+							coming to help. if you want compute, comms, or storage, you'll
+							have to build it yourself.
 						</p>
 
 						<p>

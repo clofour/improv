@@ -88,7 +88,7 @@ export default function Prizes() {
 				<div className="space-y-4">
 					<p>
 						ship your project, and earn uptime + discount vouchers depending on
-						the size. spend uptime in the shop. there's just one catch:{" "}
+						the size. spend uptime in the shop, with just one catch:{" "}
 						<span className="text-foreground">
 							items relevant to your projects are discounted
 						</span>

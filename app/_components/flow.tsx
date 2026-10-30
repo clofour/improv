@@ -4,9 +4,9 @@ const columns = [
 	[
 		{
 			id: "need",
-			title: "identify a real need",
+			title: "look around you",
 			description:
-				"look around you. what annoys you on a daily basis? expensive hosting? unreliable services? missing features?",
+				"what annoys you on a daily basis? expensive hosting? unreliable services? missing features?",
 		},
 	],
 	[
@@ -26,17 +26,17 @@ const columns = [
 	[
 		{
 			id: "ship",
-			title: "ship a working project",
+			title: "ship your project",
 			description:
-				"create a demo, add a README and make sure your project meets guidelines before submitting it.",
+				"create a demo, add a README and make sure your project meets the guidelines before submitting it.",
 		},
 	],
 	[
 		{
 			id: "uptime",
-			title: "receive Uptime and discounts",
+			title: "receive uptime and discounts",
 			description:
-				"the bigger and the more complex your project is, the more Uptime you earn.",
+				"the bigger and the more complex your project is, the more uptime you earn.",
 		},
 	],
 	[
@@ -44,7 +44,7 @@ const columns = [
 			id: "shop",
 			title: "redeem prizes",
 			description:
-				"spend your Uptime in the shop. if your project is relevant to the shop item, you can use your discount vouchers on it.",
+				"spend your uptime in the shop. if your project is relevant to the shop item, you can use your discount vouchers on it.",
 		},
 	],
 ];
