@@ -1,34 +1,39 @@
 import { LinkType } from "@/components/link";
 import LinkButton from "@/components/link-button";
 import Terminal from "@/components/terminal";
-import RSVPButton from "./rsvp-button";
-import Section from "./section";
-import Showcase from "./showcase";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import RSVPButton from "./rsvp-button";
+import Section from "./section";
+import Showcase from "./showcase";
 
 export default function Hero() {
 	return (
 		<Section id="hero">
-			<div className="grid grid-cols-1 sm:grid-cols-2 w-full h-full px-6 py-16 gap-10">
-				<div className="flex flex-col w-full h-full gap-5">
-					<h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold tracking-tight">
+			<div className="grid grid-cols-1 lg:grid-cols-[6fr_5fr] items-center px-6 py-12 lg:py-10 lg:min-h-4 gap-10 lg:gap-14">
+				<div className="flex flex-col gap-6">
+					<h1 className="text-5xl sm:text-6xl xl:text-7xl font-heading font-bold tracking-tight">
 						improvise
 						<br />
 						your own
 						<br />
+						<span className="text-primary">provisioning</span>
 						<Tooltip>
 							<TooltipTrigger
 								render={
-									<span className="text-primary underline decoration-0.5 decoration-dashed glow-primary">
-										provisioning
-									</span>
+									<button
+										type="button"
+										aria-label="what does provisioning mean?"
+										className="relative -top-[1.05em] ml-3 inline-block align-baseline font-mono text-[0.32em] font-normal tracking-normal leading-none text-primary/70 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
+									>
+										?
+									</button>
 								}
 							/>
-							<TooltipContent side={"right"}>
+							<TooltipContent side={"top"} className="border-2 border-border">
 								process of setting up the infrastructure necessary to run an
 								aplication such as creating a server, installing software,
 								configuring networking/storage and getting everything ready for
@@ -36,18 +41,18 @@ export default function Hero() {
 							</TooltipContent>
 						</Tooltip>
 					</h1>
-					<div className="space-y-4 text-muted-foreground text-base font-mono">
-						<p>
+					<div className="max-w-xl space-y-3 text-muted-foreground text-base leading-relaxed">
+						<p className="text-foreground">
 							do you know what happens under the hood when you deploy on
 							services like Vercel or Railway, or spin up a VM on a cloud
 							provider? do you <span className="italic">really</span>?
 						</p>
 
-						<p>
+						<p className="text-foreground">
 							well, it's 2030. temperatures dropped out of nowhere. no
 							explanations, no managed services, no cloud providers and no one
-							coming to help. if you want compute, comms, or storage, you build
-							it yourself.
+							coming to help. if you want compute, comms, or storage, you'll
+							have to build it yourself.
 						</p>
 
 						<p>
@@ -69,10 +74,10 @@ export default function Hero() {
 						</LinkButton>
 					</div>
 				</div>
-				<div className="relative w-full h-full">
+				<div className="relative h-80 lg:h-[80%]">
 					<Terminal
-						className="w-full h-50 sm:h-full sm:absolute sm:inset-0"
-						title="SHOWCASES"
+						className="w-full h-full absolute inset-0"
+						title="showcases"
 					>
 						<Showcase />
 					</Terminal>

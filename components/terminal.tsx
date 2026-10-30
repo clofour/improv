@@ -17,7 +17,10 @@ export default function Terminal({
 }: TerminalProps) {
 	return (
 		<Panel
-			className={cn("min-w-40 flex flex-col overflow-hidden", className)}
+			className={cn(
+				"min-w-40 flex flex-col overflow-hidden font-mono",
+				className,
+			)}
 			style={style}
 		>
 			<div className="flex shrink-0 justify-between items-center px-2 p-1 bg-muted/60 border-b border-border">

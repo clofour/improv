@@ -83,17 +83,17 @@ export default function Prizes() {
 		<NameSection
 			id="prizes"
 			title="what you get"
+			aside="left"
 			description={
 				<div className="space-y-4">
 					<p>
 						ship your project, and earn uptime + discount vouchers depending on
-						the size. spend uptime in the shop. there's just one catch:{" "}
+						the size. spend uptime in the shop, with just one catch:{" "}
 						<span className="text-foreground">
 							items relevant to your projects are discounted
 						</span>
 						.
 					</p>
-
 					<p>
 						oh, and the tools you build?{" "}
 						<span className="text-foreground">you can use them!</span> use your
@@ -103,24 +103,36 @@ export default function Prizes() {
 				</div>
 			}
 		>
-			<div className="flex flex-col gap-3">
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-					{items.map((item) => (
-						<ShopItem
-							key={item.name}
-							discountPrice={clamp(item.basePrice - discount, 0, 10000)}
-							projectId={projectId}
-							{...item}
-						/>
-					))}
-				</div>
+			<div className="flex flex-col gap-12">
 				<PrizeCalculator
 					projectId={projectId}
 					setProjectId={setProjectId}
 					length={length}
 					setLength={setLength}
 				/>
-				<p className="text-sm text-muted-foreground">...tip of the iceberg</p>
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
+					{items.map((item, index) => (
+						<div
+							key={item.name}
+							className={
+								index === 0
+									? ""
+									: index === 1
+										? "pt-10 border-t border-border sm:pt-0 sm:border-t-0"
+										: "pt-10 border-t border-border"
+							}
+						>
+							<ShopItem
+								discountPrice={clamp(item.basePrice - discount, 0, 10000)}
+								projectId={projectId}
+								{...item}
+							/>
+						</div>
+					))}
+				</div>
+				<p className="-mt-6 text-sm text-muted-foreground text-right">
+					...tip of the iceberg
+				</p>
 			</div>
 		</NameSection>
 	);

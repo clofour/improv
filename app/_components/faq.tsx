@@ -50,12 +50,15 @@ export default function FAQ() {
 			id="faq"
 			title="frequently asked questions"
 			description="need i say more?"
+			aside="right"
 		>
-			<Accordion defaultValue={["ysws"]}>
+			<Accordion defaultValue={["ysws"]} className="border-y border-border">
 				{items.map((item) => (
-					<AccordionItem key={item.id} value={item.id} className="panel px-3">
-						<AccordionTrigger>{item.q}</AccordionTrigger>
-						<AccordionContent className="text-muted-foreground">
+					<AccordionItem key={item.id} value={item.id}>
+						<AccordionTrigger className="py-4 text-base font-heading font-bold hover:text-primary hover:no-underline">
+							{item.q}
+						</AccordionTrigger>
+						<AccordionContent className="pb-4 text-base text-muted-foreground">
 							{item.a}
 						</AccordionContent>
 					</AccordionItem>

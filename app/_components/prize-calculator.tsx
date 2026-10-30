@@ -1,4 +1,3 @@
-import Terminal from "@/components/terminal";
 import {
 	Select,
 	SelectContent,
@@ -8,13 +7,11 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { items, projects } from "./prizes";
-import Tag from "./tag";
 import {
 	calculateBaseReward,
 	calculateDiscountReward,
 } from "@/lib/helpers/prize";
-import { Separator } from "@/components/ui/separator";
+import { projects } from "./prizes";
 
 interface PrizeDemoProps {
 	projectId: string;
@@ -32,63 +29,57 @@ export default function PrizeCalculator({
 	const project = projects.find((p) => p.value === projectId) ?? projects[0];
 
 	return (
-		<Terminal title="Calculator">
-			<div className="flex flex-col p-2 gap-4">
-				<div className="flex flex-row justify-center items-center gap-4">
-					<Slider
-						value={length}
-						onValueChange={(newLength) => {
-							if (typeof newLength == "number") {
-								setLength(newLength);
-							}
-						}}
-						min={1}
-						max={100}
-						step={1}
-					/>
-					<div className="">{length}h</div>
-				</div>
-
-				<div className="flex flex-row flex-wrap items-center gap-4">
-					<Select
-						items={projects}
-						value={projectId}
-						onValueChange={(newProjectId) =>
-							newProjectId !== null ? setProjectId(newProjectId) : null
-						}
-					>
-						<SelectTrigger className="w-full sm:w-[250px]">
-							<SelectValue placeholder="Theme" />
-						</SelectTrigger>
-						<SelectContent alignItemWithTrigger={false}>
-							<SelectGroup>
-								{projects.map((item) => (
-									<SelectItem key={item.value} value={item.value}>
-										{item.label}
-									</SelectItem>
-								))}
-							</SelectGroup>
-						</SelectContent>
-					</Select>
-
-					<div>{project.type}</div>
-					<div className="flex flex-row gap-2">
-						{project.tags.map((tag) => (
-							<Tag
-								key={tag}
-								className={`${items.some((i) => i.tags.includes(tag)) ? "text-foreground bg-primary/50" : ""}`}
-							>
-								{tag}
-							</Tag>
-						))}
+		<div className="flex flex-col gap-3 pb-8 border-b border-border">
+			<div className="flex flex-row flex-wrap items-center gap-x-6 gap-y-3">
+				<Select
+					items={projects}
+					value={projectId}
+					onValueChange={(newProjectId) =>
+						newProjectId !== null ? setProjectId(newProjectId) : null
+					}
+				>
+					<SelectTrigger className="h-auto! p-0 gap-1 border-0 bg-transparent text-base text-foreground underline decoration-dashed decoration-primary/60 underline-offset-4 hover:text-primary">
+						<SelectValue placeholder="Theme" />
+					</SelectTrigger>
+					<SelectContent alignItemWithTrigger={false}>
+						<SelectGroup>
+							{projects.map((item) => (
+								<SelectItem key={item.value} value={item.value}>
+									{item.label}
+								</SelectItem>
+							))}
+						</SelectGroup>
+					</SelectContent>
+				</Select>
+				<div className="flex flex-row items-center gap-3">
+					<div className="w-40 sm:w-48">
+						<Slider
+							value={length}
+							onValueChange={(newLength) => {
+								if (typeof newLength == "number") {
+									setLength(newLength);
+								}
+							}}
+							min={1}
+							max={100}
+							step={1}
+						/>
 					</div>
-				</div>
-
-				<div className="flex flex-row">
-					{">"} {calculateBaseReward(project.type, length)} Uptime +{" "}
-					{calculateDiscountReward(project.type, length)} Discount Vouchers
+					<span className="w-10 text-right font-mono text-sm text-muted-foreground">
+						{length}h
+					</span>
 				</div>
 			</div>
-		</Terminal>
+			<p className="text-base text-muted-foreground">
+				you'd earn{" "}
+				<span className="font-semibold text-primary">
+					{calculateBaseReward(project.type, length)} uptime
+				</span>{" "}
+				and{" "}
+				<span className="font-semibold text-primary">
+					{calculateDiscountReward(project.type, length)} discount vouchers
+				</span>
+			</p>
+		</div>
 	);
 }
