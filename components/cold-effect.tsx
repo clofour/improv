@@ -21,7 +21,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 	const farSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode === EffectMode.Background ? 80 : 45 },
+				{ length: mode === EffectMode.Background ? 70 : 45 },
 				(_, i) => ({
 					id: i,
 					x: random(0, 100),
@@ -37,7 +37,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 	const middleSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode === EffectMode.Background ? 60 : 30 },
+				{ length: mode === EffectMode.Background ? 40 : 30 },
 				(_, i) => ({
 					id: i,
 					px: random(0, 100),
@@ -60,7 +60,7 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 	const nearSnow = useMemo(
 		() =>
 			Array.from(
-				{ length: mode === EffectMode.Background ? 30 : 15 },
+				{ length: mode === EffectMode.Background ? 25 : 15 },
 				(_, i) => ({
 					id: i,
 					px: random(0, 100),
