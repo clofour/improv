@@ -55,7 +55,7 @@ export default function FAQ() {
 			<Accordion defaultValue={["ysws"]} className="border-y border-border">
 				{items.map((item) => (
 					<AccordionItem key={item.id} value={item.id}>
-						<AccordionTrigger className="py-4 text-base hover:text-primary hover:no-underline">
+						<AccordionTrigger className="py-4 text-base font-heading font-bold hover:text-primary hover:no-underline">
 							{item.q}
 						</AccordionTrigger>
 						<AccordionContent className="pb-4 text-base text-muted-foreground">
