@@ -167,7 +167,7 @@ export default function Showcase() {
 							block.output.map((line, j) => (
 								<div
 									key={j}
-									className="text-sm text-muted-foreground whitespace-pre-wrap"
+									className="text-sm text-muted-foreground whitespace-pre-wrap break-all"
 								>
 									{line}
 								</div>

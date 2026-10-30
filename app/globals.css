@@ -29,7 +29,6 @@ html {
 	--color-chart-2: var(--chart-2);
 	--color-chart-1: var(--chart-1);
 	--color-ring: var(--ring);
-	--color-wire: var(--wire);
 	--color-input: var(--input);
 	--color-border: var(--border);
 	--color-destructive: var(--destructive);
@@ -59,34 +58,31 @@ html {
 	--animate-snow-near: snow-near var(--duration)
 		cubic-bezier(0.12, 0.45, 0.28, 1) var(--delay) infinite;
 	--animate-snowflake: snowflake var(--duration) linear var(--delay) infinite;
-	--animate-wind-gust: wind-gust var(--duration) cubic-bezier(0.15, 0.5, 0.3, 1)
-		var(--delay) infinite;
 	--animate-whiteout: whiteout 13s ease-in-out infinite;
 	--animate-crt-flicker: crt-flicker 8s ease-in-out infinite;
 	--animate-crt-noise: crt-noise 6s linear infinite;
 }
 
 :root {
-	--background: oklch(0.11 0.018 236);
-	--foreground: oklch(0.93 0.015 230);
-	--panel: oklch(0.16 0.02 235);
-	--panel-foreground: oklch(0.9 0.015 230);
-	--popover: oklch(0.18 0.025 235);
-	--popover-foreground: oklch(0.9 0.015 230);
-	--primary: oklch(0.8 0.08 220);
-	--primary-foreground: oklch(0.12 0.02 240);
-	--secondary: oklch(0.75 0.045 222);
+	--background: oklch(0.16 0.01 242);
+	--foreground: oklch(0.94 0 214);
+	--panel: oklch(0.21 0.01 240.96);
+	--panel-foreground: oklch(0.94 0 214);
+	--popover: oklch(0.21 0.01 240);
+	--popover-foreground: oklch(0.94 0 214);
+	--primary: oklch(0.79 0.08 220.86);
+	--primary-foreground: oklch(0.16 0.01 242);
+	--secondary: oklch(0.75 0.04 222);
 	--secondary-foreground: oklch(0.12 0.02 240);
 	--muted: oklch(0.22 0.02 235);
-	--muted-foreground: oklch(0.6 0.03 230);
+	--muted-foreground: oklch(0.67 0.02 233);
 	--accent: oklch(0.65 0.08 222);
 	--accent-foreground: oklch(0.12 0.02 240);
 	--destructive: oklch(0.58 0.2 355);
 	--destructive-foreground: oklch(0.95 0 0);
-	--border: oklch(0.28 0.025 235);
+	--border: oklch(0.3 0.02 236);
 	--input: oklch(0.18 0.02 235);
-	--ring: oklch(0.8 0.08 220);
-	--wire: oklch(0.68 0.06 222);
+	--ring: oklch(0.79 0.08 220);
 	--sidebar: oklch(0.13 0.02 240);
 	--sidebar-foreground: oklch(0.88 0.015 230);
 	--sidebar-primary: oklch(0.8 0.08 220);
@@ -109,18 +105,6 @@ html {
 
 @utility glow-* {
 	text-shadow: 0 0 12px color-mix(in oklab, --value(--color-*) 60%, transparent);
-}
-
-/* Revisit location of CSS animations */
-@keyframes flow {
-	to {
-		stroke-dashoffset: -196;
-	}
-}
-
-@utility wire-flow {
-	stroke-dasharray: 6 8;
-	animation: 4s linear infinite flow;
 }
 
 @keyframes blink {
@@ -210,23 +194,6 @@ html {
 
 	100% {
 		transform: translate3d(65vw, 125vh, 0) rotate(220deg) scale(var(--scale));
-		opacity: 0;
-	}
-}
-
-@keyframes wind-gust {
-	0% {
-		transform: translate3d(-20vw, -20vh, 0) rotate(20deg) scaleY(0.7);
-		opacity: 0;
-	}
-	20% {
-		opacity: 0.55;
-	}
-	55% {
-		opacity: 0.3;
-	}
-	100% {
-		transform: translate3d(40vw, 90vh, 0) rotate(20deg) scaleY(1.2);
 		opacity: 0;
 	}
 }

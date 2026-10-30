@@ -1,16 +1,28 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils/class";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const heading = Space_Grotesk({
-	subsets: ["latin"],
+const heading = localFont({
+	src: [
+		{ path: "./fonts/redaction/20-400.woff2", weight: "400" },
+		{ path: "./fonts/redaction/20-700.woff2", weight: "700" },
+	],
+	display: "swap",
 	variable: "--heading",
 });
-const body = Space_Grotesk({ subsets: ["latin"], variable: "--body" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--mono" });
+const body = IBM_Plex_Sans({
+	subsets: ["latin"],
+	style: ["normal", "italic"],
+	variable: "--body",
+});
+const mono = IBM_Plex_Mono({
+	subsets: ["latin"],
+	weight: ["400", "500", "700"],
+	variable: "--mono",
+});
 const hc = localFont({
 	src: [
 		{ path: "./fonts/phantom-sans/regular.woff2" },

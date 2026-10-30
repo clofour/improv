@@ -1,23 +1,6 @@
 import Image from "next/image";
-import Terminal from "@/components/terminal";
-import { cn } from "@/lib/utils/class";
 import { projects } from "./prizes";
 import Tag from "./tag";
-
-interface ShopItemPriceProps {
-	className: string;
-	type: string;
-	price: number;
-}
-
-function ShopItemPrice({ className, type, price }: ShopItemPriceProps) {
-	return (
-		<div className={cn("p-3", className)}>
-			<div className="text-xs text-muted-foreground uppercase">{type}</div>
-			<div className="text-3xl font-heading font-bold">{price}</div>
-		</div>
-	);
-}
 
 interface ShopItemProps {
 	name: string;
@@ -42,39 +25,35 @@ export function ShopItem({
 	const isDiscount = project.tags.some((tag) => tags.includes(tag));
 
 	return (
-		<Terminal className="flex flex-col" title="Shop Item">
-			<div className="flex items-center justify-center aspect-[2/1] bg-background/50">
+		<div className="flex flex-col gap-5">
+			<div className="relative aspect-[2/1]">
 				<Image
 					src={image}
 					alt={name}
 					width={400}
 					height={300}
-					className="w-full h-full object-contain p-5"
+					className="absolute inset-0 w-full h-full object-contain p-4"
 				/>
 			</div>
 
-			<div className="flex flex-col flex-1 gap-5 p-5">
-				<div className="flex flex-col gap-2">
+			<div className="flex flex-col flex-1 gap-4">
+				<div className="flex flex-col gap-1">
 					<p className="text-xl font-heading font-bold">{name}</p>
 					<p className="text-sm text-muted-foreground">{description}</p>
 				</div>
-				<div className="flex flex-col gap-5 mt-auto">
-					<div className="grid grid-cols-2 border border-border">
-						<ShopItemPrice
-							className={`border-r border-border ${isDiscount ? "" : "bg-primary/10"}`}
-							type="base"
-							price={basePrice}
-						/>
-						<ShopItemPrice
-							className={`${isDiscount ? "bg-primary/10" : ""}`}
-							type="relevant"
-							price={discountPrice}
-						/>
-					</div>
-					<div className="flex flex-row flex-wrap items-center gap-2">
-						<span className="text-xs text-muted-foreground uppercase whitespace-nowrap">
-							Tags:
+				<div className="flex flex-row flex-wrap items-end justify-between gap-2 mt-auto pt-2">
+					<p className="flex items-baseline gap-2 font-heading">
+						{isDiscount && (
+							<span className="text-muted-foreground line-through">
+								{basePrice}
+							</span>
+						)}
+						<span className="text-3xl font-bold">
+							{isDiscount ? discountPrice : basePrice}
 						</span>
+						<span className="text-sm text-muted-foreground">uptime</span>
+					</p>
+					<div className="flex flex-row flex-wrap gap-2">
 						{tags.map((tag) => (
 							<Tag
 								className={
@@ -90,6 +69,6 @@ export function ShopItem({
 					</div>
 				</div>
 			</div>
-		</Terminal>
+		</div>
 	);
 }

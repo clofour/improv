@@ -110,26 +110,6 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 			),
 		[mode],
 	);
-	const windGusts = useMemo(
-		() =>
-			Array.from(
-				{ length: mode === EffectMode.Background ? 4 : 4 },
-				(_, i) => ({
-					id: i,
-					y: random(0, 110),
-					height:
-						mode === EffectMode.Background ? random(25, 80) : random(20, 60),
-					blur:
-						mode === EffectMode.Background ? random(10, 24) : random(12, 26),
-					duration:
-						mode === EffectMode.Background ? random(8, 16) : random(10, 18),
-					delay:
-						mode === EffectMode.Background ? random(-14, 0) : random(-16, 0),
-				}),
-			),
-		[mode],
-	);
-
 	if (!visible) return null;
 
 	return (
@@ -218,27 +198,6 @@ export function ColdEffect({ mode }: ColdEffectProps) {
 								top: `${snowflake.y}%`,
 								width: `${snowflake.size}px`,
 								height: `${snowflake.size}px`,
-							} as React.CSSProperties
-						}
-					/>
-				))}
-			</div>
-
-			<div
-				className={`fixed ${mode === EffectMode.Background ? "inset-0" : "-inset-[25%]"} will-change-transform contain-strict`}
-			>
-				{windGusts.map((gust) => (
-					<div
-						key={`gust-${gust.id}`}
-						className="absolute -left-[60%] w-[220%] bg-[linear-gradient(110deg,transparent_0%,rgba(230,250,255,0.02)_25%,rgba(235,251,255,0.12)_45%,rgba(235,251,255,0.04)_55%,transparent_80%)] animate-wind-gust"
-						style={
-							{
-								"--duration": `${gust.duration}s`,
-								"--delay": `${gust.delay}s`,
-
-								top: `${gust.y}%`,
-								height: `${gust.height}px`,
-								filter: `blur(${gust.blur}px)`,
 							} as React.CSSProperties
 						}
 					/>
