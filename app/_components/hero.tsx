@@ -13,9 +13,9 @@ import Showcase from "./showcase";
 export default function Hero() {
 	return (
 		<Section id="hero">
-			<div className="grid grid-cols-1 lg:grid-cols-[6fr_5fr] items-center px-6 py-12 lg:py-10 lg:min-h-[calc(100svh-4rem)] gap-10 lg:gap-14">
+			<div className="grid grid-cols-1 lg:grid-cols-[6fr_5fr] items-center px-6 py-12 lg:py-10 lg:min-h-4 gap-10 lg:gap-14">
 				<div className="flex flex-col gap-6">
-					<h1 className="text-5xl sm:text-6xl xl:text-7xl font-heading font-bold tracking-tight leading-[0.95]">
+					<h1 className="text-5xl sm:text-6xl xl:text-7xl font-heading font-bold tracking-tight">
 						improvise
 						<br />
 						your own
@@ -74,7 +74,7 @@ export default function Hero() {
 						</LinkButton>
 					</div>
 				</div>
-				<div className="relative h-80 lg:h-[min(30rem,70svh)]">
+				<div className="relative h-80 lg:h-[80%]">
 					<Terminal
 						className="w-full h-full absolute inset-0"
 						title="showcases"
